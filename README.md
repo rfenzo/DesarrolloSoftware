@@ -1,24 +1,52 @@
-# README
+# SETUP
+## Docker installation
+```
+sudo snap install docker
+sudo snap connect docker:home
+sudo addgroup --system docker
+sudo adduser $USER docker
+newgrp docker
+sudo snap enable docker
+```
+Create an empty `.env` file on the project folder
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# TIPS AND TRICKS
+## Some Docker commands
+### Display images
+`docker image ls`
+### Display containers
+`docker container ls`
+### Build image
+`docker-compose build`
+### Run project docker
+`docker-compose up`
+or
+`docker-compose up -d` (background)
 
-Things you may want to cover:
+## Low level inspection of the container database
+```
+docker exec -it psql_container_id bash
+psql -U postgres example_development
+```
 
-* Ruby version
+## High level operations of the container database
 
-* System dependencies
+`docker-compose exec web rake  db:create`
 
-* Configuration
+`docker-compose exec web rake  db:migrate`
 
-* Database creation
+`docker-compose exec web rake  db:reset`
 
-* Database initialization
+Sometimes, you won't be able perform a migration, neither do a reset because of current sessions in the database, in that case you can try restarting the container or delete the database sessions:
+- Option 1: Restart the container: `docker-compose stop` and then `docker-compose up`
+- Option 2: Remove database sessions: 
+```
+docker exec -it psql_container_id bash
 
-* How to run the test suite
+psql -U postgres
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+REVOKE CONNECT ON DATABASE example_development FROM public;
+SELECT pg_terminate_backend(pg_stat_activity.pid)
+FROM pg_stat_activity
+WHERE pg_stat_activity.datname = 'TARGET_DB';
+```

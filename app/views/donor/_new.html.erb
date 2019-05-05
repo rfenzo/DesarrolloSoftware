@@ -2,7 +2,7 @@
 <%= f.hidden_field :user_type, value: 'Donor'%>
 
 <div class="form-group">
-  <%= f.label :email %><br />
+  <%= f.label :email %>
   <%= f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email" %>
 </div>
 
@@ -10,12 +10,12 @@
   <%= f.label :password %>
   <% if @minimum_password_length %>
   <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-  <% end %><br />
+  <% end %>
   <%= f.password_field :password, class: 'form-control', autocomplete: "new-password" %>
 </div>
 
 <div class="form-group">
-  <%= f.label :password_confirmation %><br />
+  <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "new-password" %>
 </div>
 <%= f.submit t('.sign_up'), class: 'btn btn-primary' %>

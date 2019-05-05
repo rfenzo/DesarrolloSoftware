@@ -8,3 +8,18 @@ es:
   socialcompany:
     new:
       sign_up: "Registrarse"
+  devise:
+    registrations:
+      new:
+        sign_up_options: "¿ Como deseas registrarte ?"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: "no exitosa"
+            password:
+              too_short: "debe contener al menos 6 carácteres"
+            email:
+              taken: "ya registrado, por favor selecciona otro"

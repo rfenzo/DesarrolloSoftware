@@ -1,0 +1,10 @@
+es:
+  donor:
+    new:
+      sign_up: "Registrarse"
+  company:
+    new:
+      sign_up: "Registrarse"
+  socialcompany:
+    new:
+      sign_up: "Registrarse"

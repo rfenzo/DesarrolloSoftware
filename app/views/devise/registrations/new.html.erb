@@ -1,0 +1,37 @@
+<h2><%= t('.sign_up') %></h2>
+
+<h5>¿ Como deseas registrarte ?</h5>
+<div id='userTypeSelector' class='list-group list-group-horizontal'>
+  <button name="Donor" class="list-group-item list-group-item-action">Donador</button>
+  <button name="SocialCompany" class="list-group-item list-group-item-action">Emprensa social</button>
+  <button name="Company" class="list-group-item list-group-item-action">Compañía</button>
+</div>
+
+<%= render "devise/shared/error_messages", resource: resource %>
+
+<div id="forms">
+  <div id="DonorForm" style='display: none'>
+    <%= render 'donor/new' %>
+  </div>
+  <div id="CompanyForm" style='display: none'>
+    <%= render 'company/new' %>
+  </div>
+  <div id="SocialCompanyForm" style='display: none'>
+    <%= render 'socialcompany/new' %>
+  </div>
+</div>
+
+<%= render "devise/shared/links" %>
+
+
+<script>
+  $(document).ready(function(){
+    $("#userTypeSelector button").click(function() {
+        $(this).parent().children().removeClass('active');
+        $(this).addClass("active");
+        var formType = $(this).attr('name') + 'Form'
+        $('#forms').children().hide()
+        $(`#${formType}`).show()
+    });
+  })
+</script>

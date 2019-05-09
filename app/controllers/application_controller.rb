@@ -7,18 +7,30 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_type])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_type, :name, :rut, :validation, :compromise, :address, :description])
   end
 
   def isDonor?
-    return true if current_user and current_user.user_type == 'Donor' else false
+    if current_user and current_user.user_type == 'Donor'
+      return true
+    else
+      return false
+    end
   end
 
   def isCompany?
-    return true if current_user and current_user.user_type == 'Company' else false
+    if current_user and current_user.user_type == 'Company'
+      return true
+    else
+      return false
+    end
   end
 
   def isSocialCompany?
-    return true if current_user and current_user.user_type == 'SocialCompany' else false
+    if current_user and current_user.user_type == 'SocialCompany'
+      return true
+    else
+      return false
+    end
   end
 end

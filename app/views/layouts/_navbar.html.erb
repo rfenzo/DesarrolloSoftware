@@ -9,7 +9,7 @@
     </div>
   </form>
   <% if current_user %>
-  <li class='nav-item'><%=link_to("Mi Perfil", "my_profile/index", method: :get, class: 'nav-link text-white font-weight-bold') %></li>
+  <li class='nav-item'><%=link_to("Mi Perfil", profile_path, method: :get, class: 'nav-link text-white font-weight-bold') %></li>
   <li class='nav-item'><%=link_to('Cerrar sesión', :destroy_user_session, method: :delete, class: 'nav-link text-white font-weight-bold') %></li>
   <% else %>
   <li class='nav-item'><%=link_to('Iniciar sesión', :new_user_session, class: 'nav-link text-white font-weight-bold') %></li>

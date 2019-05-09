@@ -1,8 +1,14 @@
 <div class="sidenav">
-	<a> <%=link_to "Resumen", profile_path, method: :get %></a>
-	<a href="#">Proyectos</a>
+	<a href="#"> <%=link_to"Resumen", profile_path, method: :get %> </a>
+	<% if isDonor? %>
+	 	<a href="#"> <%=link_to"Mis Donaciones", donaciones_path, method: :get %> </a>
+	<% elsif isSocialCompany? %>
+	 	<a href="#"> <%=link_to"Mis Proyectos", donaciones_path, method: :get %> </a>	
+	<% else %>
+	 	<a href="#"> <%=link_to"Proyectos", proyectos_empresa_path, method: :get %> </a>	
+	<% end %>	
 	<a href="#">Datos</a>
-	<a href="#">Beneficios</a>
+	<a href="#">Beneficios</a> 
 	<% if isSocialCompany? %>
 	 	<a href="#">Buscar patrocinador</a>
 	<% else %>

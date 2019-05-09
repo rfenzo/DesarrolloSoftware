@@ -1,51 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Proyectos Sociales</h1>
-
 <div class="row">
-  <div class="col-8 list-group">
-    <% @projects.each do |project| %>
-      <div class="row list-group-item active mb-3">
-        <div class="container">
-          <div class="col">
-            <div class="row">
-              <%= project.name %>
-            </div>
-            <div class="row">
-              <%= project.description %>
-            </div>
-            <div class="row">
-              <%= project.amount %>
-            </div>
-            <div class="row">
-              <% = project.user %>
-            </div>
-              <%= link_to 'Show', project %>
-              <%= link_to 'Edit', edit_project_path(project) %>
-              <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+  <div class="col-10 m-auto">
+    <h1>Proyectos Sociales</h1>
   </div>
-  <div class="col-4 list-group">
-
+  <div class="col-2 m-auto">
+    <%= link_to 'New Project', new_project_path %>
   </div>
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Amount</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-</table>
-
-<br>
-
-<%= link_to 'New Project', new_project_path %>
+<% @projects.each do |project| %>
+<div class="row p-3">
+  <div class="col-8 pr-0">
+    <div class="list-group-item">
+      <div class="row">
+        <div class="col-2 m-auto">
+          <h5><%= project.name %></h5>
+        </div>
+        <div class="col-3">
+          <div class="row m-auto">
+            <%= project.user.name %>
+          </div>
+          <div class="row m-auto">
+            <p>$<%= project.amount %></p>
+          </div>
+        </div>
+        <div class="col-3 m-auto">
+          <p>Beneficios</p>
+        </div>
+        <div class="col-1 m-auto">
+          <%= link_to 'Show', project %>
+          <%= link_to 'Edit', edit_project_path(project) %>
+          <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4 pl-0" style="max-width: 150px">
+    <button class="btn btn-outline-success h-100 w-100">Donar</button>
+  </div>
+</div>
+<% end %>

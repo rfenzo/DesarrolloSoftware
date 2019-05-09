@@ -1,5 +1,5 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-<%= f.hidden_field :user_type, value: 'Company'%>
+<%= f.hidden_field :user_type, value: 'SocialCompany'%>
 <div class='row'>
   <div class='col'>
     <h3>Datos de sesión</h3>
@@ -62,7 +62,6 @@
     <div class="form-group">
       <%= f.label :compromise %>
       <div class="custom-file">
-        <%# <%= f.label :compromise, 'Selecciona un archivo...', class: 'custom-file-label'%> %>
         <%= f.label :compromise, t('.file_text'), class: 'custom-file-label'%>
         <%= f.file_field :compromise, class: 'custom-file-input'%>
       </div>

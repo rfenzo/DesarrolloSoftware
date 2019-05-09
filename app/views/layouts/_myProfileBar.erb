@@ -7,10 +7,12 @@
 	<% else %>
 	 	<a href="#"> <%=link_to"Proyectos", proyectos_empresa_path, method: :get %> </a>	
 	<% end %>	
-	<a href="#">Datos</a>
-	<a href="#">Beneficios</a> 
 	<% if isSocialCompany? %>
 	 	<a href="#">Buscar patrocinador</a>
-	<% else %>
+	<% elsif isDonor? %>
+		<a href="#">Mis beneficios</a>
+	<%else %>
+		<a href="#">Beneficios entregados</a>
 	<% end %>
+	<a href="#">Datos</a>
 </div>

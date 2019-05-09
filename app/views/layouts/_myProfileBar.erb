@@ -3,7 +3,7 @@
 	<% if isDonor? %>
 	 	<a href="#"> <%=link_to"Mis Donaciones", donaciones_path, method: :get %> </a>
 	<% elsif isSocialCompany? %>
-	 	<a href="#"> <%=link_to"Mis Proyectos", donaciones_path, method: :get %> </a>	
+	 	<a href="#"> <%=link_to"Mis Proyectos", proyectos_social_path, method: :get %> </a>	
 	<% else %>
 	 	<a href="#"> <%=link_to"Proyectos", proyectos_empresa_path, method: :get %> </a>	
 	<% end %>	

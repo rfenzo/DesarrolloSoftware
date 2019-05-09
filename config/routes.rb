@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'mis_proyectos_social/index'
+
   get 'mis_proyectos_empresa/index'
 
   get 'mis_donaciones/index'
@@ -7,6 +9,7 @@ Rails.application.routes.draw do
 	get '/my_profile/index' , to: 'my_profile#index', as: 'profile'
 	get '/mis_donaciones/index' , to: 'mis_donaciones#index', as: 'donaciones'
 	get '/mis_proyectos_empresa/index' , to: 'mis_proyectos_empresa#index', as: 'proyectos_empresa'
+	get '/mis_proyectos_social/index' , to: 'mis_proyectos_social#index', as: 'proyectos_social'
 
   devise_for :users, controllers: {
     sessions: 'users/sessions'

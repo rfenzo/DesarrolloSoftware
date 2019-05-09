@@ -1,14 +1,13 @@
 <%= devise_error_messages! %>
 
-<div class="container w-50">
+<div class="container w-75">
   <h4><%= t('.sign_up_options') %></h4>
 
   <div id='userTypeSelector' class='list-group list-group-horizontal mb-4'>
     <button name="Donor" class="list-group-item list-group-item-action">Donador</button>
-    <button name="SocialCompany" class="list-group-item list-group-item-action">Emprensa social</button>
     <button name="Company" class="list-group-item list-group-item-action">Compañía</button>
+    <button name="SocialCompany" class="list-group-item list-group-item-action">Emprensa social</button>
   </div>
-
 
   <div id="forms">
     <div id="DonorForm" style='display: none'>
@@ -22,18 +21,32 @@
     </div>
   </div>
 
-  <%= render "devise/shared/links" %>  
+  <%= render "devise/shared/links" %>
 </div>
 
-
 <script>
-  $(document).ready(function(){
-    $("#userTypeSelector button").click(function() {
-        $(this).parent().children().removeClass('active');
-        $(this).addClass("active");
-        var formType = $(this).attr('name') + 'Form'
-        $('#forms').children().hide()
-        $(`#${formType}`).show()
+  $(document).ready(function () {
+    $("#userTypeSelector button").click(function () {
+      $(this).parent().children().removeClass('active');
+      $(this).addClass("active");
+      var formType = $(this).attr('name') + 'Form'
+      $('#forms').children().hide()
+      $(`#${formType}`).show()
+    });
+
+    $(".custom-file-input").on("change", function () {
+      var fileName = $(this).val().split("\\").pop();
+      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
   })
+
+  window.readURL = function(input, element) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $(`#${element}`).attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
 </script>

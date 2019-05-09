@@ -5,6 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#Fontawesome
+gem 'font-awesome-rails'
+
+# Paperclip
+gem "paperclip", "~> 6.0.0"
+
 # Bootstrap require jQuery
 gem 'bootstrap'
 gem 'jquery-rails'

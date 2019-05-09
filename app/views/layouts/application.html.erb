@@ -10,6 +10,11 @@
   <body>
     <%= render 'layouts/navbar' %>
     <%= render 'layouts/alerts' %>
-    <%= yield %>
+    <% if @render_profile_bar %>
+      <%= render 'layouts/profile_bar' %>
+    <% elsif @render_ranking_bar %>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>

@@ -6,11 +6,14 @@ es:
   company:
     new:
       sign_up: "Registrarse"
-      file_text: "Seleccionar archivo"
+      file_text:  "Seleccionar archivo"
   socialcompany:
     new:
       sign_up: "Registrarse"
       file_text: "Seleccionar archivo"
+  projects:
+    form:
+      sign_up: "Registrarse"
 
   activerecord:
     errors:
@@ -70,6 +73,9 @@ es:
         unconfirmed_email: Email no confirmado
         unlock_token: Código de desbloqueo
         updated_at: Actualizado en
+      project:
+        name: Nombre
+        description: Descripción
     models:
       user:
         one: Usuario

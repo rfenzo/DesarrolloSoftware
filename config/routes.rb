@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+	get 'my_profile/index'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }

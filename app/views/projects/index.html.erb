@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row">
   <div class="col-10 m-auto">
     <h1>Proyectos Sociales</h1>
@@ -22,7 +20,7 @@
             <%= project.user.name %>
           </div>
           <div class="row m-auto">
-            <p>$<%= project.amount %></p>
+            <p>$<%= @amounts[project.id] %></p>
           </div>
         </div>
         <div class="col-3 m-auto">
@@ -37,7 +35,7 @@
     </div>
   </div>
   <div class="col-4 pl-0" style="max-width: 150px">
-    <button class="btn btn-outline-success h-100 w-100">Donar</button>
+    <%= link_to 'Donar', project_donate_path(project), class: 'btn btn-outline-success h-100 w-100' %>
   </div>
 </div>
 <% end %>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :projects
+  resources :projects do
+    get 'donate', to: 'projects#donate', as: 'donate'
+  end
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',

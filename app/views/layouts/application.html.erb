@@ -10,6 +10,10 @@
   <body>
     <%= render 'layouts/navbar' %>
     <%= render 'layouts/alerts' %>
-    <%= yield %>
+    <% if @render_ranking_bar %>
+      <%= render 'layouts/ranking' %>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>

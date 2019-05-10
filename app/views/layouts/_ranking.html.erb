@@ -15,7 +15,7 @@
               <%= c.name %>
             </div>
             <div class="col-3 m-auto text-center">
-              $$$
+              <%= @donated[c.id] + @sponsor_estimation[c.id] %>
             </div>
           </div>
         </li>

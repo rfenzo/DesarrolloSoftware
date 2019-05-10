@@ -1,14 +1,14 @@
 class User < ApplicationRecord
   has_many :projects
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/missing.jpg"
   has_attached_file :validation
   has_attached_file :compromise
 
   validates_attachment :avatar, content_type: { content_type: ['image/jpeg', 'image/jpg', 'image/png'] }, size: { in: 0..1000.kilobytes }
-  # validates_attachment :validation, content_type: { content_type: ['application/pdf'] }, size: { in: 0..2000.kilobytes }
-  # validates_attachment :compromise, content_type: { content_type: ['application/pdf'] }, size: { in: 0..2000.kilobytes }
-  validates_attachment_presence :validation, if: :requireValidationField
+  validates_attachment :validation, content_type: { content_type: ['application/pdf'] }, size: { in: 0..2000.kilobytes }
+  validates_attachment :compromise, content_type: { content_type: ['application/pdf'] }, size: { in: 0..2000.kilobytes }
+  # validates_attachment_presence :validation, if: :requireValidationField
   # validates_attachment_presence :compromise, if: :requireCompromiseField
 
   validates_presence_of :user_type

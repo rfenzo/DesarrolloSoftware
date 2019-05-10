@@ -6,7 +6,7 @@ es:
   company:
     new:
       sign_up: "Registrarse"
-      file_text:  "Seleccionar archivo"
+      file_text: "Seleccionar archivo"
   socialcompany:
     new:
       sign_up: "Registrarse"

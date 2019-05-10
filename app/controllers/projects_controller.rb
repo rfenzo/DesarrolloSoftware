@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :validate_user
+  
   # GET /projects
   # GET /projects.json
   def index
@@ -25,7 +26,6 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = current_user.projects.new(project_params)
-    # @project = Project.new(project_params)
 
     respond_to do |format|
       if @project.save

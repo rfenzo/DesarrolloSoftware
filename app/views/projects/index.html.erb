@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-10 m-auto">
+    <h1>Proyectos Sociales</h1>
+  </div>
+  <div class="col-2 m-auto">
+    <%= link_to 'New Project', new_project_path %>
+  </div>
+</div>
+
+<% @projects.each do |project| %>
+<div class="row p-3">
+  <div class="col-8 pr-0">
+    <div class="list-group-item">
+      <div class="row">
+        <div class="col-2 m-auto">
+          <h5><%= project.name %></h5>
+        </div>
+        <div class="col-3">
+          <div class="row m-auto">
+            <%= project.user.name %>
+          </div>
+          <div class="row m-auto">
+            <p>$<%= project.amount %></p>
+          </div>
+        </div>
+        <div class="col-3 m-auto">
+          <p>Beneficios</p>
+        </div>
+        <div class="col-1 m-auto">
+          <%= link_to 'Show', project %>
+          <%= link_to 'Edit', edit_project_path(project) %>
+          <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4 pl-0" style="max-width: 150px">
+    <button class="btn btn-outline-success h-100 w-100">Donar</button>
+  </div>
+</div>
+<% end %>

@@ -7,4 +7,8 @@ class Project < ApplicationRecord
   has_many :donors, through: :donations, source: :user
 
   validates_presence_of :user
+
+  def to_s
+    self.name
+  end
 end

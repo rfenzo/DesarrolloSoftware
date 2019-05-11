@@ -12,6 +12,8 @@
     <%= render 'layouts/alerts' %>
     <% if @render_ranking_bar %>
       <%= render 'layouts/ranking' %>
+    <% elsif @render_profile_bar %>
+      <%= render 'layouts/profile_bar' %>
     <% else %>
       <%= yield %>
     <% end %>

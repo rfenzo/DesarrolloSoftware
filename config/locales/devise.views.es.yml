@@ -1,16 +1,4 @@
 es:
-  donor:
-    new:
-      sign_up: "Registrarse"
-      file_text: "Seleccionar archivo"
-  company:
-    new:
-      sign_up: "Registrarse"
-      file_text: "Seleccionar archivo"
-  socialcompany:
-    new:
-      sign_up: "Registrarse"
-      file_text: "Seleccionar archivo"
   projects:
     form:
       sign_up: "Registrarse"
@@ -142,6 +130,15 @@ es:
       updated: Se ha cambiado tu contraseña. Ya iniciaste sesión.
       updated_not_active: Tu contraseña fue cambiada.
     registrations:
+      donor:
+        sign_up: Registrarse
+        file_text: Seleccionar archivo
+      company:
+        sign_up: Registrarse
+        file_text: Seleccionar archivo
+      social_company:
+        sign_up: Registrarse
+        file_text: Seleccionar archivo
       destroyed: "¡Adiós! Tu cuenta ha sido cancelada correctamente. Esperamos verte pronto."
       edit:
         are_you_sure: "¿Está usted seguro?"
@@ -154,7 +151,7 @@ es:
         we_need_your_current_password_to_confirm_your_changes: necesitamos su contraseña actual para confirmar los cambios
       new:
         sign_up: Registrarse
-        sign_up_options: "¿ Como deseas registrarte ?"
+        sign_up_options: "¿Como deseas registrarte?"
       signed_up: Bienvenido. Tu cuenta fue creada.
       signed_up_but_inactive: Tu cuenta ha sido creada correctamente. Sin embargo, no hemos podido iniciar la sesión porque tu cuenta aún no está activada.
       signed_up_but_locked: Tu cuenta ha sido creada correctamente. Sin embargo, no hemos podido iniciar la sesión porque que tu cuenta está bloqueada.

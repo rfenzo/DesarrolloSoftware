@@ -81,11 +81,11 @@ es:
       description: Descripción
       avatar: Logo del proyecto
     new:
-      button: Nuevo proyecto
       title: Crear proyecto
     edit:
       title: Editar proyecto
     index:
+      new: Nuevo proyecto
       title: Proyectos sociales
     show:
       title: '%{project}'

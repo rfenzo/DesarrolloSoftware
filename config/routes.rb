@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   root to: "home#landing"
-  
-  resources :projects
-  
+
+  resources :projects do
+    get 'donate', to: 'projects#donate', as: 'donate'
+  end
+
 	scope 'profile' do
 		get 'index' , to: 'profile#index', as: 'my_profile'
 	  get 'data' , to: 'profile#my_data', as: 'my_data'
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
 		get 'sponsored_projects' , to: 'profile#my_sponsored_projects', as: 'my_sponsored_projects'
 		get 'offered_benefits' , to: 'profile#my_offered_benefits', as: 'my_offered_benefits'
   end
-  
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'

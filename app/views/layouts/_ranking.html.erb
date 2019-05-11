@@ -1,0 +1,25 @@
+<div class="row h-100">
+  <div class="col-9">
+    <%= yield %>
+  </div>
+  <div class="col border-left m-2">
+    <h4 class="text-center">Donadores destacados</h4>
+    <ul class="list-group">
+      <% @companies.each do |c| %>
+        <li class="list-group-item">
+          <div class="row" style="height: 60px">
+            <div class="col-4 m-auto">
+                <%=image_tag c.avatar, class: 'mh-100 mw-100'%>
+            </div>
+            <div class="col-5 m-auto text-center">
+              <%= c.name %>
+            </div>
+            <div class="col-3 m-auto text-center">
+              <%= @donated[c.id] + @sponsor_estimation[c.id] %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

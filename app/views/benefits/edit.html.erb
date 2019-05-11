@@ -1,0 +1,6 @@
+<h1>Editing Benefit</h1>
+
+<%= render 'form', benefit: @benefit %>
+
+<%= link_to 'Show', user_benefit_path(@user.id, @benefit.id)%> |
+<%= link_to 'Back', user_benefits_path %>

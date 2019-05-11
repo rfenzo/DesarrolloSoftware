@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def show_profile?
-    request.filtered_parameters["controller"].in?(['home','profile'])
+    request.filtered_parameters["controller"].in?(['profile', 'benefits'])
   end
 
   def set_ranking_variables

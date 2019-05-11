@@ -16,7 +16,4 @@
 /node_modules
 /yarn-error.log
 
-# Devise images
-/public/system/*
-
 .byebug_history

@@ -29,7 +29,7 @@
         <%=image_tag '/images/company-missing.jpg', class: 'mh-100', id: 'c-avatar-preview'%>
       </div>
       <div class='custom-file'>
-        <%= f.label :avatar, t('.file_text'), class: 'custom-file-label' %>
+        <%= f.label :avatar, t(:select_file_text), class: 'custom-file-label' %>
         <%= f.file_field :avatar, class: 'custom-file-input', onchange: "readURL(this, 'c-avatar-preview')" %>
       </div>
     </div>
@@ -55,19 +55,19 @@
     <div class="form-group">
       <%= f.label :validation %>
       <div class='custom-file'>
-        <%= f.label :validation, t('.file_text'), class: 'custom-file-label' %>
+        <%= f.label :validation, t(:select_file_text), class: 'custom-file-label' %>
         <%= f.file_field :validation, class: 'custom-file-input'%>
       </div>
     </div>
     <div class="form-group">
       <%= f.label :compromise %>
       <div class="custom-file">
-        <%= f.label :compromise, t('.file_text'), class: 'custom-file-label'%>
+        <%= f.label :compromise, t(:select_file_text), class: 'custom-file-label'%>
         <%= f.file_field :compromise, class: 'custom-file-input'%>
       </div>
     </div>
   </div>
 </div>
 
-<%= f.submit t('.sign_up'), class: 'btn btn-primary' %>
+<%= f.submit t(:sign_up), class: 'btn btn-primary' %>
 <% end %>

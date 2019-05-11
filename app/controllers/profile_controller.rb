@@ -1,6 +1,4 @@
 class ProfileController < ApplicationController
-  before_action :set_profile_bar_variable
-
   def index
   end
 
@@ -16,18 +14,12 @@ class ProfileController < ApplicationController
   def my_social_projects
   end
 
-  def find_sponsor
-  end
-
   def my_sponsored_projects
   end
 
   def my_offered_benefits
   end
 
-  private
-
-  def set_profile_bar_variable
-    @render_profile_bar = true
+  def find_sponsor
   end
 end

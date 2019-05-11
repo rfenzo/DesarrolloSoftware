@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20190510201825) do
   create_table "donations", force: :cascade do |t|
     t.bigint "project_id"
     t.bigint "user_id"
-    t.integer "amount"
+    t.integer "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_donations_on_project_id"

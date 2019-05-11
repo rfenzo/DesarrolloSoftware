@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_ranking_variables, if: :show_ranking?
+  before_action :set_profile_variables, if: :show_profile?
 
   helper_method :isDonor?, :isCompany?, :isSocialCompany?
 
@@ -9,6 +10,10 @@ class ApplicationController < ActionController::Base
 
   def show_ranking?
     request.filtered_parameters["controller"].in?(['home','projects'])
+  end
+
+  def show_profile?
+    request.filtered_parameters["controller"].in?(['home','profile'])
   end
 
   def set_ranking_variables
@@ -20,6 +25,10 @@ class ApplicationController < ActionController::Base
       @sponsor_estimation[c.id] = 0
       @donated[c.id] = c.donations.sum(&:amount)
     end
+  end
+
+  def set_profile_variables
+    @render_profile_bar = true
   end
 
   def configure_permitted_parameters

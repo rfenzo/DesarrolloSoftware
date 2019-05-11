@@ -1,6 +1,5 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 <%= f.hidden_field :user_type, value: 'Donor'%>
-
 <div class="row">
   <div class="col">
     <h3>Datos de sesión</h3>
@@ -30,7 +29,7 @@
         <%=image_tag '/images/missing.jpg', class: 'mh-100', id: 'd-avatar-preview'%>
       </div>
       <div class='custom-file'>
-        <%= f.label :avatar, t('.file_text'), class: 'custom-file-label' %>
+        <%= f.label :avatar, t(:select_file_text), class: 'custom-file-label' %>
         <%= f.file_field :avatar, class: 'custom-file-input', onchange: "readURL(this, 'd-avatar-preview')" %>
       </div>
     </div>
@@ -41,5 +40,5 @@
   </div>
 </div>
 
-<%= f.submit t('.sign_up'), class: 'btn btn-primary' %>
+<%= f.submit t(:sign_up), class: 'btn btn-primary' %>
 <% end %>

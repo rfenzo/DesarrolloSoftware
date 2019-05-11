@@ -3,7 +3,6 @@ class ProjectsController < ApplicationController
   before_action :validate_user, except: [:index, :show, :donate]
 
   # GET /projects
-  # GET /projects.json
   def index
     @projects = Project.all
     @amounts = []
@@ -13,7 +12,6 @@ class ProjectsController < ApplicationController
   end
 
   # GET /projects/1
-  # GET /projects/1.json
   def show
     @amount = @project.donations.sum(&:amount)
   end
@@ -28,61 +26,49 @@ class ProjectsController < ApplicationController
   end
 
   # POST /projects
-  # POST /projects.json
   def create
     @project = current_user.projects.new(project_params)
-
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render :show, status: :created, location: @project }
-      else
-        format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+    if @project.save
+      flash[:success] = t(:create, scope: %i[flash project success], project: @project.name)
+      redirect_to @project
+    else
+      flash[:error] = t(:new, scope: %i[flash project error])
+      render :new
     end
   end
 
   # PATCH/PUT /projects/1
-  # PATCH/PUT /projects/1.json
   def update
-    respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { render :show, status: :ok, location: @project }
-      else
-        format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+    if @project.update(project_params)
+      flash[:success] = t(:edit, scope: %i[flash project success], project: @project.name)
+      redirect_to @project
+    else
+      flash[:error] = t(:edit, scope: %i[flash project error])
+      render :edit
     end
   end
 
   # DELETE /projects/1
-  # DELETE /projects/1.json
   def destroy
     @project.destroy
-    respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:success] = t(:destroy, scope: %i[flash project success], project: @project.name)
+    redirect_to projects_url
   end
 
   def donate
-    respond_to do |format|
-      unless current_user
-        format.html { redirect_to :new_user_session, notice: 'Debes registrarte para realizar donaciones' }
-        format.json { render json: {error: 'texto del error'}, status: :unprocessable_entity }
+    unless current_user
+      flash[:error] = t(:sign_in, scope: %i[flash donation error])
+      redirect_to :new_user_session
+    else
+      amount = 1000
+      @project = Project.find(params[:project_id])
+      @donation = Donation.new({amount: amount, project: @project, user: current_user})
+      if @donation.save
+        flash[:success] = t(:default, scope: %i[flash donation success], project: @project.name, amount: amount)
+        redirect_to :projects
       else
-        amount = 1000
-        @project = Project.find(params[:project_id])
-        @donation = Donation.new({amount: amount, project: @project, user: current_user})
-        if @donation.save
-          format.html { redirect_to :projects, notice: "Realizaste correctamente una donación por #{amount} al proyecto '#{@project.name}'" }
-          format.json { render :show, status: :ok, location: :projects }
-        else
-          format.html { redirect_to :projects }
-          format.json { render json: @donation.errors, status: :unprocessable_entity }
-        end
+        flash[:error] = t(:default, scope: %i[flash donation error])
+        redirect_to :projects
       end
     end
   end
@@ -100,6 +86,7 @@ class ProjectsController < ApplicationController
 
     def validate_user
       unless isSocialCompany?
+        flash[:error] = t(:unauthorized, scope: %i[flash project error], project: @project.name)
         redirect_to root_path
       end
     end

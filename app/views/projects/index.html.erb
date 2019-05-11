@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-10 m-auto">
-    <h1>Proyectos Sociales</h1>
+    <h1><%= t(:title, scope: %i[project index]) %></h1>
   </div>
   <div class="col-2 m-auto">
-    <%= link_to 'New Project', new_project_path %>
+    <%= link_to t(:button, scope: %i[project new]), new_project_path, class: 'btn btn-primary' %>
   </div>
 </div>
 
@@ -24,18 +24,16 @@
           </div>
         </div>
         <div class="col-3 m-auto">
-          <p>Beneficios</p>
+          <p><%= t(:benefits)%></p>
         </div>
         <div class="col-1 m-auto">
-          <%= link_to 'Show', project %>
-          <%= link_to 'Edit', edit_project_path(project) %>
-          <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to t(:show), project %>
         </div>
       </div>
     </div>
   </div>
   <div class="col-4 pl-0" style="max-width: 150px">
-    <%= link_to 'Donar', project_donate_path(project), class: 'btn btn-outline-success h-100 w-100' %>
+    <%= link_to t(:donate), project_donate_path(project), class: 'btn btn-outline-success h-100 w-100' %>
   </div>
 </div>
 <% end %>

@@ -1,0 +1,14 @@
+<h1><%= t(:title, scope: %i[project show], project: @project.name)%></h1>
+<div>
+  <%= t(:owner, scope: %i[project show], social_company: @project.user)%>
+</div>
+<div>
+  <%= t(:amount_donated, amount: @amount) %>
+</div>
+<div>
+  <%= @project.description %>
+</div>
+
+<%= link_to t(:back), projects_path, class: 'btn btn-secondary' %>
+<%= link_to t(:edit), edit_project_path(@project), class: 'btn btn-primary' %>
+<%= link_to t(:destroy), @project, method: :delete, class: 'btn btn-danger' %>

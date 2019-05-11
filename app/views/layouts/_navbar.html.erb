@@ -1,0 +1,19 @@
+<ul class='nav sticky-top navbar-dark bg-dark p-2 mb-3'>
+  <a class="navbar-brand" href="/"><%= t(:page_name)%></a>
+  <form class="form-inline mr-auto">
+    <div class="input-group">
+      <input class="form-control" type="search" placeholder="Buscar proyectos sociales" aria-label="Search">
+      <div class="input-group-append">
+        <button class="btn btn-outline-light" type="submit">Buscar</button>
+      </div>
+    </div>
+  </form>
+  <li class='nav-item'><%=link_to(t(:many, scope: %i[project name]), :projects, class: 'nav-link text-white font-weight-bold') %></li>
+  <% if current_user %>
+  <li class='nav-item'><%=link_to("Mi Perfil", my_profile_path, class: 'nav-link text-white font-weight-bold') %></li>
+  <li class='nav-item'><%=link_to(t(:sign_out), :destroy_user_session, method: :delete, class: 'nav-link text-white font-weight-bold') %></li>
+  <% else %>
+  <li class='nav-item'><%=link_to(t(:sign_in), :new_user_session, class: 'nav-link text-white font-weight-bold') %></li>
+  <li class='nav-item'><%=link_to(t(:sign_up), :new_user_registration, class: 'nav-link text-white font-weight-bold') %></li>
+  <% end %>
+</ul>

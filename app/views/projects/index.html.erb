@@ -1,0 +1,24 @@
+<h1><%= t(:title, scope: %i[project index]) %></h1>
+<% @projects.each do |project| %>
+  <div class="row py-2">
+    <div class="col-10 card">
+      <a href=<%= project_path(project) %> class="stretched-link"></a>
+      <div class="row card-body">
+        <div class="col-7 m-auto">
+          <div class="row">
+            <h5 class="card-title"><%= project.name %></h5>
+          </div>
+          <div class="row">
+            <p class="card-text">$<%= @amounts[project.id] %></p>
+          </div>
+        </div>
+        <div class="col-5">
+          <p class="card-text"><%= t(:benefits)%></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-2 pl-0" style="max-width: 150px">
+      <%= link_to t(:donate), project_donate_path(project), class: 'btn btn-outline-success h-100 w-100' %>
+    </div>
+  </div>
+<% end %>

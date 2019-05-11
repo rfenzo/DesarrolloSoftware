@@ -1,0 +1,5 @@
+<h1><%= t(:title, scope: %i[project new]) %></h1>
+
+<%= render 'form', project: @project %>
+
+<%= link_to t(:back), projects_path, class: 'btn btn-secondary' %>

@@ -26,7 +26,7 @@ or
 ## Low level inspection of the container database
 ```
 docker exec -it psql_container_id bash
-psql -U postgres example_development
+psql -U postgres donatio_development
 ```
 
 ## High level operations of the container database
@@ -39,13 +39,13 @@ psql -U postgres example_development
 
 Sometimes, you won't be able perform a migration, neither do a reset because of current sessions in the database, in that case you can try restarting the container or delete the database sessions:
 - Option 1: Restart the container: `docker-compose stop` and then `docker-compose up`
-- Option 2: Remove database sessions: 
+- Option 2: Remove database sessions:
 ```
 docker exec -it psql_container_id bash
 
 psql -U postgres
 
-REVOKE CONNECT ON DATABASE example_development FROM public;
+REVOKE CONNECT ON DATABASE donatio_development FROM public;
 SELECT pg_terminate_backend(pg_stat_activity.pid)
 FROM pg_stat_activity
 WHERE pg_stat_activity.datname = 'TARGET_DB';

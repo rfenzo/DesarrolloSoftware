@@ -9,6 +9,8 @@ class ProfileController < ApplicationController
   end
 
   def my_donations
+    @donations = current_user.donations.reverse
+    @total_amount = @donations.sum(&:amount)
   end
 
   def my_benefits

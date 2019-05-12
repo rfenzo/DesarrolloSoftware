@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :sponsored_projects, through: :contracts, source: :project
   has_many :donations
   has_many :donated_projects, through: :donations, source: :project
+  has_many :benefits
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/missing.jpg"
   has_attached_file :validation

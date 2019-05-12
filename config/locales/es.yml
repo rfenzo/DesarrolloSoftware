@@ -1,0 +1,113 @@
+es:
+  page_name: DonaTio
+  show: Ver
+  edit: Editar
+  back: Atrás
+  destroy: Eliminar
+  sign_up: Registrarse
+  sign_in: Iniciar sesión
+  sign_out: Cerrar sesión
+  submit: Enviar
+  donate: Donar
+  amount_donated: 'Cantidad donada: $%{amount}'
+  benefits: Beneficios
+  select_file_text: Seleccionar archivo
+  are_you_sure: ¿Estas seguro que quieres hacerlo?
+
+  flash:
+    profile:
+      error:
+        sign_in: Debes iniciar sesión para acceder a tu perfil
+    project:
+      success:
+        create: 'Proyecto "%{project}" creado satisfactoriamente'
+        edit: 'Proyecto "%{project}" editado satisfactoriamente'
+        destroy: 'Proyecto "%{project}" eliminado satisfactoriamente'
+      error:
+        new: Hubo un error al crear el proyecto
+        edit: Hubo un error al editar el proyecto
+        unauthorized: 'Solo empresas sociales pueden crear y modificar sus proyectos'
+    donation:
+      success:
+        default: 'Realizaste correctamente una donación por %{amount} al proyecto "%{project}"'
+      error:
+        default: Hubo un error en la donación
+        sign_in: Debes iniciar sesión para realizar donaciones
+
+  social_company:
+    name:
+      one: Empresa social
+      many: Empresas sociales
+    attributes:
+      email: Email de contacto
+      address: Dirección
+      rut: RUT de empresa
+      name: Nombre de tu empresa
+      description: Descripción
+      validation: Validación de empresa
+      compromise: Compromiso de cumplimiento
+      avatar: Logo de tu empresa
+
+  company:
+    name:
+      one: Companía
+      many: Compañías
+    attributes:
+      email: Email de contacto
+      address: Dirección
+      rut: RUT de empresa
+      name: Nombre de tu compañía
+      description: Descripción
+      validation: Validación de compañía
+      compromise: Compromiso de cumplimiento
+      avatar: Logo de tu compañia
+
+  donor:
+    name:
+      one: Donador
+      many: Donadores
+    attributes:
+      email: Email
+      name: Nombre
+      avatar: Foto de perfil
+
+  user:
+    new:
+      sign_up_title: "¿Como deseas registrarte?"
+
+  project:
+    name:
+      one: Proyecto social
+      many: Proyectos sociales
+    attributes:
+      name: Nombre
+      description: Descripción
+      avatar: Logo del proyecto
+    new:
+      title: Crear proyecto
+    edit:
+      title: Editar proyecto
+    index:
+      new: Nuevo proyecto
+      title: Proyectos sociales
+    show:
+      title: '%{project}'
+      owner: 'Proyecto realizado por %{social_company}'
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            rut:
+              blank: no puede quedar vacío
+            name:
+              blank: no puede quedar vació
+            email:
+              blank: no puede quedar vació
+              taken: ya registrado, por favor elige otro
+            password:
+              blank: no puede quedar vació
+              too_short: debe contener al menos 6 carácteres
+            password_confirmation:
+              confirmation: no exitosa

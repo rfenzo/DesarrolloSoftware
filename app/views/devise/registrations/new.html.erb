@@ -1,18 +1,12 @@
 <%= devise_error_messages! %>
 
 <div class="container w-75">
-  <h4><%= t('.sign_up_title') %></h4>
+  <h4>¿ Como deseas registrarte ?</h4>
 
   <div id='userTypeSelector' class='list-group list-group-horizontal mb-4'>
-    <button name="Donor" class="list-group-item list-group-item-action">
-      <%= t(:donor) %>
-    </button>
-    <button name="Company" class="list-group-item list-group-item-action">
-      <%= t(:company) %>
-    </button>
-    <button name="SocialCompany" class="list-group-item list-group-item-action">
-      <%= t(:social_company) %>
-    </button>
+    <button name="Donor" class="list-group-item list-group-item-action">Donador</button>
+    <button name="Company" class="list-group-item list-group-item-action">Compañía</button>
+    <button name="SocialCompany" class="list-group-item list-group-item-action">Empresa social</button>
   </div>
 
   <div id="forms">

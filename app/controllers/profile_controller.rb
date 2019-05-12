@@ -1,4 +1,7 @@
 class ProfileController < ApplicationController
+  before_action :validate_user
+  before_action :set_profile_variables
+
   def index
   end
 
@@ -14,6 +17,11 @@ class ProfileController < ApplicationController
   end
 
   def my_social_projects
+    @projects = current_user.projects
+    @amounts = []
+    @projects.each do |p|
+      @amounts[p.id] = p.donations.sum(&:amount)
+    end
   end
 
   def my_sponsored_projects
@@ -23,5 +31,14 @@ class ProfileController < ApplicationController
   end
 
   def find_sponsor
+  end
+
+  private
+
+  def validate_user
+    unless current_user
+      flash[:error] = t(:sign_in, scope: %i[flash profile error])
+      redirect_to :new_user_session
+    end
   end
 end

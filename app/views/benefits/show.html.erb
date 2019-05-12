@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>Título:</strong>
   <%= @benefit.title %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Descripción:</strong>
   <%= @benefit.description %>
 </p>
 
-<p>
+<!--<p>
   <strong>User:</strong>
   <%= @benefit.user %>
-</p>
+</p>-->
 
-<%= link_to 'Edit', edit_user_benefit_path(@benefit, @user) %> |
-<%= link_to 'Back', user_benefits_path %>
+<%= link_to 'Editar', edit_user_benefit_path(@benefit, @user) %> |
+<%= link_to 'Volver a mis beneficios', user_benefits_path %>

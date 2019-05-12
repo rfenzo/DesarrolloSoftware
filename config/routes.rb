@@ -16,13 +16,12 @@ Rails.application.routes.draw do
     get 'find_sponsor' , to: 'profile#find_sponsor', as: 'find_sponsor'
   end
 
-  resources :users do
-    resources :benefits
-  end
-
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
 
+  resources :users do
+    resources :benefits
+  end
 end

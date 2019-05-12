@@ -1,19 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Mis Beneficios</h1>
-
-<% @benefits.each do |benefit| %>
-  <div class="card" style="width: 18rem; margin-bottom: 20px; min-width: 500px;">
-    <div class="card-body">
-      <h5 class="card-title"><%= benefit.title %></h5>
-      <p class="card-text"><%= benefit.description %></p>
-      <%= link_to 'Ver', user_benefit_path(@user.id, benefit.id) %>
-      <%= link_to 'Editar', edit_user_benefit_path(@user.id, benefit.id) %>
-      <%= link_to 'Eliminar', user_benefit_path(@user.id, benefit.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% if @benefits.any? %>
+  <% @benefits.each do |benefit| %>
+    <div class="card" style="width: 18rem; margin-bottom: 20px; min-width: 500px;">
+      <div class="card-body">
+        <h5 class="card-title"><%= benefit.title %></h5>
+        <p class="card-text"><%= benefit.description %></p>
+        <%= link_to 'Ver', user_benefit_path(@user.id, benefit.id) %>
+        <%= link_to 'Editar', edit_user_benefit_path(@user.id, benefit.id) %>
+        <%= link_to 'Eliminar', user_benefit_path(@user.id, benefit.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
     </div>
-  </div>
+  <% end %>
+<% else %>
+  No has agregado ningun beneficio aún.
 <% end %>
 
 <br>
 
-<%= link_to 'New Benefit', new_user_benefit_path %>
+<%= link_to 'Agregar nuevo beneficio', new_user_benefit_path %>

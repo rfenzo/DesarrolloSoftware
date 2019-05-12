@@ -4,7 +4,7 @@ class BenefitsController < ApplicationController
 
   # GET /benefits
   def index
-    @benefits = Benefit.all
+    @benefits = Benefit.where(user_id: @user.id)
   end
 
   # GET /benefits/1

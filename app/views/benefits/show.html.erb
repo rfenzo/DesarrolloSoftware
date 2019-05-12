@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Título:</strong>
+  <%= @benefit.title %>
+</p>
+
+<p>
+  <strong>Descripción:</strong>
+  <%= @benefit.description %>
+</p>
+
+<!--<p>
+  <strong>User:</strong>
+  <%= @benefit.user %>
+</p>-->
+
+<%= link_to 'Editar', edit_user_benefit_path(@benefit, @user) %> |
+<%= link_to 'Volver a mis beneficios', user_benefits_path %>

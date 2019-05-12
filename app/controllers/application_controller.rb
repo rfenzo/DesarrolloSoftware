@@ -1,20 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_ranking_variables, if: :show_ranking?
-  before_action :set_profile_variables, if: :show_profile?
 
-  helper_method :isDonor?, :isCompany?, :isSocialCompany?
+  helper_method :isDonor?, :isCompany?, :isSocialCompany?,
+                :set_ranking_variables, :set_profile_variables
 
   protected
-
-  def show_ranking?
-    request.filtered_parameters["controller"].in?(['home','projects'])
-  end
-
-  def show_profile?
-    request.filtered_parameters["controller"].in?(['home','profile'])
-  end
 
   def set_ranking_variables
     @render_ranking_bar = true

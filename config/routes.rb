@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: "home#landing"
 
-  resources :projects do
+  resources :projects, only: [:index, :show] do
     get 'donate', to: 'projects#donate', as: 'donate'
   end
 
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 		get 'sponsored_projects' , to: 'profile#my_sponsored_projects', as: 'my_sponsored_projects'
 		get 'offered_benefits' , to: 'profile#my_offered_benefits', as: 'my_offered_benefits'
 		get 'find_sponsor' , to: 'profile#find_sponsor', as: 'find_sponsor'
+
+    resources :projects, except: [:index, :show]
   end
 
   devise_for :users, controllers: {

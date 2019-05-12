@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :validate_user, except: [:index, :show, :donate]
+  before_action :set_ranking_variables, only: [:index, :show]
+  before_action :set_profile_variables, except: [:index, :show]
 
   # GET /projects
   def index
@@ -30,7 +32,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.new(project_params)
     if @project.save
       flash[:success] = t(:create, scope: %i[flash project success], project: @project.name)
-      redirect_to @project
+      redirect_to :my_social_projects
     else
       flash[:error] = t(:new, scope: %i[flash project error])
       render :new
@@ -41,7 +43,7 @@ class ProjectsController < ApplicationController
   def update
     if @project.update(project_params)
       flash[:success] = t(:edit, scope: %i[flash project success], project: @project.name)
-      redirect_to @project
+      redirect_to :my_social_projects
     else
       flash[:error] = t(:edit, scope: %i[flash project error])
       render :edit
@@ -52,7 +54,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     flash[:success] = t(:destroy, scope: %i[flash project success], project: @project.name)
-    redirect_to projects_url
+    redirect_to :my_social_projects
   end
 
   def donate
@@ -86,7 +88,7 @@ class ProjectsController < ApplicationController
 
     def validate_user
       unless isSocialCompany?
-        flash[:error] = t(:unauthorized, scope: %i[flash project error], project: @project.name)
+        flash[:error] = t(:unauthorized, scope: %i[flash project error])
         redirect_to root_path
       end
     end

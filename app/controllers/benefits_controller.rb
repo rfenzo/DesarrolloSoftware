@@ -36,7 +36,7 @@ class BenefitsController < ApplicationController
   # PATCH/PUT /benefits/1
   def update
     if @benefit.update(benefit_params)
-      redirect_to @benefit, notice: 'Benefit was successfully updated.'
+      redirect_to user_benefits_url, notice: 'Benefit was successfully updated.'
     else
       render :edit
     end

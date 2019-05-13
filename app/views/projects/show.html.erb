@@ -10,5 +10,4 @@
 </div>
 
 <%= link_to t(:back), projects_path, class: 'btn btn-secondary' %>
-<%= link_to t(:edit), edit_project_path(@project), class: 'btn btn-primary' %>
-<%= link_to t(:destroy), @project, method: :delete, class: 'btn btn-danger' %>
+<%= link_to t(:donate), project_donate_path(@project), class: 'btn btn-outline-success' %>

@@ -13,6 +13,7 @@ es:
   benefits: Beneficios
   select_file_text: Seleccionar archivo
   are_you_sure: ¿Estas seguro que quieres hacerlo?
+  require: Solicitar
 
   flash:
     profile:
@@ -33,6 +34,12 @@ es:
       error:
         default: Hubo un error en la donación
         sign_in: Debes iniciar sesión para realizar donaciones
+    require:
+      success:
+        default: 'Realizaste correctamente una solicitud a %{company} por el proyecto "%{project}"'
+        destroy: 'Solicitud de "%{project}" eliminada satisfactoriamente'
+      error:
+        default: Hubo un error en la solicitud
 
   social_company:
     name:

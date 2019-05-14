@@ -1,1 +1,16 @@
-FIND SPONSOR
+<h3>Empresas</h3>
+<% @companies.each do |company| %>
+  <div class="row list-group-item border">
+    <div class="row" style="height: 60px">
+      <div class="col-3 mh-100 test-light">
+        <%=image_tag company.avatar, class: 'mw-100 mh-100'%>
+      </div>
+      <div class="col-5 m-auto text-center">
+        <%= company %>
+      </div>
+      <div class="col m-auto text-center">
+        <%= button_to t(:require), require_sponsorship_path(requirement: { user_id: company, project_id: @project.id }), class: 'btn btn-outline-success h-100 w-100' %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -31,6 +31,17 @@ class ProfileController < ApplicationController
   end
 
   def find_sponsor
+    @companies = User.where(user_type: 'Company')
+    @project = Project.find(params[:project_id])
+  end
+
+  def my_requirements
+    unless isCompany?
+      flash[:error] = 'no tienes permiso para ver las solicitudes de patrocinio(esto debe traducirse)'
+      redirect_to root_path
+    else
+      @requirements = current_user.requirements
+    end
   end
 
   private

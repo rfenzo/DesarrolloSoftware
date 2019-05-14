@@ -22,6 +22,7 @@
     </div>
     <div class="col-2">
       <div class="list-group">
+        <%= link_to t(:require), find_sponsor_path(project_id: project.id), class: 'list-group-item list-group-item-action list-group-item-warning' %>
         <%= link_to t(:edit), edit_project_path(project), class: "list-group-item list-group-item-action list-group-item-primary" %>
         <%= link_to t(:destroy), "/profile/projects/#{project.id}", method: :delete, class: "list-group-item list-group-item-action list-group-item-danger" %>
       </div>

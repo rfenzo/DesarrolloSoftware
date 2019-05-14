@@ -8,7 +8,7 @@
 </div>
 <% @projects.each do |project| %>
   <div class="row py-2">
-    <div class="col-9 card">
+    <div class="col-10 card">
       <a href=<%= project_path(project) %> class="stretched-link"></a>
       <div class="row card-body">
         <div class="col">
@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-2">
       <div class="list-group">
         <%= link_to t(:require), find_sponsor_path(project_id: project.id), class: 'list-group-item list-group-item-action list-group-item-warning' %>
         <%= link_to t(:edit), edit_project_path(project), class: "list-group-item list-group-item-action list-group-item-primary" %>

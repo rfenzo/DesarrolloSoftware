@@ -6,10 +6,10 @@
         <%=image_tag company.avatar, class: 'mw-100 mh-100'%>
       </div>
       <div class="col-5 m-auto text-center">
-        <%= company.name %>
+        <%= company %>
       </div>
       <div class="col m-auto text-center">
-        <%= link_to t(:require), require_sponsorship_path(company_id: company, project_id: @project.id), class: 'btn btn-outline-success h-100 w-100' %>
+        <%= button_to t(:require), require_sponsorship_path(company_id: company, project_id: @project.id), class: 'btn btn-outline-success h-100 w-100' %>
       </div>
     </div>
   </div>

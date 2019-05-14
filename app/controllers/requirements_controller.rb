@@ -1,6 +1,6 @@
 class RequirementsController < ApplicationController
   def create
-    unless current_user
+    unless isSocialCompany?
       flash[:error] = t(:sign_in, scope: %i[flash require error])
       redirect_to :new_user_session
     else
@@ -14,6 +14,18 @@ class RequirementsController < ApplicationController
         flash[:error] = t(:default, scope: %i[flash require error])
         redirect_to my_social_projects_path
       end
+    end
+  end
+
+  def destroy
+    unless isCompany?
+      flash[:error] = t(:sign_in, scope: %i[flash require error])
+      redirect_to :new_user_session
+    else
+      requirement = Requirement.where({project_id: params[:project_id], user: params[:company_id]}).destroy
+      requirement.destroy
+      flash[:success] = t(:destroy, scope: %i[flash requirement success], requirement: requirement.project.name)
+      redirect_to :my_requirements
     end
   end
 end

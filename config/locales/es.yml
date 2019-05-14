@@ -37,6 +37,7 @@ es:
     require:
       success:
         default: 'Realizaste correctamente una solicitud a %{company} por el proyecto "%{project}"'
+        destroy: 'Solicitud de "%{project}" eliminada satisfactoriamente'
       error:
         default: Hubo un error en la solicitud
 

@@ -8,7 +8,11 @@ class RequirementsController < ApplicationController
     else
       requirement = Requirement.new(requirement_params)
       if requirement.save
-        flash[:success] = t(:default, scope: %i[flash require success], project: project.name, company: company.name)
+        flash[:success] = t(:default,
+           scope: %i[flash require success],
+           project: requirement.project.name,
+           company: requirement.user.name
+        )
         redirect_to my_social_projects_path
       else
         flash[:error] = t(:default, scope: %i[flash require error])
@@ -24,7 +28,10 @@ class RequirementsController < ApplicationController
     else
       requirement = Requirement.find_by(requirement_params)
       requirement.destroy
-      flash[:success] = t(:destroy, scope: %i[flash require success], project: requirement.project.name)
+      flash[:success] = t(:destroy,
+        scope: %i[flash require success],
+        project: requirement.project.name
+      )
       redirect_to :my_requirements
     end
   end
@@ -32,6 +39,6 @@ class RequirementsController < ApplicationController
   private
 
   def requirement_params
-    params.require(:requirement).permit(:project_id, :company_id)
+    params.require(:requirement).permit(:project_id, :user_id)
   end
 end

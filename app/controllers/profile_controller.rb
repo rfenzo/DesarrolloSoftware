@@ -31,6 +31,7 @@ class ProfileController < ApplicationController
   end
 
   def find_sponsor
+    @companies = User.where(user_type: 'Company')
   end
 
   private

@@ -1,5 +1,7 @@
-<h1>Nuevo beneficio</h1>
+<p class="h2">
+Nuevo Beneficio
+<%= link_to '<button type="button" class="btn btn-secondary btn-sm">Volver</button>'.html_safe, user_benefits_path %>
+</p>
 
 <%= render 'form', benefit: @benefit %>
 
-<%= link_to 'Volver a mis beneficios', user_benefits_path %>

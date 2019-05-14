@@ -1,19 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Título:</strong>
-  <%= @benefit.title %>
-</p>
-
-<p>
-  <strong>Descripción:</strong>
-  <%= @benefit.description %>
-</p>
-
-<!--<p>
-  <strong>User:</strong>
-  <%= @benefit.user %>
-</p>-->
-
-<%= link_to 'Editar', edit_user_benefit_path(@benefit, @user) %> |
-<%= link_to 'Volver a mis beneficios', user_benefits_path %>
+<%= link_to '<button type="button" class="btn btn-secondary btn-sm">< Volver a mis beneficios</button>'.html_safe, user_benefits_path %>
+<br>
+<br>
+<div class="card text-center" style="width: 600px; margin:auto;">
+  <div class="card-header">
+    Beneficio
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= @benefit.title %></h5>
+    <p class="card-text"><%= @benefit.description %></p>
+    <%= link_to '<button type="button" class="btn btn-primary btn-sm">Editar</button>'.html_safe, edit_user_benefit_path(@benefit, @user) %>
+    <%= link_to '<button type="button" class="btn btn-warning btn-sm">Eliminar</button>'.html_safe, user_benefit_path(@user.id, @benefit.id), method: :delete, data: { confirm: 'Estas seguro?' } %>
+  </div>
+  <div class="card-footer text-muted">
+    Entregado por <%= @benefit.user %>
+  </div>
+</div>
+<br>

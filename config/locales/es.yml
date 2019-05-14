@@ -33,6 +33,15 @@ es:
       error:
         default: Hubo un error en la donación
         sign_in: Debes iniciar sesión para realizar donaciones
+    benefit:
+      success:
+        create: 'Beneficio creado satisfactoriamente'
+        edit: 'Beneficio editado satisfactoriamente'
+        destroy: 'Beneficio eliminado satisfactoriamente'
+      error:
+        new: 'Hubo un error al crear el beneficio'
+        edit: 'Huno un error al editar el beneficio'
+        unauthorized: 'Solo empresas pueden crear y modificar beneficios'
 
   social_company:
     name:

@@ -27,8 +27,10 @@ class BenefitsController < ApplicationController
     @benefit.user = @user
 
     if @benefit.save
-      redirect_to user_benefits_url, notice: 'Benefit was successfully created.'
+      flash[:success] = t(:create, scope: %i[flash benefit success])
+      redirect_to user_benefits_url
     else
+      flash[:error] = t(:new, scope: %i[flash benefit error])
       render :new
     end
   end
@@ -36,8 +38,10 @@ class BenefitsController < ApplicationController
   # PATCH/PUT /benefits/1
   def update
     if @benefit.update(benefit_params)
-      redirect_to user_benefits_url, notice: 'Benefit was successfully updated.'
+      flash[:success] = t(:edit, scope: %i[flash benefit success])
+      redirect_to user_benefits_url
     else
+      flash[:error] = t(:edit, scope: %i[flash benefit error])
       render :edit
     end
   end
@@ -45,7 +49,8 @@ class BenefitsController < ApplicationController
   # DELETE /benefits/1
   def destroy
     @benefit.destroy
-    redirect_to user_benefits_url, notice: 'Benefit was successfully destroyed.'
+    flash[:success] = t(:destroy, scope: %i[flash benefit success])
+    redirect_to user_benefits_url
   end
 
   private

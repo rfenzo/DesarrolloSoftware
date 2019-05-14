@@ -11,21 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class='form-group' style='width: 400px;'>
     <label>Título</label>
-    <%= form.text_field :title, id: :benefit_title %>
+    <%= form.text_field :title, class: 'form-control', autofocus: true, id: :benefit_title %>
   </div>
 
-  <div class="field">
+  <div class='form-group' style='width: 400px;'>
     <label>Descripción</label>
-    <%= form.text_field :description, id: :benefit_description %>
+    <%= form.text_area :description, class: 'form-control', id: :benefit_description %>
   </div>
 
   <div class="field">
     <%= form.hidden_field :user_id, id: :benefit_user_id, value: @user.id %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit t(:submit), class: 'btn btn-primary' %>
 <% end %>

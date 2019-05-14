@@ -6,7 +6,5 @@ class CreateRequirements < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-
-    add_index :requirements, [:project, :user], unique: true
   end
 end

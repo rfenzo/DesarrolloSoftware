@@ -1,29 +1,15 @@
 <%= form_with(model: [@user, @benefit], local: true) do |form| %>
-  <% if benefit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(benefit.errors.count, "error") %> prohibited this benefit from being saved:</h2>
+  <%= form.hidden_field :user_id, id: :benefit_user_id, value: @user.id %>
 
-      <ul>
-      <% benefit.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class='form-group' style='width: 400px;'>
-    <label>Título</label>
+  <div class='form-group'>
+    <%= form.label t(:title, scope: %i[benefit attributes]) %>
     <%= form.text_field :title, class: 'form-control', autofocus: true, id: :benefit_title %>
   </div>
 
-  <div class='form-group' style='width: 400px;'>
-    <label>Descripción</label>
+  <div class='form-group''>
+    <%= form.label t(:description, scope: %i[benefit attributes]) %>
     <%= form.text_area :description, class: 'form-control', id: :benefit_description %>
   </div>
-
-  <div class="field">
-    <%= form.hidden_field :user_id, id: :benefit_user_id, value: @user.id %>
-  </div>
-
+  
   <%= form.submit t(:submit), class: 'btn btn-primary' %>
 <% end %>

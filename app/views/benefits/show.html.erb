@@ -10,8 +10,8 @@
   <div class="card-body">
     <h5 class="card-title"><%= @benefit.title %></h5>
     <p class="card-text"><%= @benefit.description %></p>
-    <%= link_to '<button type="button" class="btn btn-primary btn-sm">Editar</button>'.html_safe, edit_user_benefit_path(@benefit, @user) %>
-    <%= link_to '<button type="button" class="btn btn-warning btn-sm">Eliminar</button>'.html_safe, user_benefit_path(@user.id, @benefit.id), method: :delete, data: { confirm: 'Estas seguro?' } %>
+    <%= link_to t(:edit), edit_user_benefit_path(@benefit, @user), class:"btn btn-primary" %>
+    <%= link_to t(:destroy), user_benefit_path(@user.id, @benefit.id), class:"btn btn-danger", method: :delete, data: { confirm: 'Estas seguro?' } %>
   </div>
   <div class="card-footer text-muted">
     Entregado por <%= @benefit.user %>

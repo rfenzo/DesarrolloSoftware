@@ -43,6 +43,14 @@ es:
         edit: 'Huno un error al editar el beneficio'
         unauthorized: 'Solo empresas pueden crear y modificar beneficios'
 
+  benefit:
+    name:
+      one: Beneficio
+      many: Beneficios
+    attributes:
+      title: Titulo
+      description: Descripción
+
   social_company:
     name:
       one: Empresa social
@@ -79,10 +87,6 @@ es:
       email: Email
       name: Nombre
       avatar: Foto de perfil
-
-  user:
-    new:
-      sign_up_title: "¿Como deseas registrarte?"
 
   project:
     name:

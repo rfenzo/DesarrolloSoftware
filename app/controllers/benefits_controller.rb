@@ -1,6 +1,7 @@
 class BenefitsController < ApplicationController
   before_action :set_benefit, only: [:show, :edit, :update, :destroy]
   before_action :set_user
+  before_action :set_profile_variables
 
   # GET /benefits
   def index

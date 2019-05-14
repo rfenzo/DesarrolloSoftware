@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :projects, only: [:index, :show] do
     get 'donate', to: 'projects#donate', as: 'donate'
+    get 'require', to: 'projects#require', as: 'require'
   end
 
 	scope 'profile' do

@@ -1,22 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Mis Beneficios</h1>
+<p class="h2">
+Mis Beneficios
+<%= link_to '<button type="button" class="btn btn-primary btn-sm">Agregar beneficio</button>'.html_safe, new_user_benefit_path %>
+</p>
+<hr>
 <% if @benefits.any? %>
   <% @benefits.each do |benefit| %>
-    <div class="card" style="width: 18rem; margin-bottom: 20px; min-width: 500px;">
+  <div class="row py-2">
+    <div class="col-10 card">
+      <a href=<%= user_benefit_path(id: benefit.id) %> class="stretched-link"></a>
       <div class="card-body">
         <h5 class="card-title"><%= benefit.title %></h5>
         <p class="card-text"><%= benefit.description %></p>
-        <%= link_to 'Ver', user_benefit_path(@user.id, benefit.id) %>
-        <%= link_to 'Editar', edit_user_benefit_path(@user.id, benefit.id) %>
-        <%= link_to 'Eliminar', user_benefit_path(@user.id, benefit.id), method: :delete, data: { confirm: 'Are you sure?' } %>
       </div>
     </div>
+    <div class="col-2">
+      <div class="list-group">
+        <%= link_to 'Editar', edit_user_benefit_path(@user.id, benefit.id), class: 'list-group-item list-group-item-action list-group-item-primary' %>
+        <%= link_to 'Eliminar', user_benefit_path(@user.id, benefit.id), class: 'list-group-item list-group-item-action list-group-item-danger', method: :delete %>
+      </div>
+    </div>
+  </div>
   <% end %>
 <% else %>
   No has agregado ningun beneficio aún.
 <% end %>
 
 <br>
-
-<%= link_to 'Agregar nuevo beneficio', new_user_benefit_path %>

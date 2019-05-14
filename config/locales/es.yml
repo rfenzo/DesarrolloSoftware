@@ -40,6 +40,23 @@ es:
         destroy: 'Solicitud de "%{project}" eliminada satisfactoriamente'
       error:
         default: Hubo un error en la solicitud
+    benefit:
+      success:
+        create: 'Beneficio creado satisfactoriamente'
+        edit: 'Beneficio editado satisfactoriamente'
+        destroy: 'Beneficio eliminado satisfactoriamente'
+      error:
+        new: 'Hubo un error al crear el beneficio'
+        edit: 'Huno un error al editar el beneficio'
+        unauthorized: 'Solo empresas pueden crear y modificar beneficios'
+
+  benefit:
+    name:
+      one: Beneficio
+      many: Beneficios
+    attributes:
+      title: Titulo
+      description: Descripción
 
   social_company:
     name:
@@ -77,10 +94,6 @@ es:
       email: Email
       name: Nombre
       avatar: Foto de perfil
-
-  user:
-    new:
-      sign_up_title: "¿Como deseas registrarte?"
 
   project:
     name:

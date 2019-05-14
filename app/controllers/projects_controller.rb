@@ -67,7 +67,7 @@ class ProjectsController < ApplicationController
       @donation = Donation.new({amount: amount, project: @project, user: current_user})
       if @donation.save
         flash[:success] = t(:default, scope: %i[flash donation success], project: @project.name, amount: amount)
-        redirect_to :projects
+        redirect_back fallback_location: root_path
       else
         flash[:error] = t(:default, scope: %i[flash donation error])
         redirect_to :projects

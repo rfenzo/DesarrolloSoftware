@@ -1,29 +1,16 @@
 <h3>Empresas</h3>
-<div class="row">
-  <div class="col-5 mr-1">
-    <select>
-    <% @projects.each do |project| %>
-      <div class="row list-group-item border">
-        <option value="value"><%= project.name %></option>
+<% @companies.each do |company| %>
+  <div class="row list-group-item border">
+    <div class="row" style="height: 60px">
+      <div class="col-3 mh-100 test-light">
+        <%=image_tag company.avatar, class: 'mw-100 mh-100'%>
       </div>
-    <%end%>
-    </select>
+      <div class="col-5 m-auto text-center">
+        <%= company.name %>
+      </div>
+      <div class="col m-auto text-center">
+        <%= link_to t(:require), requirements_create_path(company_id: company, project_id: @project.id), class: 'btn btn-outline-success h-100 w-100' %>
+      </div>
+    </div>
   </div>
-  <div class="col">
-    <% @companies.each do |company| %>
-      <div class="row list-group-item border">
-        <div class="row" style="height: 60px">
-          <div class="col-3 mh-100 test-light">
-            <%=image_tag company.avatar, class: 'mw-100 mh-100'%>
-          </div>
-          <div class="col-5 m-auto text-center">
-            <%= company.name %>
-          </div>
-          <div class="col m-auto text-center">
-            <%= link_to t(:require), require_path(), class: 'btn btn-outline-success h-100 w-100' %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </ul>
-</div>
+<% end %>

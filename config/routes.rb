@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  get 'requirements/create'
+
   root to: "home#landing"
 
   resources :projects, only: [:index, :show] do
     get 'donate', to: 'projects#donate', as: 'donate'
-    get 'require', to: 'projects#require', as: 'require'
+  end
+
+  resources :requirements, only: [:create] do
+    get 'require', to: 'require#create', as: 'require'
   end
 
 	scope 'profile' do

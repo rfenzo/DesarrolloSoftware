@@ -8,7 +8,6 @@
 					<%=link_to "Mis Beneficios", my_benefits_path %>
 				<% elsif isSocialCompany? %>
 					<%=link_to "Mis Proyectos", my_social_projects_path %>
-					<%=link_to "Buscar patrocinadores", find_sponsor_path %>
 				<% elsif isCompany? %>
 					<%=link_to "Proyectos patrocinados", my_sponsored_projects_path %>
 					<%=link_to "Beneficios ofrecidos", user_benefits_path(current_user.id) %>

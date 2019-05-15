@@ -17,8 +17,13 @@
         </div>
       </div>
     </div>
-    <div class="col-2 pl-0" style="max-width: 150px">
-      <%= link_to t(:donate), project_donate_path(project), method: :post, class: 'btn btn-outline-success h-100 w-100' %>
+    <div class="col-2">
+      <div class="list-group">
+        <% if isCompany? %>
+          <%= link_to t(:sponsor), new_contract_path(project), class: 'list-group-item list-group-item-action list-group-item-warning' %>
+        <% end %>
+        <%= link_to t(:donate), project_donate_path(project), method: :post, class: 'list-group-item list-group-item-action list-group-item-success' %>
+      </div>
     </div>
   </div>
 <% end %>

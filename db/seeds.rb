@@ -17,7 +17,7 @@ def attach_file (file_name)
 end
 
 # Companies
-User.create({
+cocacola = User.create({
   email: 'cocacola@email.com',
   password: '123123',
   name: 'Coca Cola',
@@ -27,7 +27,7 @@ User.create({
   address: 'Avenida polo norte con oso polar',
   avatar: attach_file('cocacola.jpg')
 })
-User.create({
+pepsi = User.create({
   email: 'pepsi@email.com',
   password: '123123',
   name: 'Pepsi',
@@ -37,7 +37,7 @@ User.create({
   address: 'Avenida polo sur con oso normal',
   avatar: attach_file('pepsi.png')
 })
-User.create({
+starbucks = User.create({
   email: 'starbucks@email.com',
   password: '123123',
   name: 'Starbucks',
@@ -49,28 +49,28 @@ User.create({
 })
 
 # Donors
-User.create({
+romano = User.create({
   email: 'romano@email.com',
   password: '123123',
   name: 'Romano',
   user_type: 'Donor',
   avatar: attach_file('romano.jpg')
 })
-User.create({
+jorge = User.create({
   email: 'jorge@email.com',
   password: '123123',
   name: 'Jorge',
   user_type: 'Donor',
   avatar: attach_file('jorge.jpg')
 })
-User.create({
+domingo = User.create({
   email: 'domingo@email.com',
   password: '123123',
   name: 'Domnigo',
   user_type: 'Donor',
   avatar: attach_file('domingo.jpg')
 })
-User.create({
+daniel = User.create({
   email: 'daniel@email.com',
   password: '123123',
   name: 'Domingo',
@@ -112,4 +112,98 @@ aurora.projects.create({
 atenea.projects.create({
   name: 'Viviendas sociales San Lorenzo',
   description: 'Esta es proyecto que consiste en la contrucciones de viviendas sociales en San Lorenzo, un lugar ubicado en ...'
+})
+
+# Benefits
+cocacola.benefits.create({
+    title: "20% de descuento en la bebida de la promo",
+    description: "Válido hasta el último día de abril (2019)"
+})
+cocacola.benefits.create({
+    title: "10% de descuento en disfraces de navidad",
+    description: "Válido hasta el último día de diciembre (2017)"
+})
+pepsi.benefits.create({
+    title: "80% de descuento en todo lo que le compita a CocaCola",
+    description: "Válido hasta siempre"
+})
+starbucks.benefits.create({
+    title: "1% de descuento en frappuccino de frambuesa",
+    description: "Válido hasta ayer"
+})
+
+# Requirements
+Requirement.create(project_id: atenea.projects.first.id, user_id: cocacola.id)
+Requirement.create(project_id: atenea.projects.first.id, user_id: pepsi.id)
+Requirement.create(project_id: atenea.projects.first.id, user_id: starbucks.id)
+Requirement.create(project_id: aurora.projects.first.id, user_id: starbucks.id)
+Requirement.create(project_id: aurora.projects.second.id, user_id: pepsi.id)
+Requirement.create(project_id: aurora.projects.second.id, user_id: starbucks.id)
+
+# Contracts
+Contract.create(project_id: atenea.projects.first.id, benefit_id: cocacola.benefits.first.id)
+Contract.create(project_id: atenea.projects.first.id, benefit_id: pepsi.benefits.first.id)
+Contract.create(project_id: aurora.projects.first.id, benefit_id: starbucks.benefits.first.id)
+Contract.create(project_id: aurora.projects.first.id, benefit_id: cocacola.benefits.second.id)
+
+# Donations
+cocacola.donations.create({
+    project: atenea.projects.first,
+    amount: 15423,
+})
+cocacola.donations.create({
+    project: atenea.projects.first,
+    amount: 17942,
+})
+cocacola.donations.create({
+    project: aurora.projects.second,
+    amount: 52651,
+})
+pepsi.donations.create({
+    project: atenea.projects.first,
+    amount: 4938,
+})
+pepsi.donations.create({
+    project: aurora.projects.first,
+    amount: 1242,
+})
+starbucks.donations.create({
+    project: aurora.projects.first,
+    amount: 78645,
+})
+starbucks.donations.create({
+    project: aurora.projects.first,
+    amount: 7333,
+})
+starbucks.donations.create({
+    project: aurora.projects.second,
+    amount: 98721,
+})
+starbucks.donations.create({
+    project: atenea.projects.first,
+    amount: 8721,
+})
+romano.donations.create({
+    project: atenea.projects.first,
+    amount: 721,
+})
+daniel.donations.create({
+    project: aurora.projects.second,
+    amount: 3321,
+})
+jorge.donations.create({
+    project: aurora.projects.first,
+    amount: 3921,
+})
+jorge.donations.create({
+    project: aurora.projects.second,
+    amount: 11121,
+})
+domingo.donations.create({
+    project: atenea.projects.first,
+    amount: 721,
+})
+domingo.donations.create({
+    project: aurora.projects.first,
+    amount: 33721,
 })

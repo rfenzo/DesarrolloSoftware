@@ -1,6 +1,6 @@
 class RequirementsController < ApplicationController
   before_action :requirement_params, only: [:create]
-  before_action :set_requirement, only: [:create]
+  before_action :set_requirement, only: [:destroy]
 
   def create
     unless isSocialCompany?

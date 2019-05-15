@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<p class="h2">
+<h2>
 Mis Beneficios
 <%= link_to '<button type="button" class="btn btn-primary btn-sm">Agregar beneficio</button>'.html_safe, new_user_benefit_path %>
-</p>
+</h2>
 <hr>
 <% if @benefits.any? %>
   <% @benefits.each do |benefit| %>
@@ -24,7 +22,15 @@ Mis Beneficios
   </div>
   <% end %>
 <% else %>
-  No has agregado ningun beneficio aún.
+<div class="alert alert-info">
+  <h5 class="alert-heading">
+    No has agregado ningun beneficio aún.
+  </h5>
+  <hr>
+  <div class="">
+    Los beneficios que crees aparecerán aquí, donde podrás editarlos y eliminarlos
+  </div>
+</div>
 <% end %>
 
 <br>

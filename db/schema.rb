@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(version: 20190514153322) do
 
   create_table "contracts", force: :cascade do |t|
     t.bigint "project_id"
-    t.bigint "user_id"
+    t.bigint "benefit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["benefit_id"], name: "index_contracts_on_benefit_id"
     t.index ["project_id"], name: "index_contracts_on_project_id"
-    t.index ["user_id"], name: "index_contracts_on_user_id"
   end
 
   create_table "donations", force: :cascade do |t|
@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 20190514153322) do
   end
 
   add_foreign_key "benefits", "users"
+  add_foreign_key "contracts", "benefits"
   add_foreign_key "contracts", "projects"
-  add_foreign_key "contracts", "users"
   add_foreign_key "donations", "projects"
   add_foreign_key "donations", "users"
   add_foreign_key "projects", "users"

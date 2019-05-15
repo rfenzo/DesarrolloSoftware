@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :validate_user, except: [:index, :show, :donate]
+  before_action :validate_user, except: [:index, :show]
   before_action :set_ranking_variables, only: [:index, :show]
   before_action :set_profile_variables, except: [:index, :show]
 
@@ -55,24 +55,6 @@ class ProjectsController < ApplicationController
     @project.destroy
     flash[:success] = t(:destroy, scope: %i[flash project success], project: @project.name)
     redirect_to :my_social_projects
-  end
-
-  def donate
-    unless current_user
-      flash[:error] = t(:sign_in, scope: %i[flash donation error])
-      redirect_to :new_user_session
-    else
-      amount = 1000
-      @project = Project.find(params[:project_id])
-      @donation = Donation.new({amount: amount, project: @project, user: current_user})
-      if @donation.save
-        flash[:success] = t(:default, scope: %i[flash donation success], project: @project.name, amount: amount)
-        redirect_back fallback_location: root_path
-      else
-        flash[:error] = t(:default, scope: %i[flash donation error])
-        redirect_to :projects
-      end
-    end
   end
 
   private

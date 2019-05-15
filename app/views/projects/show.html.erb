@@ -1,13 +1,42 @@
-<h1><%= t(:title, scope: %i[project show], project: @project.name)%></h1>
-<div>
-  <%= t(:owner, scope: %i[project show], social_company: @project.user)%>
-</div>
-<div>
-  <%= t(:amount_donated, amount: @amount) %>
-</div>
-<div>
-  <%= @project.description %>
+<h2>
+  <%= t(:title, scope: %i[project show], project: @project.name)%>
+  <%= link_to t(:back), projects_path, class: 'btn btn-secondary btn-sm' %>
+</h2>
+<hr>
+<div class="row mt-3">
+  <div class="col">
+    <div>
+      <%= t(:owner, scope: %i[project show], social_company: @project.user)%>
+    </div>
+    <h4 class="font-weight-bold my-4">
+      <%= t(:amount_collected, amount: @amount) %>
+    </h4>
+    <div class="">
+      <%= @project.description %>
+    </div>
+  </div>
+  <div class="col-4 list-group bg-info text-light p-3">
+    <h4><%= t(:many, scope: %i[benefit name]) %></h4>
+    <% if @project.benefits.any? %>
+      <% @project.benefits.each do |c|%>
+        <div class="list-group-item list-group-item-success">
+          <%= fa_icon 'check', class: 'pull-left'%>
+          <%= c.title %>
+        </div>
+      <% end %>
+    <% else %>
+      <p>
+        No hay beneficios asociados a este proyecto
+        <%= fa_icon  'frown-o', class: '' %>
+      </p>
+      <p>Pero no te desanimes, el karma te recompensará!</p>
+    <% end %>
+  </div>
 </div>
 
-<%= link_to t(:back), projects_path, class: 'btn btn-secondary' %>
-<%= link_to t(:donate), project_donate_path(@project), method: :post, class: 'btn btn-outline-success' %>
+<% if isCompany? %>
+<%= link_to t(:sponsor), new_contract_path(@project), class: 'btn btn-outline-warning' %>
+<% end %>
+<% unless isSocialCompany?%>
+  <%= link_to t(:donate), donate_path(@project), method: :post, class: 'btn btn-outline-success' %>
+<% end %>

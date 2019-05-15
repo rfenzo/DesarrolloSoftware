@@ -1,6 +1,9 @@
 class User < ApplicationRecord
+  has_many :benefits, dependent: :destroy
+  has_many :contracts, through: :benefits
+  has_many :sponsored_projects, through: :contracts, source: :project
+
   has_many :projects
-  has_many :benefits
   has_many :requirements
 
   has_many :donations

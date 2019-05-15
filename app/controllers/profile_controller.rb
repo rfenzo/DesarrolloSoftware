@@ -24,7 +24,15 @@ class ProfileController < ApplicationController
     end
   end
 
-  def my_sponsored_projects
+  def my_contracts
+    @contracts = current_user.contracts
+
+  end
+
+  def new_contract
+    @contract = Contract.new
+    @my_benefits = current_user.benefits
+    @selected = params[:id]
   end
 
   def my_offered_benefits

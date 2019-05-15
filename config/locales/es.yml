@@ -9,11 +9,13 @@ es:
   sign_out: Cerrar sesión
   submit: Enviar
   donate: Donar
-  amount_donated: 'Cantidad donada: $%{amount}'
-  benefits: Beneficios
+  date: Fecha
+  amount: Monto
+  amount_collected: 'Cantidad recolectada: $%{amount}'
   select_file_text: Seleccionar archivo
   are_you_sure: ¿Estas seguro que quieres hacerlo?
-  require: Solicitar
+  require: Solicitar patrocinio
+  sponsor: Patrocinar
 
   flash:
     profile:
@@ -34,12 +36,21 @@ es:
       error:
         default: Hubo un error en la donación
         sign_in: Debes iniciar sesión para realizar donaciones
+        user_type: Sólo los donadores y compañías pueden realizar donaciones
     require:
       success:
         default: 'Realizaste correctamente una solicitud a %{company} por el proyecto "%{project}"'
         destroy: 'Solicitud de "%{project}" eliminada satisfactoriamente'
       error:
         default: Hubo un error en la solicitud
+    contract:
+      success:
+        default: 'Felicitaciones, ahora patrocinas el proyecto "%{project}" mediante el beneficio "%{benefit}"'
+        destroy: 'Contrato de "%{contract}" con proyecto "%{project}" eliminado correctamente'
+      error:
+        default: Hubo un error en la creación del patrocinio.
+        sign_in: Debes iniciar sesión como compañía para crear un patrocinio
+        user_type: Sólo las compañías están autorizadas para crear patrocinios
     benefit:
       success:
         create: 'Beneficio creado satisfactoriamente'
@@ -57,6 +68,8 @@ es:
     attributes:
       title: Titulo
       description: Descripción
+    new:
+      title: Patrocinar un proyecto
 
   social_company:
     name:

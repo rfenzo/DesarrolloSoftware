@@ -1,14 +1,10 @@
-<div class="row">
-  <div class="col-8">
-    <h1><%= t(:title, scope: %i[project index]) %></h1>
-  </div>
-  <div class="col m-auto">
-    <%= link_to t(:new, scope: %i[project index]), new_project_path, class: "btn btn-primary" %>
-  </div>
-</div>
+<h2>
+  <%= t(:title, scope: %i[project index]) %>
+  <%= link_to t(:new, scope: %i[project index]), new_project_path, class: "btn btn-primary btn-sm" %>
+</h2>
 <% @projects.each do |project| %>
   <div class="row py-2">
-    <div class="col-10 card">
+    <div class="col-9 card">
       <a href=<%= project_path(project) %> class="stretched-link"></a>
       <div class="row card-body">
         <div class="col">
@@ -20,8 +16,8 @@
         </div>
       </div>
     </div>
-    <div class="col-2">
-      <div class="list-group">
+    <div class="col-3">
+      <div class="list-group text-center">
         <%= link_to t(:require), find_sponsor_path(project_id: project.id), class: 'list-group-item list-group-item-action list-group-item-warning' %>
         <%= link_to t(:edit), edit_project_path(project), class: "list-group-item list-group-item-action list-group-item-primary" %>
         <%= link_to t(:destroy), "/profile/projects/#{project.id}", method: :delete, class: "list-group-item list-group-item-action list-group-item-danger" %>

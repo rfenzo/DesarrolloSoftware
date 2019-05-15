@@ -13,7 +13,7 @@ es:
   benefits: Beneficios
   select_file_text: Seleccionar archivo
   are_you_sure: ¿Estas seguro que quieres hacerlo?
-  require: Solicitar
+  require: Solicitar patrocinio
   sponsor: Patrocinar
 
   flash:
@@ -35,6 +35,7 @@ es:
       error:
         default: Hubo un error en la donación
         sign_in: Debes iniciar sesión para realizar donaciones
+        user_type: Sólo los donadores y compañías pueden realizar donaciones
     require:
       success:
         default: 'Realizaste correctamente una solicitud a %{company} por el proyecto "%{project}"'

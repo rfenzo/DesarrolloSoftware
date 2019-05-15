@@ -26,7 +26,9 @@
         <% if isCompany? %>
           <%= link_to t(:sponsor), new_contract_path(project), class: 'list-group-item list-group-item-action list-group-item-warning' %>
         <% end %>
-        <%= link_to t(:donate), project_donate_path(project), method: :post, class: 'list-group-item list-group-item-action list-group-item-success' %>
+        <% unless isSocialCompany?%>
+          <%= link_to t(:donate), donate_path(project.id), method: :post, class: 'list-group-item list-group-item-action list-group-item-success' %>
+        <% end %>
       </div>
     </div>
   </div>

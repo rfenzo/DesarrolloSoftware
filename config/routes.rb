@@ -2,9 +2,7 @@ Rails.application.routes.draw do
 
   root to: "home#landing"
 
-  resources :projects, only: [:index, :show] do
-    post 'donate', to: 'projects#donate', as: 'donate'
-  end
+  resources :projects, only: [:index, :show]
 
 	scope 'profile' do
     resources :projects, except: [:index, :show]
@@ -16,6 +14,10 @@ Rails.application.routes.draw do
 	  get 'social_projects' , to: 'profile#my_social_projects', as: 'my_social_projects'
 		get 'offered_benefits' , to: 'profile#my_offered_benefits', as: 'my_offered_benefits'
 		get 'find_sponsor/:project_id' , to: 'profile#find_sponsor', as: 'find_sponsor'
+
+    scope 'donate' do
+      post '/:id', to: 'donations#donate', as: 'donate'
+    end
 
     scope 'requirements' do
       get '/' , to: 'profile#my_requirements', as: 'my_requirements'

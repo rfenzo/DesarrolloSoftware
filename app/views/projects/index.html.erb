@@ -14,6 +14,10 @@
         </div>
         <div class="col-5">
           <p class="card-text"><%= t(:benefits)%></p>
+          <% project.benefits.each do |c|%>
+            <%= fa_icon 'check', class: 'pull-left'%>
+            <p class="card-text"><%= c.title %></p>
+          <% end %>
         </div>
       </div>
     </div>

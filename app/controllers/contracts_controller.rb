@@ -14,10 +14,11 @@ class ContractsController < ApplicationController
            project: contract.project.name,
            benefit: contract.benefit.title
         )
-        redirect_to user_benefits_path(current_user)
+        Requirement.find_by(project_id: contract.project.id, user_id: current_user.id).destroy
+        redirect_to my_contracts_path
       else
         flash[:error] = t(:default, scope: %i[flash require error])
-        redirect_to user_benefits_path(current_user)
+        redirect_to my_requirements_path
       end
     end
   end

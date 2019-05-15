@@ -13,8 +13,11 @@
   <% @requirements.each do |r| %>
     <div class="list-group-item border">
       <div class="row">
-        <div class="col-9 m-auto text-center">
+        <div class="col-8 m-auto text-center">
           <%= r.project %>
+        </div>
+        <div class="col m-auto text-center">
+          <%= link_to t(:sponsor), new_contract_path(r.project.id), class: 'btn btn-outline-warning' %>
         </div>
         <div class="col m-auto text-center">
           <%= button_to t(:destroy), decline_sponsorship_path(r.id), class: 'btn btn-outline-danger' %>

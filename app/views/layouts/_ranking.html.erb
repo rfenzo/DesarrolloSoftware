@@ -1,6 +1,8 @@
 <div class="row h-100">
   <div class="col-9">
-    <%= yield %>
+    <div class="container px-5 py-2">
+      <%= yield %>
+    </div>
   </div>
   <div class="col border-left m-2">
     <h4 class="text-center">Donadores destacados</h4>
@@ -15,7 +17,7 @@
               <%= c.name %>
             </div>
             <div class="col-3 m-auto text-center">
-              <%= @donated[c.id] + @sponsor_estimation[c.id] %>
+              $ <%= @donated[c.id] + @sponsor_estimation[c.id] %>
             </div>
           </div>
         </li>

@@ -9,7 +9,7 @@ es:
   sign_out: Cerrar sesión
   submit: Enviar
   donate: Donar
-  amount_donated: 'Cantidad donada: $%{amount}'
+  amount_collected: 'Cantidad recolectada: $%{amount}'
   benefits: Beneficios
   select_file_text: Seleccionar archivo
   are_you_sure: ¿Estas seguro que quieres hacerlo?

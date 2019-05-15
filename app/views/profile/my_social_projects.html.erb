@@ -2,6 +2,7 @@
   <%= t(:title, scope: %i[project index]) %>
   <%= link_to t(:new, scope: %i[project index]), new_project_path, class: "btn btn-primary btn-sm" %>
 </h2>
+<hr>
 <% @projects.each do |project| %>
   <div class="row py-2">
     <div class="col-9 card">
@@ -12,7 +13,7 @@
           <p class="card-text">$<%= @amounts[project.id] %></p>
         </div>
         <div class="col-5">
-          <p class="card-text"><%= t(:benefits)%></p>
+          <p class="card-text"><%= t(:many, scope: %i[benefit name])%></p>
         </div>
       </div>
     </div>

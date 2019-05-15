@@ -1,13 +1,26 @@
-<h3>Solicitudes de patrocinio</h3>
-<% @requirements.each do |r| %>
-  <div class="row list-group-item border">
-    <div class="row">
-      <div class="col-5 m-auto text-center">
-        <%= r.project %>
-      </div>
-      <div class="col m-auto text-center">
-        <%= button_to t(:destroy), decline_sponsorship_path(requirement: { user_id: current_user.id, project_id: r.project.id }), class: 'btn btn-outline-success h-100 w-100' %>
+<h2>Solicitudes de patrocinio</h2>
+<hr>
+<% if @requirements.any? %>
+  <% @requirements.each do |r| %>
+    <div class="row list-group-item border">
+      <div class="row">
+        <div class="col-9 m-auto text-center">
+          <%= r.project %>
+        </div>
+        <div class="col m-auto text-center">
+          <%= button_to t(:destroy), decline_sponsorship_path(requirement: { user_id: current_user.id, project_id: r.project.id }), class: 'btn btn-outline-success' %>
+        </div>
       </div>
     </div>
+  <% end %>
+<% else %>
+<div class="alert alert-info">
+  <h5 class="alert-heading">
+    No hay nada nuevo por aquí
+  </h5>
+  <hr>
+  <div class="">
+    Las solicitudes de patrocinio por parte de los proyectos sociales aparecerán aquí
   </div>
+</div>
 <% end %>

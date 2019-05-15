@@ -9,8 +9,9 @@ es:
   sign_out: Cerrar sesión
   submit: Enviar
   donate: Donar
+  date: Fecha
+  amount: Monto
   amount_collected: 'Cantidad recolectada: $%{amount}'
-  benefits: Beneficios
   select_file_text: Seleccionar archivo
   are_you_sure: ¿Estas seguro que quieres hacerlo?
   require: Solicitar patrocinio
@@ -45,8 +46,11 @@ es:
     contract:
       success:
         default: 'Felicitaciones, ahora patrocinas el proyecto "%{project}" mediante el beneficio "%{benefit}"'
+        destroy: 'Contrato de "%{contract}" con proyecto "%{project}" eliminado correctamente'
       error:
         default: Hubo un error en la creación del patrocinio.
+        sign_in: Debes iniciar sesión como compañía para crear un patrocinio
+        user_type: Sólo las compañías están autorizadas para crear patrocinios
     benefit:
       success:
         create: 'Beneficio creado satisfactoriamente'

@@ -2,6 +2,7 @@
   <%= t(:title, scope: %i[project show], project: @project.name)%>
   <%= link_to t(:back), projects_path, class: 'btn btn-secondary btn-sm' %>
 </h2>
+<hr>
 <div class="row mt-3">
   <div class="col">
     <div>
@@ -15,8 +16,8 @@
     </div>
   </div>
   <div class="col-4 list-group bg-info text-light p-3">
-    <h4><%= t(:benefits) %></h4>
-    <% if @project.benefits.count > 0 %>
+    <h4><%= t(:many, scope: %i[benefit name]) %></h4>
+    <% if @project.benefits.any? %>
       <% @project.benefits.each do |c|%>
         <div class="list-group-item list-group-item-success">
           <%= fa_icon 'check', class: 'pull-left'%>

@@ -26,6 +26,5 @@ class DonationsController < ApplicationController
       flash[:error] = t(:user_type, scope: %i[flash donation error])
       redirect_to :projects
     end
-
   end
 end

@@ -1,4 +1,8 @@
-<h3>Empresas</h3>
+<h2>
+  Empresas patrocinadoras
+  <%= link_to t(:back), my_social_projects_path, class: "btn btn-secondary btn-sm" %>
+</h2>
+<hr>
 <% @companies.each do |company| %>
   <div class="row list-group-item border">
     <div class="row" style="height: 60px">
@@ -9,7 +13,7 @@
         <%= company %>
       </div>
       <div class="col m-auto text-center">
-        <%= button_to t(:require), require_sponsorship_path(requirement: { user_id: company, project_id: @project.id }), class: 'btn btn-outline-success h-100 w-100' %>
+        <%= button_to t(:require), require_sponsorship_path(requirement: { user_id: company, project_id: @project.id }), class: 'btn btn-outline-success' %>
       </div>
     </div>
   </div>

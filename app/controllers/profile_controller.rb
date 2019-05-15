@@ -25,6 +25,8 @@ class ProfileController < ApplicationController
   end
 
   def my_contracts
+    @contracts = current_user.contracts
+
   end
 
   def new_contract

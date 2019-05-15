@@ -1,24 +1,40 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-3"></div>
-			<div class="sidenav">
-        <%=link_to "Resumen", my_profile_path %>
-				<% if isDonor? %>
-					<%=link_to "Mis Donaciones", my_donations_path %>
-					<%=link_to "Mis Beneficios", my_benefits_path %>
-				<% elsif isSocialCompany? %>
-					<%=link_to "Mis Proyectos", my_social_projects_path %>
-				<% elsif isCompany? %>
-          <%=link_to "Beneficios ofrecidos", user_benefits_path(current_user.id) %>
-          <%=link_to "Proyectos patrocinados", my_contracts_path %>
-					<%=link_to "Solicitudes de patrocinio", my_requirements_path %>
-				<% end %>
-        <%=link_to "Datos", my_data_path %>
-			</div>
-    <div class="col-md-9">
-      <div class="container px-5 py-2">
-        <%= yield%>
-      </div>
+<div class="row w-100">
+  <div class="col-3">
+    <ul class="sidenav nav flex-column bg-dark navbar-dark">
+      <li class="nav-item mx-auto">
+        <%=link_to "Resumen", my_profile_path, class: 'nav-link text-white font-weight-bold' %>
+      </li>
+			<% if isDonor? %>
+        <li class="nav-item mx-auto">
+          <%=link_to "Mis Donaciones", my_donations_path, class: 'nav-link text-white font-weight-bold' %>
+        </li>
+        <li class="nav-item mx-auto">
+          <%=link_to "Mis Beneficios", my_benefits_path, class: 'nav-link text-white font-weight-bold' %>
+        </li>
+			<% elsif isSocialCompany? %>
+        <li class="nav-item mx-auto">
+          <%=link_to "Mis Proyectos", my_social_projects_path, class: 'nav-link text-white font-weight-bold' %>
+        </li>
+      <% elsif isCompany? %>
+        <li class="nav-item mx-auto">
+          <%=link_to "Beneficios ofrecidos", user_benefits_path(current_user.id), class: 'nav-link text-white font-weight-bold' %>
+        </li>
+        <li class="nav-item mx-auto">
+          <%=link_to "Proyectos patrocinados", my_contracts_path, class: 'nav-link text-white font-weight-bold' %>
+        </li>
+        <li class="nav-item mx-auto">
+          <%=link_to "Solicitudes de patrocinio", my_requirements_path, class: 'nav-link text-white font-weight-bold' %>
+        </li>
+			<% end %>
+      <li class="nav-item mx-auto">
+        <%=link_to "Datos", my_data_path, class: 'nav-link text-white font-weight-bold' %>
+      </li>
+    </ul>
+  </div>
+  <div class="col">
+    <%= render 'layouts/alerts' %>
+    <div class="container px-5 py-4">
+      <%= yield%>
     </div>
   </div>
 </div>

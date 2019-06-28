@@ -20,3 +20,6 @@
 /public/system/*
 
 .byebug_history
+
+# Ignore dot files
+.*

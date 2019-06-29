@@ -4,9 +4,9 @@ class ProjectsController < ApplicationController
   before_action except: %i[index show] do
     validate_user(t(:sign_in, scope: %i[flash project error]))
     validate_user_type
-    set_ranking_variables
     set_profile_variables
   end
+  before_action :set_ranking_variables, only: %i[index show]
   before_action :set_project, only: %i[show edit update destroy]
 
   # GET /projects

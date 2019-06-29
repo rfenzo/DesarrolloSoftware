@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Project < ApplicationRecord
   belongs_to :user
 
@@ -12,6 +14,6 @@ class Project < ApplicationRecord
   validates_presence_of :user
 
   def to_s
-    self.name
+    name
   end
 end

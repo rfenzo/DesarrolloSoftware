@@ -1,11 +1,21 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  helper_method :isDonor?, :isCompany?, :isSocialCompany?,
-                :set_ranking_variables, :set_profile_variables
+  helper_method :donor?, :company?, :social_company?,
+                :set_ranking_variables, :set_profile_variables,
+                :validate_user
 
   protected
+
+  def validate_user(message)
+    return if current_user
+
+    flash[:error] = message
+    redirect_to :new_user_session
+  end
 
   def set_ranking_variables
     @render_ranking_bar = true
@@ -23,27 +33,34 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_type, :name, :rut, :validation, :compromise, :address, :description, :avatar])
+    devise_parameter_sanitizer.permit(:sign_up,
+                                      keys: %i[
+                                        user_type
+                                        name
+                                        rut
+                                        validation
+                                        compromise
+                                        address
+                                        description
+                                        avatar
+                                      ])
   end
 
-  def isDonor?
-    unless current_user
-      return false
-    end
+  def donor?
+    return false unless current_user
+
     current_user.user_type == 'Donor'
   end
 
-  def isCompany?
-    unless current_user
-      return false
-    end
+  def company?
+    return false unless current_user
+
     current_user.user_type == 'Company'
   end
 
-  def isSocialCompany?
-    unless current_user
-      return false
-    end
+  def social_company?
+    return false unless current_user
+
     current_user.user_type == 'SocialCompany'
   end
 end

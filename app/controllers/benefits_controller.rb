@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class BenefitsController < ApplicationController
-  before_action :set_benefit, only: [:show, :edit, :update, :destroy]
-  before_action :set_user
   before_action :set_profile_variables
+  before_action :set_benefit, only: %i[show edit update destroy]
+  before_action :set_user
 
   # GET /benefits
   def index
@@ -55,17 +57,18 @@ class BenefitsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_benefit
-      @benefit = Benefit.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def benefit_params
-      params.require(:benefit).permit(:title, :description, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_benefit
+    @benefit = Benefit.find(params[:id])
+  end
 
-    def set_user
-      @user = User.find(params[:user_id])
-    end
+  # Only allow a trusted parameter "white list" through.
+  def benefit_params
+    params.require(:benefit).permit(:title, :description, :user_id)
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 end

@@ -1,8 +1,13 @@
+# frozen_string_literal: true
+
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :validate_user, except: [:index, :show]
-  before_action :set_ranking_variables, only: [:index, :show]
-  before_action :set_profile_variables, except: [:index, :show]
+  before_action except: %i[index show] do
+    validate_user(t(:sign_in, scope: %i[flash project error]))
+  end
+  before_action :validate_user_type, except: %i[index show]
+  before_action :set_ranking_variables, only: %i[index show]
+  before_action :set_profile_variables, except: %i[index show]
+  before_action :set_project, only: %i[show edit update destroy]
 
   # GET /projects
   def index
@@ -58,20 +63,21 @@ class ProjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def project_params
-      params.require(:project).permit(:name, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project
+    @project = Project.find(params[:id])
+  end
 
-    def validate_user
-      unless isSocialCompany?
-        flash[:error] = t(:unauthorized, scope: %i[flash project error])
-        redirect_to root_path
-      end
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def project_params
+    params.require(:project).permit(:name, :description)
+  end
+
+  def validate_user_type
+    return if social_company?
+
+    flash[:error] = t(:user_type, scope: %i[flash project error])
+    redirect_to root_path
+  end
 end

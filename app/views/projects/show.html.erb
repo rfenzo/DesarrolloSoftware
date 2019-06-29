@@ -34,9 +34,9 @@
   </div>
 </div>
 
-<% if isCompany? %>
+<% if company? %>
 <%= link_to t(:sponsor), new_contract_path(@project), class: 'btn btn-outline-warning' %>
 <% end %>
-<% unless isSocialCompany?%>
+<% unless social_company?%>
   <%= link_to t(:donate), donate_path(@project), method: :post, class: 'btn btn-outline-success' %>
 <% end %>

@@ -21,6 +21,7 @@ es:
     profile:
       error:
         sign_in: Debes iniciar sesión para acceder a tu perfil
+        user_type: No tienes permiso para ver las solicitudes de patrocinio
     project:
       success:
         create: 'Proyecto "%{project}" creado satisfactoriamente'
@@ -29,7 +30,8 @@ es:
       error:
         new: Hubo un error al crear el proyecto
         edit: Hubo un error al editar el proyecto
-        unauthorized: 'Solo empresas sociales pueden crear y modificar sus proyectos'
+        sign_in: Debes iniciar sesión para administrar proyectos
+        user_type: Solo empresas sociales pueden crear y modificar sus proyectos
     donation:
       success:
         default: 'Realizaste correctamente una donación por %{amount} al proyecto "%{project}"'
@@ -59,7 +61,6 @@ es:
       error:
         new: 'Hubo un error al crear el beneficio'
         edit: 'Huno un error al editar el beneficio'
-        unauthorized: 'Solo empresas pueden crear y modificar beneficios'
 
   benefit:
     name:

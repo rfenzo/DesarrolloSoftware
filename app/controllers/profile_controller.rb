@@ -1,5 +1,10 @@
+# frozen_string_literal: true
+
 class ProfileController < ApplicationController
-  before_action :validate_user
+  before_action do
+    validate_user(t(:sign_in, scope: %i[flash profile error]))
+  end
+  before_action :validate_user_type
   before_action :set_profile_variables
 
   def index
@@ -26,7 +31,6 @@ class ProfileController < ApplicationController
 
   def my_contracts
     @contracts = current_user.contracts
-
   end
 
   def new_contract
@@ -44,20 +48,15 @@ class ProfileController < ApplicationController
   end
 
   def my_requirements
-    unless isCompany?
-      flash[:error] = 'no tienes permiso para ver las solicitudes de patrocinio(esto debe traducirse)'
-      redirect_to root_path
-    else
-      @requirements = current_user.requirements
-    end
+    @requirements = current_user.requirements
   end
 
   private
 
-  def validate_user
-    unless current_user
-      flash[:error] = t(:sign_in, scope: %i[flash profile error])
-      redirect_to :new_user_session
-    end
+  def validate_user_type
+    return if company?
+
+    flash[:error] = t(:user_type, scope: %i[flash profile error])
+    redirect_to root_path
   end
 end

@@ -21,9 +21,8 @@ class DonationsController < ApplicationController
   private
 
   def validate_user_type
-    p 'hello'
     return if donor? || company?
-    p :hello2
+
     flash[:error] = t(:user_type, scope: %i[flash donation error])
     redirect_to :projects
   end

@@ -42,6 +42,6 @@ class RequirementsController < ApplicationController
   end
 
   def set_requirement
-    @requirement = Requirement.find(params[:id])
+    @requirement = Requirement.find_by(id: params[:id])
   end
 end

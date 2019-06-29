@@ -3,9 +3,9 @@
 class ProfileController < ApplicationController
   before_action do
     validate_user(t(:sign_in, scope: %i[flash profile error]))
+    set_profile_variables
   end
-  before_action :validate_user_type
-  before_action :set_profile_variables
+  before_action :validate_user_type, only: :my_requirements
 
   def index
   end
@@ -44,7 +44,7 @@ class ProfileController < ApplicationController
 
   def find_sponsor
     @companies = User.where(user_type: 'Company')
-    @project = Project.find(params[:project_id])
+    @project = Project.find_by(id: params[:project_id])
   end
 
   def my_requirements
@@ -57,6 +57,6 @@ class ProfileController < ApplicationController
     return if company?
 
     flash[:error] = t(:user_type, scope: %i[flash profile error])
-    redirect_to root_path
+    redirect_to :my_profile
   end
 end

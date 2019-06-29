@@ -60,7 +60,7 @@ class BenefitsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_benefit
-    @benefit = Benefit.find(params[:id])
+    @benefit = Benefit.find_by(id: params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
@@ -69,6 +69,6 @@ class BenefitsController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:user_id])
+    @user = User.find_by(id: params[:user_id])
   end
 end

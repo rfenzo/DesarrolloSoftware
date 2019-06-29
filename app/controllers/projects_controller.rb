@@ -3,10 +3,10 @@
 class ProjectsController < ApplicationController
   before_action except: %i[index show] do
     validate_user(t(:sign_in, scope: %i[flash project error]))
+    validate_user_type
+    set_ranking_variables
+    set_profile_variables
   end
-  before_action :validate_user_type, except: %i[index show]
-  before_action :set_ranking_variables, only: %i[index show]
-  before_action :set_profile_variables, except: %i[index show]
   before_action :set_project, only: %i[show edit update destroy]
 
   # GET /projects
@@ -66,7 +66,7 @@ class ProjectsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.find_by(id: params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

@@ -3,8 +3,8 @@
 class ContractsController < ApplicationController
   before_action do
     validate_user(t(:sign_in, scope: %i[flash contract error]))
+    validate_user_type
   end
-  before_action :validate_user_type
   before_action :contract_params, only: [:create]
   before_action :set_contract, only: [:destroy]
 
@@ -39,7 +39,7 @@ class ContractsController < ApplicationController
   end
 
   def set_contract
-    @contract = Contract.find(params[:id])
+    @contract = Contract.find_by(id: params[:id])
   end
 
   def validate_user_type

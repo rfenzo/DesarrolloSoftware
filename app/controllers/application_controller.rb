@@ -5,17 +5,9 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   helper_method :donor?, :company?, :social_company?,
-                :set_ranking_variables, :set_profile_variables,
-                :validate_user
+                :set_ranking_variables, :set_profile_variables
 
   protected
-
-  def validate_user(message)
-    return if current_user
-
-    flash[:error] = message
-    redirect_to :new_user_session
-  end
 
   def set_ranking_variables
     @render_ranking_bar = true

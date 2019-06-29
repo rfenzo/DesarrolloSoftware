@@ -2,7 +2,7 @@
 
 class ProjectsController < ApplicationController
   before_action except: %i[index show] do
-    validate_user(t(:sign_in, scope: %i[flash project error]))
+    autenticate_user!
     validate_user_type
     set_profile_variables
   end
@@ -11,16 +11,17 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    @projects = Project.all
-    @amounts = []
-    @projects.each do |p|
-      @amounts[p.id] = p.donations.sum(&:amount)
+    if params.key? :search_text
+      text = params.require :search_text
+      @projects = Project.select { |p| p.name.include?(text) || p.description.include?(text) }
+    else
+      @projects = Project.all
     end
+    @projects.map(&:calculate_donations)
   end
 
   # GET /projects/1
   def show
-    @amount = @project.donations.sum(&:amount)
   end
 
   # GET /projects/new
@@ -67,6 +68,7 @@ class ProjectsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_project
     @project = Project.find_by(id: params[:id])
+    @project.calculate_donations
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

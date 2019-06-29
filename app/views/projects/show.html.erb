@@ -9,7 +9,7 @@
       <%= t(:owner, scope: %i[project show], social_company: @project.user)%>
     </div>
     <h4 class="font-weight-bold my-4">
-      <%= t(:amount_collected, amount: @amount) %>
+      <%= t(:amount_collected, amount: @project.total_donations) %>
     </h4>
     <div class="">
       <%= @project.description %>

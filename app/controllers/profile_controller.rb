@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 class ProfileController < ApplicationController
-  before_action do
-    validate_user(t(:sign_in, scope: %i[flash profile error]))
-    set_profile_variables
-  end
+  before_action :authenticate_user!
+  before_action :set_profile_variables
   before_action :validate_user_type, only: :my_requirements
 
   def index

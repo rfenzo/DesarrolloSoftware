@@ -2,7 +2,10 @@ Rails.application.routes.draw do
 
   root to: "home#landing"
 
-  resources :projects, only: [:index, :show]
+  scope 'projects' do
+    get '(/search/:search_text)', to: 'projects#index', as: 'projects'
+    get ':id', to: 'projects#show', as: 'project'
+  end
 
 	scope 'profile' do
     resources :projects, except: [:index, :show]

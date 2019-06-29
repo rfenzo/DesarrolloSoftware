@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 class ContractsController < ApplicationController
-  before_action do
-    validate_user(t(:sign_in, scope: %i[flash contract error]))
-    validate_user_type
-  end
+  before_action :authenticate_user!
+  before_action :validate_user_type
   before_action :contract_params, only: [:create]
   before_action :set_contract, only: [:destroy]
 

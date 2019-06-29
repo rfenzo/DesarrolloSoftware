@@ -13,6 +13,12 @@ class Project < ApplicationRecord
 
   validates_presence_of :user
 
+  attr_reader :total_donations
+
+  def calculate_donations
+    @total_donations = donations.sum(&:amount)
+  end
+
   def to_s
     name
   end

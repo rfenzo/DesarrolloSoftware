@@ -2,32 +2,40 @@
   <div class="col-3">
     <ul class="sidenav nav flex-column bg-dark navbar-dark">
       <li class="nav-item mx-auto">
-        <%=link_to "Resumen", my_profile_path, class: 'nav-link text-white font-weight-bold' %>
+        <%=link_to "Dashboard", :profile, class: 'nav-link text-white font-weight-bold' %>
       </li>
-			<% if donor? %>
+			<% if can? :create, Donation %>
         <li class="nav-item mx-auto">
-          <%=link_to "Mis Donaciones", my_donations_path, class: 'nav-link text-white font-weight-bold' %>
+          <%=link_to "Donaciones realizadas", :donations, class: 'nav-link text-white font-weight-bold' %>
         </li>
+      <% end %>
+      <% if can? :create, Donation %>
         <li class="nav-item mx-auto">
-          <%=link_to "Mis Beneficios", my_benefits_path, class: 'nav-link text-white font-weight-bold' %>
+          <%=link_to "Beneficios obtenidos", :earned_benefits, class: 'nav-link text-white font-weight-bold' %>
         </li>
-			<% elsif social_company? %>
+      <% end %>
+			<% if can? :manage, Project %>
         <li class="nav-item mx-auto">
-          <%=link_to "Mis Proyectos", my_social_projects_path, class: 'nav-link text-white font-weight-bold' %>
+          <%=link_to "Mis Proyectos", :social_projects, class: 'nav-link text-white font-weight-bold' %>
         </li>
-      <% elsif company? %>
+      <% end %>
+      <% if can? :manage, Benefit %>
         <li class="nav-item mx-auto">
-          <%=link_to "Beneficios ofrecidos", user_benefits_path(current_user.id), class: 'nav-link text-white font-weight-bold' %>
+          <%=link_to "Beneficios ofrecidos", :offered_benefits, class: 'nav-link text-white font-weight-bold' %>
         </li>
+      <% end %>
+      <% if can? :create, Benefit %>
         <li class="nav-item mx-auto">
-          <%=link_to "Proyectos patrocinados", my_contracts_path, class: 'nav-link text-white font-weight-bold' %>
+          <%=link_to "Proyectos patrocinados", :contracts, class: 'nav-link text-white font-weight-bold' %>
         </li>
+      <% end %>
+      <% if can? :manage, Requirement %>
         <li class="nav-item mx-auto">
-          <%=link_to "Solicitudes de patrocinio", my_requirements_path, class: 'nav-link text-white font-weight-bold' %>
+          <%=link_to "Solicitudes de patrocinio", :requirements, class: 'nav-link text-white font-weight-bold' %>
         </li>
 			<% end %>
       <li class="nav-item mx-auto">
-        <%=link_to "Datos", my_data_path, class: 'nav-link text-white font-weight-bold' %>
+        <%=link_to "Información Personal", :personal_info, class: 'nav-link text-white font-weight-bold' %>
       </li>
     </ul>
   </div>

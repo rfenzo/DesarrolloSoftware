@@ -1,0 +1,42 @@
+<h2>Beneficios obtenidos</h2>
+<hr>
+<% if @benefits.any? %>
+  <div class="list-group-item border bg-dark text-light font-weight-bold">
+    <div class="row">
+      <div class="col-5 m-auto text-center">
+        <%= t(:one, scope: %i[benefit name])%>
+      </div>
+      <div class="col-5 m-auto text-center">
+        <%= t(:description, scope: %i[benefit attributes]) %>
+      </div>
+      <div class="col">
+        <%= t(:coupon_code) %>
+      </div>
+    </div>
+  </div>
+  <% @benefits.each do |b| %>
+    <div class="list-group-item border">
+      <div class="row">
+        <div class="col-5 m-auto text-center">
+          <%= b.title %>
+        </div>
+        <div class="col-5 m-auto text-center">
+          <%= b.description %>
+        </div>
+        <div class="col m-auto text-center">
+          <%= b.coupon_code %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+<div class="alert alert-info">
+  <h5 class="alert-heading">
+    Aún no recibes beneficios por tus donaciones
+  </h5>
+  <hr>
+  <div class="">
+    Aquí podras ver y utilizar aquí los beneficios que obtengas al donar a proyectos sociales que estén patrocinados por alguna empresa
+  </div>
+</div>
+<% end %>

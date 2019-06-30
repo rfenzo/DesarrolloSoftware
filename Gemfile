@@ -9,6 +9,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# Used to generate benefits cupon codes
+gem 'coupon_code'
+
+# Restricts what resources a given user is allowed to access
+gem 'cancancan'
+
 # Fontawesome
 gem 'font-awesome-rails'
 

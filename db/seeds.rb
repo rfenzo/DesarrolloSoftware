@@ -114,20 +114,20 @@ atenea.projects.create({
   description: 'Esta es proyecto que consiste en la contrucciones de viviendas sociales en San Lorenzo, un lugar ubicado en ...'
 })
 
-# Benefits
-cocacola.benefits.create({
+# Offered benefits
+cocacola.offered_benefits.create({
     title: "20% de descuento en la bebida de la promo",
     description: "Válido hasta el último día de abril (2019)"
 })
-cocacola.benefits.create({
+cocacola.offered_benefits.create({
     title: "10% de descuento en disfraces de navidad",
     description: "Válido hasta el último día de diciembre (2017)"
 })
-pepsi.benefits.create({
+pepsi.offered_benefits.create({
     title: "80% de descuento en todo lo que le compita a CocaCola",
     description: "Válido hasta siempre"
 })
-starbucks.benefits.create({
+starbucks.offered_benefits.create({
     title: "1% de descuento en frappuccino de frambuesa",
     description: "Válido hasta ayer"
 })
@@ -141,10 +141,10 @@ Requirement.create(project_id: aurora.projects.second.id, user_id: pepsi.id)
 Requirement.create(project_id: aurora.projects.second.id, user_id: starbucks.id)
 
 # Contracts
-Contract.create(project_id: atenea.projects.first.id, benefit_id: cocacola.benefits.first.id)
-Contract.create(project_id: atenea.projects.first.id, benefit_id: pepsi.benefits.first.id)
-Contract.create(project_id: aurora.projects.first.id, benefit_id: starbucks.benefits.first.id)
-Contract.create(project_id: aurora.projects.first.id, benefit_id: cocacola.benefits.second.id)
+Contract.create(project_id: atenea.projects.first.id, benefit_id: cocacola.offered_benefits.first.id)
+Contract.create(project_id: atenea.projects.first.id, benefit_id: pepsi.offered_benefits.first.id)
+Contract.create(project_id: aurora.projects.first.id, benefit_id: starbucks.offered_benefits.first.id)
+Contract.create(project_id: aurora.projects.first.id, benefit_id: cocacola.offered_benefits.second.id)
 
 # Donations
 cocacola.donations.create({

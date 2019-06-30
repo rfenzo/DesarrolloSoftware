@@ -1,29 +1,27 @@
 # frozen_string_literal: true
 
 class DonationsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :validate_user_type
+  load_and_authorize_resource
 
-  def donate
+  def create
     amount = 1000
-    @project = Project.find_by(id: params[:id])
-    @donation = Donation.new(amount: amount, project: @project, user: current_user)
+    @project = Project.includes(:benefits).find_by(id: params[:id])
+    @donation = current_user.donations.build(amount: amount, project: @project)
     if @donation.save
+      @project.benefits.each do |b|
+        # Do not give benefit to the same user that sponsors it
+        next if b.company.id == current_user.id
+
+        # Do not give benefit if user already have it
+        next if current_user.earned_benefits.find_by(id: b.id)
+
+        UserBenefit.create(user: current_user, benefit: b, coupon_code: CouponCode.generate)
+      end
       flash[:success] = t(:default, scope: %i[flash donation success], project: @project.name,
                                     amount: amount)
-      return redirect_back fallback_location: root_path
+      return redirect_back fallback_location: :root
     else
-      flash[:error] = t(:default, scope: %i[flash donation error])
-      redirect_to :projects
+      redirect_to :projects, flash: { error: t(:default, scope: %i[flash donation error]) }
     end
-  end
-
-  private
-
-  def validate_user_type
-    return if donor? || company?
-
-    flash[:error] = t(:user_type, scope: %i[flash donation error])
-    redirect_to :projects
   end
 end

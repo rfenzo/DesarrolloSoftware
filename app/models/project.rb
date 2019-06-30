@@ -9,7 +9,7 @@ class Project < ApplicationRecord
   has_many :benefits, through: :contracts
 
   has_many :donations, dependent: :nullify
-  has_many :donors, through: :donations, source: :user
+  has_many :donors, through: :donations, source: :user, dependent: :nullify
 
   validates_presence_of :user
 

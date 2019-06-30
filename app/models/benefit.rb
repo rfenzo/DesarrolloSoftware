@@ -3,7 +3,7 @@
 class Benefit < ApplicationRecord
   belongs_to :company, class_name: 'User', foreign_key: 'user_id'
   has_many :user_benefits
-  has_many :donors, through: :user_benefits, source: :user
+  has_many :donors, through: :user_benefits, source: :user, dependent: :destroy
   has_many :contracts, dependent: :destroy
 
   attr_reader :coupon_code

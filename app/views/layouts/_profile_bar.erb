@@ -9,7 +9,7 @@
           <%=link_to "Donaciones realizadas", :donations, class: 'nav-link text-white font-weight-bold' %>
         </li>
       <% end %>
-      <% if can? :create, Donation %>
+      <% if donor? %>
         <li class="nav-item mx-auto">
           <%=link_to "Beneficios obtenidos", :earned_benefits, class: 'nav-link text-white font-weight-bold' %>
         </li>
@@ -24,12 +24,12 @@
           <%=link_to "Beneficios ofrecidos", :offered_benefits, class: 'nav-link text-white font-weight-bold' %>
         </li>
       <% end %>
-      <% if can? :create, Benefit %>
+      <% if company? %>
         <li class="nav-item mx-auto">
           <%=link_to "Proyectos patrocinados", :contracts, class: 'nav-link text-white font-weight-bold' %>
         </li>
       <% end %>
-      <% if can? :manage, Requirement %>
+      <% if can? :read, Requirement %>
         <li class="nav-item mx-auto">
           <%=link_to "Solicitudes de patrocinio", :requirements, class: 'nav-link text-white font-weight-bold' %>
         </li>

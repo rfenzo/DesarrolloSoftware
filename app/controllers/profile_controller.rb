@@ -10,6 +10,12 @@ class ProfileController < ApplicationController
   end
 
   def donations
+    p :ffssfdf
+    p :ffssfdf
+    p current_user.donations
+    p :ffssfdf
+    p :ffssfdf
+    p :ffssfdf
     @donations = current_user.donations.reverse
     current_user.calculate_donations
   end
@@ -45,11 +51,8 @@ class ProfileController < ApplicationController
 
   def requirements
     authorize! :read, Requirement
-    p company?
-    p social_company?
     req = current_user.requirements if company?
     req = current_user.projects.map(&:requirements).first if social_company?
-    p req
     @requirements = req
   end
 end

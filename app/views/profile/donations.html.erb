@@ -26,7 +26,11 @@
           <%= donation.created_at.day %>-<%= donation.created_at.month %>-<%= donation.created_at.year %>
         </div>
         <div class="col-8 m-auto text-center">
-          <%= link_to donation.project.name, project_path(donation.project) %>
+          <% if donation.project.present? %>
+            <%= link_to donation.project.name, project_path(donation.project) %>
+          <% else %>
+            Projecto social eliminado
+          <% end %>
         </div>
         <div class="col m-auto text-center">
           $ <%= donation.amount %>

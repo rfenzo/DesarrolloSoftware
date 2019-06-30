@@ -8,12 +8,12 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    if params.key? :search_text
-      text = params.require :search_text
-      @projects = Project.select { |p| p.name.include?(text) || p.description.include?(text) }
-    else
-      @projects = Project.all
-    end
+    @projects = if params[:search_text]
+                  text = params[:search_text]
+                  Project.select { |p| p.name.include?(text) || p.description.include?(text) }
+                else
+                  Project.all
+                end
     @projects.map(&:calculate_donations)
   end
 

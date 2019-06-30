@@ -21,6 +21,7 @@ class Ability
     when 'SocialCompany'
       can :read, Benefit
       can :manage, Project
+      can :manage, Contract
       can :manage, Requirement
       can :manage, User, id: user.id
     else

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Contract < ApplicationRecord
-  belongs_to :project
+class UserBenefit < ApplicationRecord
+  belongs_to :user
   belongs_to :benefit
 end

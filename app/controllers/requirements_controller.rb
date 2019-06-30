@@ -1,39 +1,29 @@
+# frozen_string_literal: true
+
 class RequirementsController < ApplicationController
   before_action :requirement_params, only: [:create]
   before_action :set_requirement, only: [:destroy]
 
   def create
-    unless isSocialCompany?
-      flash[:error] = t(:sign_in, scope: %i[flash require error])
-      redirect_to :new_user_session
+    authorize! :create, Requirement
+    requirement = Requirement.new(requirement_params)
+    if requirement.save
+      flash[:success] = t(:default,
+                          scope:   %i[flash require success],
+                          project: requirement.project.name,
+                          company: requirement.user.name)
     else
-      requirement = Requirement.new(requirement_params)
-      if requirement.save
-        flash[:success] = t(:default,
-           scope: %i[flash require success],
-           project: requirement.project.name,
-           company: requirement.user.name
-        )
-        redirect_to my_social_projects_path
-      else
-        flash[:error] = t(:default, scope: %i[flash require error])
-        redirect_to my_social_projects_path
-      end
+      flash[:error] = t(:default, scope: %i[flash require error])
     end
+    redirect_to :social_projects
   end
 
   def destroy
-    unless isCompany?
-      flash[:error] = t(:sign_in, scope: %i[flash require error])
-      redirect_to :new_user_session
-    else
-      @requirement.destroy
-      flash[:success] = t(:destroy,
-        scope: %i[flash require success],
-        project: @requirement.project.name
-      )
-      redirect_to :my_requirements
-    end
+    authorize! :destroy, @requirement
+    @requirement.destroy
+    redirect_to :requirements, flash: { success: t(:destroy,
+                                                   scope:   %i[flash require success],
+                                                   project: @requirement.project.name) }
   end
 
   private
@@ -43,6 +33,6 @@ class RequirementsController < ApplicationController
   end
 
   def set_requirement
-    @requirement = Requirement.find(params[:id])
+    @requirement = Requirement.find_by(id: params[:id])
   end
 end

@@ -1,12 +1,9 @@
-class BenefitsController < ApplicationController
-  before_action :set_benefit, only: [:show, :edit, :update, :destroy]
-  before_action :set_user
-  before_action :set_profile_variables
+# frozen_string_literal: true
 
-  # GET /benefits
-  def index
-    @benefits = Benefit.where(user_id: @user.id)
-  end
+class BenefitsController < ApplicationController
+  load_and_authorize_resource
+  before_action :set_profile_variables
+  before_action :set_benefit, only: %i[show edit update destroy]
 
   # GET /benefits/1
   def show
@@ -15,7 +12,6 @@ class BenefitsController < ApplicationController
   # GET /benefits/new
   def new
     @benefit = Benefit.new
-    @users = User.all
   end
 
   # GET /benefits/1/edit
@@ -24,48 +20,40 @@ class BenefitsController < ApplicationController
 
   # POST /benefits
   def create
-    @benefit = Benefit.new(benefit_params)
-    @benefit.user = @user
+    @benefit = current_user.offered_benefits.new(benefit_params)
 
     if @benefit.save
-      flash[:success] = t(:create, scope: %i[flash benefit success])
-      redirect_to user_benefits_url
+      redirect_to :offered_benefits, flash: { success: t(:create,
+                                                         scope: %i[flash benefit success]) }
     else
-      flash[:error] = t(:new, scope: %i[flash benefit error])
-      render :new
+      render :new, flash: { error: t(:new, scope: %i[flash benefit error]) }
     end
   end
 
   # PATCH/PUT /benefits/1
   def update
     if @benefit.update(benefit_params)
-      flash[:success] = t(:edit, scope: %i[flash benefit success])
-      redirect_to user_benefits_url
+      redirect_to :offered_benefits, flash: { success: t(:edit, scope: %i[flash benefit success]) }
     else
-      flash[:error] = t(:edit, scope: %i[flash benefit error])
-      render :edit
+      render :edit, flash: { error: t(:edit, scope: %i[flash benefit error]) }
     end
   end
 
   # DELETE /benefits/1
   def destroy
     @benefit.destroy
-    flash[:success] = t(:destroy, scope: %i[flash benefit success])
-    redirect_to user_benefits_url
+    redirect_to :offered_benefits, flash: { success: t(:destroy, scope: %i[flash benefit success]) }
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_benefit
-      @benefit = Benefit.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def benefit_params
-      params.require(:benefit).permit(:title, :description, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_benefit
+    @benefit = Benefit.find_by(id: params[:id])
+  end
 
-    def set_user
-      @user = User.find(params[:user_id])
-    end
+  # Only allow a trusted parameter "white list" through.
+  def benefit_params
+    params.require(:benefit).permit(:title, :description)
+  end
 end

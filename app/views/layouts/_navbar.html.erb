@@ -1,16 +1,16 @@
 <ul class='nav sticky-top navbar-dark bg-dark p-2'>
   <a class="navbar-brand" href="/"><%= t(:page_name)%></a>
-  <form class="form-inline mr-auto">
+  <%= form_tag(:projects, method: "get", class: 'form-inline mr-auto') do %>
     <div class="input-group">
-      <input class="form-control" type="search" placeholder="Buscar proyectos sociales" aria-label="Search">
+      <%= text_field_tag(:search_text, "", class:"form-control", type: "search", placeholder:"Buscar proyectos sociales") %>
       <div class="input-group-append">
-        <button class="btn btn-outline-light" type="submit">Buscar</button>
+        <%= submit_tag("Buscar", class:"btn btn-outline-light") %>
       </div>
     </div>
-  </form>
+  <% end %>
   <li class='nav-item'><%=link_to(t(:many, scope: %i[project name]), :projects, class: 'nav-link text-white font-weight-bold') %></li>
   <% if current_user %>
-  <li class='nav-item'><%=link_to("Mi Perfil", my_profile_path, class: 'nav-link text-white font-weight-bold') %></li>
+  <li class='nav-item'><%=link_to("Mi Perfil (#{current_user.user_type})", :profile, class: 'nav-link text-white font-weight-bold') %></li>
   <li class='nav-item'><%=link_to(t(:sign_out), :destroy_user_session, method: :delete, class: 'nav-link text-white font-weight-bold') %></li>
   <% else %>
   <li class='nav-item'><%=link_to(t(:sign_in), :new_user_session, class: 'nav-link text-white font-weight-bold') %></li>

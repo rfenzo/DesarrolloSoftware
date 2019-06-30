@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Project < ApplicationRecord
   belongs_to :user
 
@@ -7,11 +9,17 @@ class Project < ApplicationRecord
   has_many :benefits, through: :contracts
 
   has_many :donations, dependent: :nullify
-  has_many :donors, through: :donations, source: :user
+  has_many :donors, through: :donations, source: :user, dependent: :nullify
 
   validates_presence_of :user
 
+  attr_reader :total_donations
+
+  def calculate_donations
+    @total_donations = donations.sum(&:amount)
+  end
+
   def to_s
-    self.name
+    name
   end
 end

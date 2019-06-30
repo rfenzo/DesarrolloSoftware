@@ -7,6 +7,15 @@ sudo addgroup --system docker
 sudo adduser $USER docker
 newgrp docker
 sudo snap enable docker
+
+base=https://github.com/docker/machine/releases/download/v0.16.0 &&
+  curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
+  sudo install /tmp/docker-machine /usr/local/bin/docker-machine
+  
+docker-machine create --driver virtualbox default
+docker-machine start default
+docker-compose build
+docker-compose up
 ```
 Create an empty `.env` file on the project folder
 

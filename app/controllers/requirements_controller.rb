@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class RequirementsController < ApplicationController
-
   before_action :requirement_params, only: [:create]
   before_action :set_requirement, only: [:destroy]
 
@@ -16,7 +15,6 @@ class RequirementsController < ApplicationController
     else
       flash[:error] = t(:default, scope: %i[flash require error])
     end
-    p requirement
     redirect_to :social_projects
   end
 

@@ -1,1 +1,14 @@
-INDEX
+<% if social_company? %>
+	<h2>Donaciones por día</h2>	
+	<% if @projects.any? %>
+		<% @projects.each do |project| %>
+			<h4><%= project.name %></h4>	
+			<%= line_chart project.donations.group_by_day(:created_at).sum(:amount) %>
+		<% end %>	
+	<% end %>
+<% elsif donor? %>
+	<%= pie_chart @donations.group_by{|d| d.project.name}.sum(:amount) %>
+<% elsif company? %>
+	Compania
+<% end %>
+

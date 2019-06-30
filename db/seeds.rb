@@ -147,63 +147,77 @@ Contract.create(project_id: aurora.projects.first.id, benefit_id: starbucks.offe
 Contract.create(project_id: aurora.projects.first.id, benefit_id: cocacola.offered_benefits.second.id)
 
 # Donations
-cocacola.donations.create({
+d1= cocacola.donations.create({
     project: atenea.projects.first,
     amount: 15423,
 })
-cocacola.donations.create({
+d2 = cocacola.donations.create({
     project: atenea.projects.first,
     amount: 17942,
 })
-cocacola.donations.create({
+d3 = cocacola.donations.create({
     project: aurora.projects.second,
     amount: 52651,
 })
-pepsi.donations.create({
+d4 = pepsi.donations.create({
     project: atenea.projects.first,
     amount: 4938,
 })
-pepsi.donations.create({
+d5 = pepsi.donations.create({
     project: aurora.projects.first,
     amount: 1242,
 })
-starbucks.donations.create({
+d6 = starbucks.donations.create({
     project: aurora.projects.first,
     amount: 78645,
 })
-starbucks.donations.create({
+d7 = starbucks.donations.create({
     project: aurora.projects.first,
     amount: 7333,
 })
-starbucks.donations.create({
+d8 = starbucks.donations.create({
     project: aurora.projects.second,
     amount: 98721,
 })
-starbucks.donations.create({
+d9 = starbucks.donations.create({
     project: atenea.projects.first,
     amount: 8721,
 })
-romano.donations.create({
+d10 = romano.donations.create({
     project: atenea.projects.first,
     amount: 721,
 })
-daniel.donations.create({
+d11 = daniel.donations.create({
     project: aurora.projects.second,
     amount: 3321,
 })
-jorge.donations.create({
+d12 = jorge.donations.create({
     project: aurora.projects.first,
     amount: 3921,
 })
-jorge.donations.create({
+d13 = jorge.donations.create({
     project: aurora.projects.second,
     amount: 11121,
 })
-domingo.donations.create({
+d14 = domingo.donations.create({
     project: atenea.projects.first,
     amount: 721,
 })
-domingo.donations.create({
+d15 = domingo.donations.create({
     project: aurora.projects.first,
     amount: 33721,
 })
+
+d1.update_attribute :created_at, (1).days.ago
+d2.update_attribute :created_at, (2).days.ago
+d3.update_attribute :created_at, (3).days.ago
+d4.update_attribute :created_at, (4).days.ago
+d5.update_attribute :created_at, (5).days.ago
+d6.update_attribute :created_at, (4).days.ago
+d7.update_attribute :created_at, (3).days.ago
+d8.update_attribute :created_at, (2).days.ago
+d9.update_attribute :created_at, (1).days.ago
+d10.update_attribute :created_at, (5).days.ago
+d11.update_attribute :created_at, (4).days.ago
+d12.update_attribute :created_at, (3).days.ago
+d13.update_attribute :created_at, (2).days.ago

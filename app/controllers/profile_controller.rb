@@ -4,18 +4,16 @@ class ProfileController < ApplicationController
   before_action :set_profile_variables
 
   def index
+    @projects = current_user.projects
+    @projects.map(&:calculate_donations)
+    @donations = current_user.donations.reverse
+    current_user.calculate_donations
   end
 
   def personal_info
   end
 
   def donations
-    p :ffssfdf
-    p :ffssfdf
-    p current_user.donations
-    p :ffssfdf
-    p :ffssfdf
-    p :ffssfdf
     @donations = current_user.donations.reverse
     current_user.calculate_donations
   end

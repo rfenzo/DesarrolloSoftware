@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190514153322) do
+ActiveRecord::Schema.define(version: 20190629153322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 20190514153322) do
     t.index ["user_id"], name: "index_requirements_on_user_id"
   end
 
+  create_table "user_benefits", force: :cascade do |t|
+    t.bigint "benefit_id"
+    t.bigint "user_id"
+    t.string "coupon_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["benefit_id"], name: "index_user_benefits_on_benefit_id"
+    t.index ["user_id"], name: "index_user_benefits_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -98,4 +108,6 @@ ActiveRecord::Schema.define(version: 20190514153322) do
   add_foreign_key "projects", "users"
   add_foreign_key "requirements", "projects"
   add_foreign_key "requirements", "users"
+  add_foreign_key "user_benefits", "benefits"
+  add_foreign_key "user_benefits", "users"
 end

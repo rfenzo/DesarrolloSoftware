@@ -16,6 +16,7 @@ es:
   are_you_sure: ¿Estas seguro que quieres hacerlo?
   require: Solicitar patrocinio
   sponsor: Patrocinar
+  coupon_code: Código de cupón
 
   flash:
     profile:
@@ -49,14 +50,15 @@ es:
       error:
         default: Hubo un error en la creación del patrocinio.
         user_type: Sólo las compañías están autorizadas para crear patrocinios
+        duplicate: No fué posible agregar el beneficio ya que el proyecto ya lo incluye
     benefit:
       success:
-        create: 'Beneficio creado satisfactoriamente'
-        edit: 'Beneficio editado satisfactoriamente'
-        destroy: 'Beneficio eliminado satisfactoriamente'
+        create: Beneficio creado satisfactoriamente
+        edit: Beneficio editado satisfactoriamente
+        destroy: Beneficio eliminado satisfactoriamente
       error:
-        new: 'Hubo un error al crear el beneficio'
-        edit: 'Huno un error al editar el beneficio'
+        new: Hubo un error al crear el beneficio
+        edit: Hubo un error al editar el beneficio
 
   benefit:
     name:
@@ -65,8 +67,17 @@ es:
     attributes:
       title: Titulo
       description: Descripción
-    new:
+    new_contract:
       title: Patrocinar un proyecto
+    new:
+      title: Crear beneficio
+    index:
+      title: Beneficios ofrecidos
+      new: Agregar beneficio
+    show:
+      title: '%{benefit}'
+    edit:
+      title: Editar beneficio
 
   social_company:
     name:

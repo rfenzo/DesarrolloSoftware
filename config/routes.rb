@@ -9,27 +9,28 @@ Rails.application.routes.draw do
 
 	scope 'profile' do
     resources :projects, except: [:index, :show]
+    resources :benefits, path: 'offered-benefits', except: [:index, :show]
 
-		get 'index' , to: 'profile#index', as: 'my_profile'
-	  get 'data' , to: 'profile#my_data', as: 'my_data'
-	  get 'donations' , to: 'profile#my_donations', as: 'my_donations'
-	  get 'benefits' , to: 'profile#my_benefits', as: 'my_benefits'
-	  get 'social_projects' , to: 'profile#my_social_projects', as: 'my_social_projects'
-		get 'offered_benefits' , to: 'profile#my_offered_benefits', as: 'my_offered_benefits'
+		get '/' , to: 'profile#index', as: 'profile'
+	  get 'personal-info' , to: 'profile#personal_info', as: 'personal_info'
+	  get 'donations' , to: 'profile#donations', as: 'donations'
+	  get 'earned-benefits' , to: 'profile#earned_benefits', as: 'earned_benefits'
+	  get 'social-projects' , to: 'profile#social_projects', as: 'social_projects'
 		get 'find_sponsor/:project_id' , to: 'profile#find_sponsor', as: 'find_sponsor'
+    get 'offered-benefits' , to: 'profile#offered_benefits', as: 'offered_benefits'
 
     scope 'donate' do
-      post '/:id', to: 'donations#donate', as: 'donate'
+      post '/:id', to: 'donations#create', as: 'donate'
     end
 
     scope 'requirements' do
-      get '/' , to: 'profile#my_requirements', as: 'my_requirements'
+      get '/' , to: 'profile#requirements', as: 'requirements'
       post '/', to: 'requirements#create', as:'require_sponsorship'
       post '/:id', to: 'requirements#destroy', as:'decline_sponsorship'
     end
 
     scope 'contracts' do
-      get '/' , to: 'profile#my_contracts', as: 'my_contracts'
+      get '/' , to: 'profile#contracts', as: 'contracts'
       get 'new/(:id)', to: 'profile#new_contract', as:'new_contract'
       post '/', to: 'contracts#create', as:'create_contract'
       post '/:id', to: 'contracts#destroy', as:'destroy_contract'
@@ -40,8 +41,4 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-
-  resources :users do
-    resources :benefits
-  end
 end

@@ -1,23 +1,25 @@
 # frozen_string_literal: true
 
 class ContractsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :validate_user_type
+  load_and_authorize_resource
   before_action :contract_params, only: [:create]
   before_action :set_contract, only: [:destroy]
 
   def create
+    if Contract.find_by(contract_params)
+      return redirect_to :requirements, flash: { error: t(:duplicate,
+                                                          scope: %i[flash contract error]) }
+    end
+
     contract = Contract.new(contract_params)
     if contract.save
-      flash[:success] = t(:default,
-                          scope:   %i[flash contract success],
-                          project: contract.project.name,
-                          benefit: contract.benefit.title)
-      Requirement.find_by(project_id: contract.project.id, user_id: current_user.id).destroy
-      redirect_to my_contracts_path
+      Requirement.find_by(project_id: contract.project.id, user_id: current_user.id)&.destroy
+      redirect_to :contracts, flash: { success: t(:default,
+                                                  scope:   %i[flash contract success],
+                                                  project: contract.project.name,
+                                                  benefit: contract.benefit.title) }
     else
-      flash[:error] = t(:default, scope: %i[flash contract error])
-      redirect_to my_requirements_path
+      redirect_to :requirements, flash: { error: t(:default, scope: %i[flash contract error]) }
     end
   end
 
@@ -27,7 +29,10 @@ class ContractsController < ApplicationController
                         scope:    %i[flash contract success],
                         project:  @contract.project,
                         contract: @contract.benefit)
-    redirect_to :my_contracts
+    redirect_to :contracts, flash: { success: t(:destroy,
+                                                scope:    %i[flash contract success],
+                                                project:  @contract.project,
+                                                contract: @contract.benefit) }
   end
 
   private

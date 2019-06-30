@@ -1,9 +1,9 @@
-<h2>Mis Donaciones</h2>
+<h2>Donaciones realizadas</h2>
 <hr>
 <% if @donations.any? %>
     <h4 class="text-right">
       Total:
-      <span class="font-weight-bold">$ <%=@total_amount%></span>
+      <span class="font-weight-bold">$ <%=current_user.total_donations%></span>
     </h4>
 
   <div class="list-group-item border bg-dark text-light font-weight-bold">

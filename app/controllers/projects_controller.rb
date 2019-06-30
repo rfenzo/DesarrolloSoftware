@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
 class ProjectsController < ApplicationController
-  before_action except: %i[index show] do
-    autenticate_user!
-    validate_user_type
-    set_profile_variables
-  end
+  load_and_authorize_resource
+  before_action :set_profile_variables, except: %i[index show]
   before_action :set_ranking_variables, only: %i[index show]
   before_action :set_project, only: %i[show edit update destroy]
 
@@ -38,7 +35,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.new(project_params)
     if @project.save
       flash[:success] = t(:create, scope: %i[flash project success], project: @project.name)
-      redirect_to :my_social_projects
+      redirect_to :social_projects
     else
       flash[:error] = t(:new, scope: %i[flash project error])
       render :new
@@ -49,7 +46,7 @@ class ProjectsController < ApplicationController
   def update
     if @project.update(project_params)
       flash[:success] = t(:edit, scope: %i[flash project success], project: @project.name)
-      redirect_to :my_social_projects
+      redirect_to :social_projects
     else
       flash[:error] = t(:edit, scope: %i[flash project error])
       render :edit
@@ -60,7 +57,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     flash[:success] = t(:destroy, scope: %i[flash project success], project: @project.name)
-    redirect_to :my_social_projects
+    redirect_to :social_projects
   end
 
   private
@@ -74,12 +71,5 @@ class ProjectsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
     params.require(:project).permit(:name, :description)
-  end
-
-  def validate_user_type
-    return if social_company?
-
-    flash[:error] = t(:user_type, scope: %i[flash project error])
-    redirect_to root_path
   end
 end

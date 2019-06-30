@@ -1,13 +1,23 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  has_many :benefits, dependent: :destroy
-  has_many :contracts, through: :benefits
+  # Donor and Company
+  has_many :user_benefits
+  has_many :earned_benefits, through: :user_benefits, source: :benefit
+
+  # Company
+  has_many :offered_benefits, class_name: 'Benefit'
+  has_many :contracts, through: :offered_benefits
   has_many :sponsored_projects, through: :contracts, source: :project
 
+  # SocialCompany
   has_many :projects
+
+  # Company
+  # (SocialCompany can get his pending requirements by looking through his proyects requirements)
   has_many :requirements
 
+  # Donor and Company
   has_many :donations
   has_many :donated_projects, through: :donations, source: :project
 
@@ -32,6 +42,12 @@ class User < ApplicationRecord
   validates_presence_of :user_type
   validates_presence_of :name
   validates_presence_of :rut, if: :require_rut_field
+
+  attr_reader :total_donations
+
+  def calculate_donations
+    @total_donations = donations.sum(&:amount)
+  end
 
   def to_s
     name

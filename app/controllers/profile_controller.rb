@@ -1,43 +1,41 @@
 # frozen_string_literal: true
 
 class ProfileController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_profile_variables
-  before_action :validate_user_type, only: :my_requirements
 
   def index
   end
 
-  def my_data
+  def personal_info
   end
 
-  def my_donations
+  def donations
     @donations = current_user.donations.reverse
-    @total_amount = @donations.sum(&:amount)
+    current_user.calculate_donations
   end
 
-  def my_benefits
+  def earned_benefits
+    @benefits = current_user.earned_benefits
+    @benefits.map { |b| b.define_coupon_code(user: current_user) }
   end
 
-  def my_social_projects
+  def social_projects
     @projects = current_user.projects
-    @amounts = []
-    @projects.each do |p|
-      @amounts[p.id] = p.donations.sum(&:amount)
-    end
+    @projects.map(&:calculate_donations)
   end
 
-  def my_contracts
+  def contracts
     @contracts = current_user.contracts
   end
 
   def new_contract
     @contract = Contract.new
-    @my_benefits = current_user.benefits
+    @benefits = current_user.offered_benefits
     @selected = params[:id]
   end
 
-  def my_offered_benefits
+  def offered_benefits
+    @benefits = current_user.offered_benefits
   end
 
   def find_sponsor
@@ -45,16 +43,13 @@ class ProfileController < ApplicationController
     @project = Project.find_by(id: params[:project_id])
   end
 
-  def my_requirements
-    @requirements = current_user.requirements
-  end
-
-  private
-
-  def validate_user_type
-    return if company?
-
-    flash[:error] = t(:user_type, scope: %i[flash profile error])
-    redirect_to :my_profile
+  def requirements
+    authorize! :read, Requirement
+    p company?
+    p social_company?
+    req = current_user.requirements if company?
+    req = current_user.projects.map(&:requirements).first if social_company?
+    p req
+    @requirements = req
   end
 end

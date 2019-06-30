@@ -10,7 +10,7 @@
   <% end %>
   <li class='nav-item'><%=link_to(t(:many, scope: %i[project name]), :projects, class: 'nav-link text-white font-weight-bold') %></li>
   <% if current_user %>
-  <li class='nav-item'><%=link_to("Mi Perfil", my_profile_path, class: 'nav-link text-white font-weight-bold') %></li>
+  <li class='nav-item'><%=link_to("Mi Perfil (#{current_user.user_type})", :profile, class: 'nav-link text-white font-weight-bold') %></li>
   <li class='nav-item'><%=link_to(t(:sign_out), :destroy_user_session, method: :delete, class: 'nav-link text-white font-weight-bold') %></li>
   <% else %>
   <li class='nav-item'><%=link_to(t(:sign_in), :new_user_session, class: 'nav-link text-white font-weight-bold') %></li>

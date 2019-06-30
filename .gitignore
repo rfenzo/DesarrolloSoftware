@@ -21,5 +21,9 @@
 
 .byebug_history
 
-# Ignore ruby-version
+.env
+
+/db/schema.rb
+
+# Ignore rbenv local file
 .ruby-version

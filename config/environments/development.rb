@@ -6,7 +6,17 @@ Rails.application.configure do
   config.cache_classes = false
 
   # Paperclip
-  Paperclip.options[:command_path] = "/usr/bin/"
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :bucket => ENV["S3_BUCKET"],
+    :s3_region => ENV["S3_REGION"],
+    :s3_credentials => {
+      :access_key_id => ENV['S3_KEY_ID'],
+      :secret_access_key => ENV['S3_SECRET_ACCESS_KEY']
+    },
+    :s3_permissions => :private,
+    :s3_protocol => :http
+  }
 
   # Do not eager load code on boot.
   config.eager_load = false

@@ -4,29 +4,31 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.new
+    visitors_ability
+
+    return unless user.present?
+
+    can %i[dashboard personal_info], User, id: user.id
+
     case user.user_type
     when 'Donor'
-      can :read, Benefit
       can :create, Donation
-      can :read, Project
-      can :manage, User, id: user.id
+      can %i[donations earned_benefits], User, id: user.id
     when 'Company'
-      can :manage, Benefit
-      can :manage, Contract
       can :create, Donation
-      can :read, Project
-      can %i[read destroy], Requirement
-      can :manage, User, id: user.id
+      can :manage, Benefit, user_id: user.id
+      can :manage, Contract, benefit: { user_id: user.id }
+      can %i[donations offered_benefits contracts requirements], User, id: user.id
+      can %i[read destroy], Requirement, user: { id: user.id }
     when 'SocialCompany'
-      can :read, Benefit
-      can :manage, Project
-      can :manage, Contract
-      can :manage, Requirement
-      can :manage, User, id: user.id
-    else
-      can :read, User
-      can :read, Project
+      can :manage, Contract, project: { user_id: user.id }
+      can :manage, Project, user_id: user.id
+      can :manage, Requirement, project: { user_id: user.id }
+      can %i[social_projects requirements find_sponsor], User, id: user.id
     end
+  end
+
+  def visitors_ability
+    can :read, [Project, Benefit]
   end
 end

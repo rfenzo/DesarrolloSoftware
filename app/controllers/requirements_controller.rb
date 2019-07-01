@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class RequirementsController < ApplicationController
+  load_and_authorize_resource
   before_action :requirement_params, only: [:create]
   before_action :set_requirement, only: [:destroy]
 
   def create
-    authorize! :create, Requirement
     requirement = Requirement.new(requirement_params)
     if requirement.save
       flash[:success] = t(:default,
@@ -19,7 +19,6 @@ class RequirementsController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, @requirement
     @requirement.destroy
     redirect_to :requirements, flash: { success: t(:destroy,
                                                    scope:   %i[flash require success],

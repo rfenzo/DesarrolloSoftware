@@ -13,18 +13,18 @@
 <br>
 <br>
 <br>
-<br>
-<div class="bg-success" style="margin-bottom: 15px; padding: 3px 0px 3px 12px; border-radius: 10px;">
+<div class="bg-success" style="margin-bottom: 20px; padding: 3px 0px 3px 12px; border-radius: 10px;">
   <p style="font-size: 20px; margin: 0px; color: white;">Proyectos recientes</p>
 </div>
 
 <div class="row">
   <% @recent_projects.each do |c| %>
   <div class="col">
-    <div class="card text-center" style="min-height: 230px; border-left: 5px solid #406da1; ">
+    <div class="card text-center" style="min-height: 250px; border-left: 5px solid #406da1; ">
       <div class="card-body">
         <h5 class="card-title"><%= c.name %></h5>
         <p class="card-text" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;"><%= c.description %></p>
+        <p class="card-text text-success"><b>Recaudado: $<%= c.total_donations%></b></p>
         <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, c %>
       </div>
     </div>
@@ -33,45 +33,31 @@
 </div>
 <br>
 <br>
+<br>
+<div class="bg-success" style="margin-bottom: 20px; padding: 3px 0px 3px 12px; border-radius: 10px;">
+  <p style="font-size: 20px; margin: 0px; color: white;">Trending</p>
+</div>
 
-<div class="row">
-  <div class="col">
-    <div class="row">
-      <div class="card text-white bg-success mb-3" style="max-width: 95%; min-width: 95%; min-height: 100%">
-        <div class="card-header">Proyecto con mayor recaudación</div>
-        <div class="card-body">
-          <h5 class="card-title"> <%= @most_donated.name%> </h5>
-          <p class="card-text float-right"> $<%= @most_donated.total_donations %> </p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="card text-white bg-secondary mb-3" style="max-width: 95%; min-width: 95%; min-height: 100%">
-        <div class="card-header">Proyecto más patrocinado</div>
-        <div class="card-body">
-          <h5 class="card-title"> <%= @most_sponsored.name %> </h5>
-          <p class="card-text float-right"> $<%= @most_sponsored.total_donations %> </p>
-        </div>
+<div class="row justify-content-around">
+  <div class="col-5">
+    <div class="card mb-3" style="max-width: 95%; min-width: 95%; min-height: 100%">
+      <div class="card-header text-light" style="background-color: #406da1; font-weight: 700;">Proyecto con mayor recaudación</div>
+      <div class="card-body">
+        <h5 class="card-title"> <%= @most_donated.name%> </h5>
+        <p class="card-text" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;"><%= @most_donated.description %></p>
+        <p class="card-text text-success"><b>Recaudado: $<%= @most_donated.total_donations%></b></p>
+        <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, @most_donated %>
       </div>
     </div>
   </div>
-  <div class="col">
-    <div class="row">
-      <div class="card text-white bg-dark mb-3" style="max-width: 95%; min-width: 95%; min-height: 100%">
-        <div class="card-header">Proyecto reciente</div>
-        <div class="card-body">
-          <h5 class="card-title"> <%= @recent_projects[0].name %> </h5>
-          <p class="card-text float-right"> $<%= @recent_projects[0].total_donations %> </p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="card text-white bg-info mb-3" style="max-width: 95%; min-width: 95%; min-height: 100%">
-        <div class="card-header">Proyecto reciente</div>
-        <div class="card-body">
-          <h5 class="card-title"> <%= @recent_projects[1].name %> </h5>
-          <p class="card-text float-right"> $<%= @recent_projects[1].total_donations %> </p>
-        </div>
+  <div class="col-5">
+    <div class="card mb-3" style="max-width: 95%; min-width: 95%; min-height: 100%">
+      <div class="card-header text-light" style="background-color: #406da1; font-weight: 700;">Proyecto más patrocinado</div>
+      <div class="card-body">
+        <h5 class="card-title"> <%= @most_sponsored.name %> </h5>
+        <p class="card-text" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;"><%= @most_sponsored.description %></p>
+        <p class="card-text text-success"><b>Recaudado: $<%= @most_sponsored.total_donations%></b></p>
+        <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, @most_sponsored %>
       </div>
     </div>
   </div>

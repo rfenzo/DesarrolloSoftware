@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   end
 
   def social_projects
+    authorize! :social_projects, current_user
     @projects = current_user.projects
     @projects.map(&:calculate_donations)
   end

@@ -21,7 +21,7 @@ class Ability
       can %i[donations offered_benefits contracts requirements], User, id: user.id
       can %i[read destroy], Requirement, user: { id: user.id }
     when 'SocialCompany'
-      can :manage, Contract, project: { user_id: user.id }
+      can :destroy, Contract, project: { user_id: user.id }
       can :manage, Project, user_id: user.id
       can :manage, Requirement, project: { user_id: user.id }
       can %i[social_projects requirements find_sponsor], User, id: user.id

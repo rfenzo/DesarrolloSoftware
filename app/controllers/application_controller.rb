@@ -9,8 +9,11 @@ class ApplicationController < ActionController::Base
                 :set_ranking_variables, :set_profile_variables
 
   rescue_from CanCan::AccessDenied do |exception|
-    error = "#{exception.message} - #{exception.action} - #{exception.subject}"
-    redirect_to root_url, flash: { error: error }
+    message = 'No tienes permiso para acceder a ese recurso'
+    if exception.subject.present?
+      message = t(exception.action, scope: [:ability, exception.subject.class.name.downcase])
+    end
+    redirect_back fallback_location: :root, flash: { error: message }
   end
 
   protected
@@ -41,14 +44,14 @@ class ApplicationController < ActionController::Base
   end
 
   def donor?
-    current_user.user_type == 'Donor'
+    current_user&.user_type == 'Donor'
   end
 
   def company?
-    current_user.user_type == 'Company'
+    current_user&.user_type == 'Company'
   end
 
   def social_company?
-    current_user.user_type == 'SocialCompany'
+    current_user&.user_type == 'SocialCompany'
   end
 end

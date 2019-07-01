@@ -18,10 +18,19 @@ es:
   sponsor: Patrocinar
   coupon_code: Código de cupón
 
+  ability:
+    donation:
+      create: Rayos! Para realizar donaciones debes iniciar sesion
+    user:
+      donations: No tienes donaciones asociadas, debido a que... no puedes donar!
+      earned_benefits: No puedes obtener beneficios, sólo las personas naturales pueden hacerlo
+      social_projects: No tienes Proyectos asociados, sólo las Empresas Sociales pueden crear Proyectos
+      contracts: Sólo las Empresas Patrocinadoras pueden crear contratos de patrocinio
+      offered_benefits: Sólo las Empresas Patrocinadoras pueden crear Beneficios
+      find_sponsor: Sólo las Empresas Sociales pueden buscar Empresas patrocinadoras para sus proyectos
+      requirements: Los requerimientos de patrocinio sólo pueden verlos las empresas sociales y patrocinadoras
+
   flash:
-    profile:
-      error:
-        user_type: No tienes permiso para ver las solicitudes de patrocinio
     project:
       success:
         create: 'Proyecto "%{project}" creado satisfactoriamente'
@@ -30,13 +39,11 @@ es:
       error:
         new: Hubo un error al crear el proyecto
         edit: Hubo un error al editar el proyecto
-        user_type: Solo empresas sociales pueden crear y modificar sus proyectos
     donation:
       success:
         default: 'Realizaste correctamente una donación por %{amount} al proyecto "%{project}"'
       error:
         default: Hubo un error en la donación
-        user_type: Sólo los donadores y compañías pueden realizar donaciones
     require:
       success:
         default: 'Realizaste correctamente una solicitud a %{company} por el proyecto "%{project}"'
@@ -49,7 +56,6 @@ es:
         destroy: 'Contrato de "%{contract}" con proyecto "%{project}" eliminado correctamente'
       error:
         default: Hubo un error en la creación del patrocinio.
-        user_type: Sólo las compañías están autorizadas para crear patrocinios
         duplicate: No fué posible agregar el beneficio ya que el proyecto ya lo incluye
     benefit:
       success:

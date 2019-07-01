@@ -1,20 +1,38 @@
 <br>
 <%= @contracts%>
 <br>
-<div class="card text-center" style="width: 70%; margin: auto; border: 0px;">
+<div class="card text-center" style="width: 75%; margin: auto; border: 0px;">
   <h3 class="card-header" style="color: #406da1;">Podría interesarte</h3>
   <div class="card-body">
-    <h5 class="card-title"><%= @random_project.name%></h5>
+    <h4 class="card-title"><%= @random_project.name%></h4>
     <p class="card-text"><%= @random_project.description%></p>
-    <p class="card-text text-success"><b>Dinero recaudado: $<%= @random_project.total_donations%></b></p>
+    <p class="card-text text-success"><b>Recaudado: $<%= @random_project.total_donations%></b></p>
     <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, @random_project %>
   </div>
 </div>
 <br>
 <br>
+<br>
+<br>
+<div class="bg-success" style="margin-bottom: 15px; padding: 3px 0px 3px 12px; border-radius: 10px;">
+  <p style="font-size: 20px; margin: 0px; color: white;">Proyectos recientes</p>
+</div>
 
-
-<h1>Noticias</h1>
+<div class="row">
+  <% @recent_projects.each do |c| %>
+  <div class="col">
+    <div class="card text-center" style="min-height: 230px; border-left: 5px solid #406da1; ">
+      <div class="card-body">
+        <h5 class="card-title"><%= c.name %></h5>
+        <p class="card-text" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;"><%= c.description %></p>
+        <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, c %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+<br>
+<br>
 
 <div class="row">
   <div class="col">

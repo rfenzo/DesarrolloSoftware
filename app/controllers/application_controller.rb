@@ -16,8 +16,9 @@ class ApplicationController < ActionController::Base
 
   def set_ranking_variables
     @render_ranking_bar = true
-    @companies = User.where(user_type: 'Company').limit(20)
+    @companies = User.where(user_type: 'Company')
     @companies.map(&:calculate_donations)
+    @sorted_companies = @companies.sort_by{|c| c.total_donations}.reverse![0..4]
   end
 
   def set_profile_variables

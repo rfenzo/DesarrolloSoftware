@@ -1,5 +1,21 @@
-<h1>Noticias</h1>
+<br>
 <%= @contracts%>
+<br>
+<div class="card text-center" style="width: 70%; margin: auto; border: 0px;">
+  <h3 class="card-header" style="color: #406da1;">Podría interesarte</h3>
+  <div class="card-body">
+    <h5 class="card-title"><%= @random_project.name%></h5>
+    <p class="card-text"><%= @random_project.description%></p>
+    <p class="card-text text-success"><b>Dinero recaudado: $<%= @random_project.total_donations%></b></p>
+    <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, @random_project %>
+  </div>
+</div>
+<br>
+<br>
+
+
+<h1>Noticias</h1>
+
 <div class="row">
   <div class="col">
     <div class="row">

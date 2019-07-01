@@ -16,3 +16,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+//$('.collapse').collapse()
+$('#search-toggler').collapse()

@@ -77,6 +77,27 @@ daniel = User.create({
   user_type: 'Donor',
   avatar: attach_file('daniel.jpg')
 })
+javier = User.create({
+  email: 'javier@email.com',
+  password: '123123',
+  name: 'Javier',
+  user_type: 'Donor',
+  avatar: attach_file('daniel.jpg')
+})
+clodulfo = User.create({
+  email: 'clodulfo@email.com',
+  password: '123123',
+  name: 'Clodulfo',
+  user_type: 'Donor',
+  avatar: attach_file('daniel.jpg')
+})
+pancracio = User.create({
+  email: 'pancracio@email.com',
+  password: '123123',
+  name: 'Pancracio',
+  user_type: 'Donor',
+  avatar: attach_file('daniel.jpg')
+})
 
 # SocialCompany
 aurora = User.create({
@@ -146,6 +167,23 @@ Contract.create(project_id: atenea.projects.first.id, benefit_id: pepsi.offered_
 Contract.create(project_id: aurora.projects.first.id, benefit_id: starbucks.offered_benefits.first.id)
 Contract.create(project_id: aurora.projects.first.id, benefit_id: cocacola.offered_benefits.second.id)
 
+# Acquired benefits
+ab1 = javier.user_benefits.create(benefit_id: cocacola.offered_benefits.first.id)
+ab2 = clodulfo.user_benefits.create(benefit_id: cocacola.offered_benefits.first.id)
+ab3 = pancracio.user_benefits.create(benefit_id: cocacola.offered_benefits.first.id)
+
+ab4 = javier.user_benefits.create(benefit_id: starbucks.offered_benefits.first.id)
+ab5 = clodulfo.user_benefits.create(benefit_id: starbucks.offered_benefits.first.id)
+ab6 = pancracio.user_benefits.create(benefit_id: starbucks.offered_benefits.first.id)
+
+ab7 = javier.user_benefits.create(benefit_id: pepsi.offered_benefits.first.id)
+ab8 = clodulfo.user_benefits.create(benefit_id: pepsi.offered_benefits.first.id)
+ab9 = pancracio.user_benefits.create(benefit_id: pepsi.offered_benefits.first.id)
+
+ab10 = javier.user_benefits.create(benefit_id: cocacola.offered_benefits.last.id)
+ab11 = clodulfo.user_benefits.create(benefit_id: cocacola.offered_benefits.last.id)
+ab12 = pancracio.user_benefits.create(benefit_id: cocacola.offered_benefits.last.id)
+
 # Donations
 d1= cocacola.donations.create({
     project: atenea.projects.first,
@@ -207,6 +245,20 @@ d15 = domingo.donations.create({
     project: aurora.projects.first,
     amount: 33721,
 })
+
+ab1.update_attribute :created_at, (1).days.ago
+ab2.update_attribute :created_at, (2).days.ago
+ab3.update_attribute :created_at, (2).days.ago
+ab4.update_attribute :created_at, (4).days.ago
+ab5.update_attribute :created_at, (2).days.ago
+ab6.update_attribute :created_at, (4).days.ago
+ab7.update_attribute :created_at, (3).days.ago
+ab8.update_attribute :created_at, (1).days.ago
+ab9.update_attribute :created_at, (1).days.ago
+ab10.update_attribute :created_at, (5).days.ago
+ab11.update_attribute :created_at, (5).days.ago
+ab12.update_attribute :created_at, (3).days.ago
+
 
 d1.update_attribute :created_at, (1).days.ago
 d2.update_attribute :created_at, (2).days.ago

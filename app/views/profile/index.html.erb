@@ -6,9 +6,20 @@
 			<%= line_chart project.donations.group_by_day(:created_at).sum(:amount) %>
 		<% end %>	
 	<% end %>
-<% elsif donor? %>
-	<%= pie_chart @donations.group_by{|d| d.project.name}.sum(:amount) %>
 <% elsif company? %>
-	Compania
+	<h2>Beneficios adquiridos por día</h2>
+	<% if @given_benefits.any? %>
+		<% @given_benefits.each do |benefit| %>
+			<div>
+				<h4><%= benefit.title %></h4>	
+				<%= line_chart benefit.user_benefits.group_by_day(:created_at).count %>	
+			</div>	
+		<% end %>
+	<% end %>
+<% elsif donor? %>
+	<h3>Dinero recaudado en proyectos a los que donaste</h3>	
+	<%= column_chart Order.group_by.count %>
+
+	<%= pie_chart @donations.group_by{|d| d.project.name}.sum(:amount) %>
 <% end %>
 

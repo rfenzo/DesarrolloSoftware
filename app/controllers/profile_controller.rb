@@ -8,6 +8,8 @@ class ProfileController < ApplicationController
     @projects.map(&:calculate_donations)
     @donations = current_user.donations.reverse
     current_user.calculate_donations
+    @given_benefits = current_user.offered_benefits
+    @earned_benefits = current_user.earned_benefits
   end
 
   def personal_info

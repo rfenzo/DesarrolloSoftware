@@ -1,1 +1,44 @@
-<h1>Landing Page</h1>
+<h1>Noticias</h1>
+<%= @contracts%>
+<div class="row">
+  <div class="col">
+    <div class="row">
+      <div class="card text-white bg-success mb-3" style="max-width: 95%; min-width: 95%; min-height: 100%">
+        <div class="card-header">Proyecto con mayor recaudación</div>
+        <div class="card-body">
+          <h5 class="card-title"> <%= @most_donated.name%> </h5>
+          <p class="card-text float-right"> $<%= @most_donated.total_donations %> </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card text-white bg-secondary mb-3" style="max-width: 95%; min-width: 95%; min-height: 100%">
+        <div class="card-header">Proyecto más patrocinado</div>
+        <div class="card-body">
+          <h5 class="card-title"> <%= @most_sponsored.name %> </h5>
+          <p class="card-text float-right"> $<%= @most_sponsored.total_donations %> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      <div class="card text-white bg-dark mb-3" style="max-width: 95%; min-width: 95%; min-height: 100%">
+        <div class="card-header">Proyecto reciente</div>
+        <div class="card-body">
+          <h5 class="card-title"> <%= @recent_projects[0].name %> </h5>
+          <p class="card-text float-right"> $<%= @recent_projects[0].total_donations %> </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card text-white bg-info mb-3" style="max-width: 95%; min-width: 95%; min-height: 100%">
+        <div class="card-header">Proyecto reciente</div>
+        <div class="card-body">
+          <h5 class="card-title"> <%= @recent_projects[1].name %> </h5>
+          <p class="card-text float-right"> $<%= @recent_projects[1].total_donations %> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

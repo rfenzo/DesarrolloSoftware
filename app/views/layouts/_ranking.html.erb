@@ -1,7 +1,7 @@
 <div class="container p-3" style="margin-top: 10px;">
 <h5 class="text-center" style="color: #406da1;">Top donantes</h5>
   <div class="card-group">
-    <% @sorted_companies.each do |c| %>
+    <% @ranking.each do |c| %>
     <div class="card" style="border: 0px;">
       <div class="card-body p-1">
         <div class="row" style="height: 60px">
@@ -10,7 +10,7 @@
           </div>
           <div class="col m-auto text-left">
             <a style="font-weight: 700; color: #406da1;"><%= c %></a><br>
-            $ <%= c.total_donations %>
+            <%= currency_to_cl(c.total_donations) %>
           </div>
         </div>
       </div>

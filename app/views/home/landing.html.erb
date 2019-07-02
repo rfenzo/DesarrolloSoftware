@@ -6,7 +6,7 @@
   <div class="card-body">
     <h4 class="card-title"><%= @random_project.name%></h4>
     <p class="card-text"><%= @random_project.description%></p>
-    <p class="card-text text-success"><b>Recaudado: $<%= @random_project.total_donations%></b></p>
+    <p class="card-text text-success"><b>Recaudado: <%=currency_to_cl @random_project.total_donations%></b></p>
     <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, @random_project %>
   </div>
 </div>
@@ -25,9 +25,9 @@
   <div class="col">
   <p style="font-size: 19px; font-weight: 700;">DonaTío es una plataforma de crowdfunding social donde puedes:</p>
   <p class="h6" style="margin-bottom: 10px;">- Postular tu proyecto social</p>
-  <p class="h6" style="margin-bottom: 10px;">- Obtener financiamiento</p> 
+  <p class="h6" style="margin-bottom: 10px;">- Obtener financiamiento</p>
   <p class="h6" style="margin-bottom: 10px;">- Ser patrocinado</p>
-  <p class="h6" style="margin-bottom: 10px;">- Recibir beneficios por donar</p> 
+  <p class="h6" style="margin-bottom: 10px;">- Recibir beneficios por donar</p>
   </div>
 </div>
 <br>
@@ -46,7 +46,7 @@
       <div class="card-body">
         <h5 class="card-title"><%= c.name %></h5>
         <p class="card-text" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;"><%= c.description %></p>
-        <p class="card-text text-success"><b>Recaudado: $<%= c.total_donations%></b></p>
+        <p class="card-text text-success"><b>Recaudado: <%= currency_to_cl c.total_donations%></b></p>
         <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, c %>
       </div>
     </div>
@@ -67,7 +67,7 @@
       <div class="card-body">
         <h5 class="card-title"> <%= @most_donated.name%> </h5>
         <p class="card-text" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;"><%= @most_donated.description %></p>
-        <p class="card-text text-success"><b>Recaudado: $<%= @most_donated.total_donations%></b></p>
+        <p class="card-text text-success"><b>Recaudado: <%=currency_to_cl @most_donated.total_donations%></b></p>
         <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, @most_donated %>
       </div>
     </div>
@@ -78,7 +78,7 @@
       <div class="card-body">
         <h5 class="card-title"> <%= @most_sponsored.name %> </h5>
         <p class="card-text" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;"><%= @most_sponsored.description %></p>
-        <p class="card-text text-success"><b>Recaudado: $<%= @most_sponsored.total_donations%></b></p>
+        <p class="card-text text-success"><b>Recaudado: <%=currency_to_cl @most_sponsored.total_donations%></b></p>
         <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, @most_sponsored %>
       </div>
     </div>

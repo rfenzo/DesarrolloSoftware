@@ -15,6 +15,8 @@
 //= require popper
 //= require turbolinks
 //= require bootstrap
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
 
 //$('.collapse').collapse()

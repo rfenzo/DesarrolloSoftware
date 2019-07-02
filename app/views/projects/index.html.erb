@@ -27,7 +27,7 @@
         <% if can? :create, Contract %>
           <%= link_to t(:sponsor), new_contract_path(project), class: 'list-group-item list-group-item-action list-group-item-warning' %>
         <% end %>
-        <% if can? :create, Donation%>
+        <% unless social_company? %>
           <%= link_to t(:donate), donate_path(project.id), method: :post, class: 'list-group-item list-group-item-action list-group-item-success' %>
         <% end %>
       </div>

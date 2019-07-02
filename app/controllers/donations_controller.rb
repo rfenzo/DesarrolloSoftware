@@ -2,7 +2,6 @@
 
 class DonationsController < ApplicationController
   load_and_authorize_resource
-
   def create
     amount = 1000
     @project = Project.includes(:benefits).find_by(id: params[:id])

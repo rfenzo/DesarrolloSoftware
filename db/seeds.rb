@@ -103,7 +103,7 @@ pancracio = User.create({
 aurora = User.create({
   email: 'aurora@email.com',
   password: '123123',
-  name: 'Aurora (Empresa social)',
+  name: 'Aurora',
   user_type: 'SocialCompany',
   rut: '12345681',
   description: 'Esta es la empresa social aurora. Ni idea que hacen estos chicos',
@@ -113,7 +113,7 @@ aurora = User.create({
 atenea = User.create({
   email: 'atenea@email.com',
   password: '123123',
-  name: 'Atenea (Empresa social)',
+  name: 'Atenea',
   user_type: 'SocialCompany',
   rut: '12345681',
   description: 'Esta es la empresa social atenea. Algo griego deben hacer ellos, pero la verdad es que es un misterio',

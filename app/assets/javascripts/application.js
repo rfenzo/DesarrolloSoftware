@@ -18,3 +18,6 @@
 //= require chartkick
 //= require Chart.bundle
 //= require_tree .
+
+//$('.collapse').collapse()
+$('#search-toggler').collapse()

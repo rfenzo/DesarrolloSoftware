@@ -44,11 +44,4 @@ class ContractsController < ApplicationController
   def set_contract
     @contract = Contract.find_by(id: params[:id])
   end
-
-  def validate_user_type
-    return if company?
-
-    flash[:error] = t(:user_type, scope: %i[flash contract error])
-    redirect_to root_path
-  end
 end

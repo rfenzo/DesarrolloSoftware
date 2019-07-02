@@ -1,25 +1,31 @@
-<ul class='nav sticky-top navbar-dark bg-dark p-2'>
-  <a class="navbar-brand text-white font-weight-bold px-4" href="/"><%= t(:page_name)%></a>
+<nav class='navbar sticky-top navbar-light bg-light p-2' style="border-bottom: 1px solid #C4C4C4; box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19);">
+  <a class="navbar-brand" href="/">
+    <%= image_tag 'Donatio.png', height: '35' %>
+  </a>
+  <a class="btn shadow-none" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" id="search-toggler">
+    Buscar
+  </a>
   <%= form_tag(:projects, method: "get", class: 'form-inline mr-auto') do %>
-    <div class="input-group">
-      <%= text_field_tag(:search_text, "", class:"form-control", type: "search", placeholder:"Buscar proyectos sociales") %>
-      <div class="input-group-append">
-        <%= submit_tag("Buscar", class:"btn btn-outline-light") %>
-      </div>
+    <div class="input-group collapse" id="collapseExample">
+      <%= text_field_tag(:search_text, "", class:"form-control shadow-none", type: "search", style: "border: 0px; border-bottom: 1px solid #007bff;", placeholder:"Buscar proyectos sociales", id: "search-input-to-toggle", autofocus: true)%>
+      <!--<div class="input-group-append">
+        <%= submit_tag("Buscar", class:"btn") %>
+      </div>-->
     </div>
   <% end %>
-  <li class='nav-item'><%=link_to(t(:many, scope: %i[project name]), :projects, class: 'nav-link text-white font-weight-bold') %></li>
-  <li class='nav-item'><%=link_to(t(:many, scope: %i[social_company name]), :social_companies, class: 'nav-link text-white font-weight-bold') %></li>
-  <li class='nav-item border-right border-white'><%=link_to(t(:many, scope: %i[company name]), :companies, class: 'nav-link text-white font-weight-bold') %></li>
+  <%=link_to(t(:many, scope: %i[project name]), :projects, class: 'btn btn-light') %>
+  <%=link_to(t(:many, scope: %i[social_company name]), :social_companies, class: 'btn btn-light') %>
+  <%=link_to(t(:many, scope: %i[company name]), :companies, class: 'btn btn-light') %>
   <% if current_user %>
     <% if Rails.env.development? %>
-      <li class='nav-item'><%=link_to("Mi Perfil (#{current_user.user_type})", :profile, class: 'nav-link text-white font-weight-bold') %></li>
+      <%=link_to("Mi Perfil (#{current_user.user_type})", :profile, class: 'btn btn-light') %>
     <% else %>
-      <li class='nav-item'><%=link_to("Mi Perfil", :profile, class: 'nav-link text-white font-weight-bold') %></li>
+      <%=link_to("Mi Perfil", :profile, class: 'btn btn-light') %>
     <% end %>
-    <li class='nav-item'><%=link_to(t(:sign_out), :destroy_user_session, method: :delete, class: 'nav-link text-white font-weight-bold') %></li>
+    <%=link_to(t(:sign_out), :destroy_user_session, method: :delete, class: 'btn btn-light') %>
   <% else %>
-    <li class='nav-item'><%=link_to(t(:sign_in), :new_user_session, class: 'nav-link text-white font-weight-bold') %></li>
-    <li class='nav-item'><%=link_to(t(:sign_up), :new_user_registration, class: 'nav-link text-white font-weight-bold') %></li>
+    <%=link_to(t(:sign_in), :new_user_session, class: 'btn btn-light') %>
+    <%=link_to(t(:sign_up), :new_user_registration, class: 'btn btn-light') %>
   <% end %>
-</ul>
+
+</nav>

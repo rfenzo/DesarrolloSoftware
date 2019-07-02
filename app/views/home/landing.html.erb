@@ -1,1 +1,86 @@
-<h1>Landing Page</h1>
+<br>
+<%= @contracts%>
+<br>
+<div class="card text-center" style="width: 75%; margin: auto; border: 0px;">
+  <h3 class="card-header" style="color: #406da1;">Podría interesarte</h3>
+  <div class="card-body">
+    <h4 class="card-title"><%= @random_project.name%></h4>
+    <p class="card-text"><%= @random_project.description%></p>
+    <p class="card-text text-success"><b>Recaudado: $<%= @random_project.total_donations%></b></p>
+    <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, @random_project %>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+  <div class="col text-center" style="border-right: 1px solid #C4C4C4;">
+    <br>
+    <br>
+    <%= image_tag 'Donatio.png', height: '120' %>
+    <br>
+    <br>
+  </div>
+  <div class="col">
+  <p style="font-size: 19px; font-weight: 700;">DonaTío es una plataforma de crowdfunding social donde puedes:</p>
+  <p class="h6" style="margin-bottom: 10px;">- Postular tu proyecto social</p>
+  <p class="h6" style="margin-bottom: 10px;">- Obtener financiamiento</p> 
+  <p class="h6" style="margin-bottom: 10px;">- Ser patrocinado</p>
+  <p class="h6" style="margin-bottom: 10px;">- Recibir beneficios por donar</p> 
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+
+<div class="bg-success" style="margin-bottom: 20px; padding: 3px 0px 3px 12px; border-radius: 10px;">
+  <p style="font-size: 20px; margin: 0px; color: white;">Proyectos recientes</p>
+</div>
+
+<div class="row">
+  <% @recent_projects.each do |c| %>
+  <div class="col">
+    <div class="card text-center" style="min-height: 250px; border-left: 5px solid #406da1; ">
+      <div class="card-body">
+        <h5 class="card-title"><%= c.name %></h5>
+        <p class="card-text" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;"><%= c.description %></p>
+        <p class="card-text text-success"><b>Recaudado: $<%= c.total_donations%></b></p>
+        <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, c %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+<br>
+<br>
+<br>
+<div class="bg-success" style="margin-bottom: 20px; padding: 3px 0px 3px 12px; border-radius: 10px;">
+  <p style="font-size: 20px; margin: 0px; color: white;">Trending</p>
+</div>
+
+<div class="row justify-content-around">
+  <div class="col-5">
+    <div class="card mb-3" style="max-width: 95%; min-width: 95%; min-height: 100%">
+      <div class="card-header text-light" style="background-color: #406da1; font-weight: 700;">Proyecto con mayor recaudación</div>
+      <div class="card-body">
+        <h5 class="card-title"> <%= @most_donated.name%> </h5>
+        <p class="card-text" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;"><%= @most_donated.description %></p>
+        <p class="card-text text-success"><b>Recaudado: $<%= @most_donated.total_donations%></b></p>
+        <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, @most_donated %>
+      </div>
+    </div>
+  </div>
+  <div class="col-5">
+    <div class="card mb-3" style="max-width: 95%; min-width: 95%; min-height: 100%">
+      <div class="card-header text-light" style="background-color: #406da1; font-weight: 700;">Proyecto más patrocinado</div>
+      <div class="card-body">
+        <h5 class="card-title"> <%= @most_sponsored.name %> </h5>
+        <p class="card-text" style="display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden;"><%= @most_sponsored.description %></p>
+        <p class="card-text text-success"><b>Recaudado: $<%= @most_sponsored.total_donations%></b></p>
+        <%=link_to '<button class="btn btn-outline-secondary">Ver más</button>'.html_safe, @most_sponsored %>
+      </div>
+    </div>
+  </div>
+</div>

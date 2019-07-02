@@ -12,3 +12,9 @@ body {
   overflow-x: hidden;
   padding-top: 20px;
 }
+
+.table {
+  tr.link{
+    cursor: pointer
+  }
+}

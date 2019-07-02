@@ -18,7 +18,7 @@ class Ability
       can :create, Donation
       can :manage, Benefit, user_id: user.id
       can :manage, Contract, benefit: { user_id: user.id }
-      can %i[donations offered_benefits contracts requirements], User, id: user.id
+      can %i[donations offered_benefits contracts requirements new_contract], User, id: user.id
       can %i[read destroy], Requirement, user: { id: user.id }
     when 'SocialCompany'
       can :destroy, Contract, project: { user_id: user.id }
@@ -30,5 +30,6 @@ class Ability
 
   def visitors_ability
     can :read, [Project, Benefit]
+    can %i[companies company social_companies social_company], User
   end
 end

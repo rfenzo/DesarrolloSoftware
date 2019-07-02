@@ -47,6 +47,7 @@ class User < ApplicationRecord
 
   def calculate_donations
     @total_donations = donations.sum(&:amount)
+    @total_donations += user_benefits.count * 2000 if user_type == 'Company'
   end
 
   def to_s

@@ -7,5 +7,9 @@
     <%= form.label t(:description, scope: %i[project attributes]) %>
     <%= form.text_area :description, class: 'form-control'%>
   </div>
+  <div class='form-group'>
+    <%= form.label t(:estimated_end_date, scope: %i[project attributes]) %>
+    <%= form.date_field :estimated_end_date, class: 'form-control'%>
+  </div>
   <%= form.submit t(:submit), class: 'btn btn-primary' %>
 <% end %>

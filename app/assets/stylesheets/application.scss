@@ -1,5 +1,10 @@
 @import 'bootstrap';
 @import 'font-awesome';
+@import url('https://fonts.googleapis.com/css?family=Roboto:regular,bold&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
 
 .sidenav {
   height: 100%;

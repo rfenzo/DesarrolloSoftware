@@ -1,7 +1,19 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_profile_variables
+  before_action :set_profile_variables, except: %i[
+    companies
+    company
+    social_companies
+    social_company
+  ]
+
+  before_action :set_ranking_variables, only: %i[
+    companies
+    company
+    social_companies
+    social_company
+  ]
 
   def dashboard
     authorize! :dashboard, current_user
@@ -63,5 +75,28 @@ class UsersController < ApplicationController
     req = current_user.requirements if company?
     req = current_user.projects.map(&:requirements).first if social_company?
     @requirements = req
+  end
+
+  # OUTSIDE /PROFILE, PUBLIC ACCESS
+
+  def companies
+    authorize! :companies, User
+    @companies = User.where(user_type: 'Company')
+  end
+
+  def company
+    authorize! :company, User
+    @company = User.includes(:sponsored_projects).find_by(id: params[:id])
+  end
+
+  def social_companies
+    authorize! :companies, User
+    @social_companies = User.where(user_type: 'SocialCompany')
+  end
+
+  def social_company
+    authorize! :social_company, User
+    @social_company = User.includes(:projects).find_by(id: params[:id])
+    @social_company.projects.map(&:calculate_donations)
   end
 end

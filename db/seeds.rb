@@ -124,15 +124,18 @@ atenea = User.create({
 # Projects
 aurora.projects.create({
   name: 'Pulsera inteligente para ciegos',
-  description: 'Esta es una pulsera que consiste en ..., se entregará de manera gratuita para los niños ciegos de ...'
+  description: 'Esta es una pulsera que consiste en ..., se entregará de manera gratuita para los niños ciegos de ...',
+  estimated_end_date: Time.now + 2.year
 })
 aurora.projects.create({
   name: 'Prototipo funcional de brazo mecánico para minusvalidos',
-  description: 'Esta es proyecto que consiste en ..., será utilizado por personas con ...'
+  description: 'Esta es proyecto que consiste en ..., será utilizado por personas con ...',
+  estimated_end_date: Time.now + 1.year
 })
 atenea.projects.create({
   name: 'Viviendas sociales San Lorenzo',
-  description: 'Esta es proyecto que consiste en la contrucciones de viviendas sociales en San Lorenzo, un lugar ubicado en ...'
+  description: 'Esta es proyecto que consiste en la contrucciones de viviendas sociales en San Lorenzo, un lugar ubicado en ...',
+  estimated_end_date: Time.now + 9.months
 })
 
 # Offered benefits

@@ -11,12 +11,15 @@ es:
   donate: Donar
   date: Fecha
   amount: Monto
-  amount_collected: 'Cantidad recolectada: $%{amount}'
+  amount_collected: Fondos recaudados
   select_file_text: Seleccionar archivo
   are_you_sure: ¿Estas seguro que quieres hacerlo?
   require: Solicitar patrocinio
   sponsor: Patrocinar
   coupon_code: Código de cupón
+  creation_date: Fecha de creación
+  estimated_total_donations: Total estimado donado
+  sponsored_projects: Proyectos patrocinados
 
   ability:
     donation:
@@ -29,6 +32,7 @@ es:
       offered_benefits: Sólo las Empresas Patrocinadoras pueden crear Beneficios
       find_sponsor: Sólo las Empresas Sociales pueden buscar Empresas patrocinadoras para sus proyectos
       requirements: Los requerimientos de patrocinio sólo pueden verlos las empresas sociales y patrocinadoras
+      new_contract: No tienes permiso para crear un nuevo patrocinio, solo las empresas patrocinadoras pueden hacerlo
 
   flash:
     project:
@@ -66,6 +70,16 @@ es:
         new: Hubo un error al crear el beneficio
         edit: Hubo un error al editar el beneficio
 
+  coupon:
+    name:
+      one: Cupón
+      many: Cupones
+
+  donation:
+    name:
+      one: Donación
+      many: Donaciones
+
   benefit:
     name:
       one: Beneficio
@@ -101,8 +115,8 @@ es:
 
   company:
     name:
-      one: Companía
-      many: Compañías
+      one: Empresa patrocinadora
+      many: Empresas patrocinadoras
     attributes:
       email: Email de contacto
       address: Dirección
@@ -130,6 +144,7 @@ es:
       name: Nombre
       description: Descripción
       avatar: Logo del proyecto
+      estimated_end_date: Fecha estimada de término
     new:
       title: Crear proyecto
     edit:

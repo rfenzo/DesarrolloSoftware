@@ -13,8 +13,9 @@
       </div>-->
     </div>
   <% end %>
-
   <%=link_to(t(:many, scope: %i[project name]), :projects, class: 'btn btn-light') %>
+  <%=link_to(t(:many, scope: %i[social_company name]), :social_companies, class: 'btn btn-light') %>
+  <%=link_to(t(:many, scope: %i[company name]), :companies, class: 'btn btn-light') %>
   <% if current_user %>
     <% if Rails.env.development? %>
       <%=link_to("Mi Perfil (#{current_user.user_type})", :profile, class: 'btn btn-light') %>

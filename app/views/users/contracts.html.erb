@@ -17,7 +17,7 @@
     <div class="list-group-item border">
       <div class="row">
         <div class="col-5 m-auto text-center">
-          <%= c.project %>
+          <%= link_to c.project, project_path(c.project)%>
         </div>
         <div class="col-5 m-auto text-center">
           <%= c.benefit %>

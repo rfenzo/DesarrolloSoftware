@@ -1,0 +1,16 @@
+<h2>
+  <%= t(:many, scope: %i[social_company name]) %>
+</h2>
+<hr>
+<div class="card-columns">
+  <% @social_companies.each do |social_company| %>
+    <div class="card" style="width: 13rem;">
+      <a href=<%= social_company_path(social_company) %> class="stretched-link"></a>
+      <%=image_tag social_company.avatar, class: 'card-img-top'%>
+      <div class="card-body">
+        <h5 class="card-title"><%= social_company %></h5>
+        <p class="card-text"><%= social_company.description %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

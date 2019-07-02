@@ -23,7 +23,7 @@
     <div class="list-group-item border">
       <div class="row">
         <div class="col m-auto text-center">
-          <%= r.project %>
+          <%= link_to r.project, project_path(r.project)%>
         </div>
         <% if social_company? %>
           <div class="col m-auto text-center">

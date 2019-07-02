@@ -10,12 +10,6 @@ class ProfileController < ApplicationController
   end
 
   def donations
-    p :ffssfdf
-    p :ffssfdf
-    p current_user.donations
-    p :ffssfdf
-    p :ffssfdf
-    p :ffssfdf
     @donations = current_user.donations.reverse
     current_user.calculate_donations
   end

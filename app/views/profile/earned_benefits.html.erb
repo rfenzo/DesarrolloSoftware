@@ -3,13 +3,13 @@
 <% if @benefits.any? %>
   <div class="list-group-item border bg-dark text-light font-weight-bold">
     <div class="row">
-      <div class="col-5 m-auto text-center">
+      <div class="col-4 m-auto text-center">
         <%= t(:one, scope: %i[benefit name])%>
       </div>
       <div class="col-5 m-auto text-center">
         <%= t(:description, scope: %i[benefit attributes]) %>
       </div>
-      <div class="col">
+      <div class="col m-auto text-center">
         <%= t(:coupon_code) %>
       </div>
     </div>
@@ -17,7 +17,7 @@
   <% @benefits.each do |b| %>
     <div class="list-group-item border">
       <div class="row">
-        <div class="col-5 m-auto text-center">
+        <div class="col-4 m-auto text-center">
           <%= b.title %>
         </div>
         <div class="col-5 m-auto text-center">

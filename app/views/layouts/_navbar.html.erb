@@ -16,11 +16,15 @@
 
   <%=link_to(t(:many, scope: %i[project name]), :projects, class: 'btn btn-light') %>
   <% if current_user %>
-  <%=link_to("Mi Perfil (#{current_user.user_type})", :profile, class: 'btn btn-light') %>
-  <%=link_to(t(:sign_out), :destroy_user_session, method: :delete, class: 'btn btn-light') %>
+    <% if Rails.env.development? %>
+      <%=link_to("Mi Perfil (#{current_user.user_type})", :profile, class: 'btn btn-light') %>
+    <% else %>
+      <%=link_to("Mi Perfil", :profile, class: 'btn btn-light') %>
+    <% end %>
+    <%=link_to(t(:sign_out), :destroy_user_session, method: :delete, class: 'btn btn-light') %>
   <% else %>
-  <%=link_to(t(:sign_in), :new_user_session, class: 'btn btn-light') %>
-  <%=link_to(t(:sign_up), :new_user_registration, class: 'btn btn-light') %>
+    <%=link_to(t(:sign_in), :new_user_session, class: 'btn btn-light') %>
+    <%=link_to(t(:sign_up), :new_user_registration, class: 'btn btn-light') %>
   <% end %>
 
 </nav>

@@ -40,20 +40,14 @@ class ApplicationController < ActionController::Base
   end
 
   def donor?
-    # return false unless current_user
-
     current_user.user_type == 'Donor'
   end
 
   def company?
-    # return false unless current_user
-
     current_user.user_type == 'Company'
   end
 
   def social_company?
-    # return false unless current_user
-
     current_user.user_type == 'SocialCompany'
   end
 end

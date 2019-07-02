@@ -82,21 +82,21 @@ javier = User.create({
   password: '123123',
   name: 'Javier',
   user_type: 'Donor',
-  avatar: attach_file('daniel.jpg')
+  avatar: attach_file('javier.jpg')
 })
 clodulfo = User.create({
   email: 'clodulfo@email.com',
   password: '123123',
   name: 'Clodulfo',
   user_type: 'Donor',
-  avatar: attach_file('daniel.jpg')
+  avatar: attach_file('clodulfo.jpg')
 })
 pancracio = User.create({
   email: 'pancracio@email.com',
   password: '123123',
   name: 'Pancracio',
   user_type: 'Donor',
-  avatar: attach_file('daniel.jpg')
+  avatar: attach_file('pancracio.jpg')
 })
 
 # SocialCompany

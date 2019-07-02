@@ -1,5 +1,5 @@
 <ul class='nav sticky-top navbar-dark bg-dark p-2'>
-  <a class="navbar-brand" href="/"><%= t(:page_name)%></a>
+  <a class="navbar-brand text-white font-weight-bold px-4" href="/"><%= t(:page_name)%></a>
   <%= form_tag(:projects, method: "get", class: 'form-inline mr-auto') do %>
     <div class="input-group">
       <%= text_field_tag(:search_text, "", class:"form-control", type: "search", placeholder:"Buscar proyectos sociales") %>
@@ -9,6 +9,8 @@
     </div>
   <% end %>
   <li class='nav-item'><%=link_to(t(:many, scope: %i[project name]), :projects, class: 'nav-link text-white font-weight-bold') %></li>
+  <li class='nav-item'><%=link_to(t(:many, scope: %i[social_company name]), :social_companies, class: 'nav-link text-white font-weight-bold') %></li>
+  <li class='nav-item border-right border-white'><%=link_to(t(:many, scope: %i[company name]), :companies, class: 'nav-link text-white font-weight-bold') %></li>
   <% if current_user %>
     <% if Rails.env.development? %>
       <li class='nav-item'><%=link_to("Mi Perfil (#{current_user.user_type})", :profile, class: 'nav-link text-white font-weight-bold') %></li>

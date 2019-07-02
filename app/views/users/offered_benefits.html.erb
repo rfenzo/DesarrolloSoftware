@@ -7,8 +7,8 @@
   <% @benefits.each do |benefit| %>
   <div class="row py-2">
     <div class="col-10 card">
+      <h4 class="card-header bg-transparent"><%= benefit %></h4>
       <div class="card-body">
-        <h5 class="card-title"><%= benefit.title %></h5>
         <p class="card-text"><%= benefit.description %></p>
       </div>
     </div>

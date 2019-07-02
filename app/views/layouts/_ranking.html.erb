@@ -9,17 +9,17 @@
     <div class="sidenav">
         <h4 class="text-center">Donadores destacados</h4>
         <ul class="list-group">
-          <% @companies.each do |c| %>
+          <% @ranking.each do |u| %>
           <li class="list-group-item">
             <div class="row" style="height: 60px">
               <div class="col-3 m-auto">
-                <%=image_tag c.avatar, class: 'mh-100 mw-100'%>
+                <%=image_tag u.avatar, class: 'mh-100 mw-100'%>
               </div>
               <div class="col-4 m-auto text-center">
-                <%= c %>
+                <%= u %>
               </div>
               <div class="col m-auto text-center">
-                $ <%= c.total_donations %>
+                <%= currency_to_cl(u.total_donations) %>
               </div>
             </div>
           </li>

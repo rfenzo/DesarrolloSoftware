@@ -7,14 +7,46 @@
   <div class="row py-2">
     <div class="col-9 card">
       <a href=<%= project_path(project) %> class="stretched-link"></a>
+      <h4 class="card-header bg-transparent text-primary"><%= project %></h4>
+      <div class="d-flex justify-content-around text-center pt-2">
+        <div class="">
+          <p class="text-muted p-0 m-0"><%= t(:creation_date) %></p>
+          <h5 class="font-weight-bold text-info"><%= get_date(project.created_at) %></h5>
+        </div>
+        <div class="">
+          <p class="text-muted p-0 m-0"><%= t(:estimated_end_date, scope: %i[project attributes]) %></p>
+          <h5 class="font-weight-bold text-info"><%= get_date(project.estimated_end_date) %></h5>
+        </div>
+      </div>
+      <hr>
       <div class="row card-body">
         <div class="col">
-          <h5 class="card-title"><%= project.name %></h5>
-          <p class="card-text">$<%= project.total_donations %></p>
+          <div class="d-flex justify-content-around text-center">
+            <div class="">
+              <p class="text-muted p-0 m-0"><%= t(:amount_collected) %></p>
+              <h4 class="font-weight-bold text-primary"><%= currency_to_cl(project.total_donations) %></h4>
+            </div>
+            <div class="">
+              <p class="text-muted p-0 m-0"><%= t(:many, scope: %i[donation name]) %></p>
+              <h4 class="font-weight-bold text-primary"><%= project.donations.count %></h4>
+            </div>
+          </div>
         </div>
-        <div class="col-5">
-          <p class="card-text"><%= t(:many, scope: %i[benefit name])%></p>
-        </div>
+        <% if project.benefits.any? %>
+          <div class="col-6">
+            <h5 class="card-text text-secondary"><%= t(:many, scope: %i[benefit name])%></h5>
+            <table class="table table-borderless">
+              <tbody>
+                <% project.benefits.each do |b|%>
+                <tr>
+                  <td><%= b %></td>
+                  <td style="width: 30%">(<%= b.company %>)</td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="col-3">

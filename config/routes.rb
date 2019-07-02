@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root to: "home#landing"
 
+  get '/companies', to: 'users#companies', as: 'companies'
+  get '/company/:id', to: 'users#company', as: 'company'
+  get '/social_companies', to: 'users#social_companies', as: 'social_companies'
+  get '/social_company/:id', to: 'users#social_company', as: 'social_company'
+
   scope 'projects' do
     get '(/search/:search_text)', to: 'projects#index', as: 'projects'
     get ':id', to: 'projects#show', as: 'project'

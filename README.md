@@ -59,3 +59,10 @@ SELECT pg_terminate_backend(pg_stat_activity.pid)
 FROM pg_stat_activity
 WHERE pg_stat_activity.datname = 'TARGET_DB';
 ```
+
+# Deploy
+```
+git push heroku development2:master
+heroku pg:reset DATABASE
+heroku run rake db:migrate db:seed
+```

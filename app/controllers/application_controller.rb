@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     @render_ranking_bar = true
     @users = User.select { |u| u.user_type.in?(%w[Company Donor]) }
     @users.map(&:calculate_donations)
-    @ranking = @users.sort_by{|c| c.total_donations}.reverse![0..4]
+    @ranking = @users.sort_by(&:total_donations).reverse![0..4]
   end
 
   def set_profile_variables

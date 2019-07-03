@@ -31,7 +31,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'devise-i18n'
 
-#For dashboard graphs
+# For dashboard graphs
 gem 'chartkick'
 gem 'groupdate'
 

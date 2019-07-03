@@ -1,0 +1,41 @@
+<h2>Proyectos patrocinados</h2>
+<hr>
+<% if @contracts.any? %>
+  <div class="list-group-item border bg-dark text-light font-weight-bold">
+    <div class="row">
+      <div class="col-5 m-auto text-center">
+        <%= t(:one, scope: %i[project name])%>
+      </div>
+      <div class="col-5 m-auto text-center">
+        <%= t(:many, scope: %i[benefit name]) %>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+  </div>
+  <% @contracts.each do |c| %>
+    <div class="list-group-item border">
+      <div class="row">
+        <div class="col-5 m-auto text-center">
+          <%= link_to c.project, project_path(c.project)%>
+        </div>
+        <div class="col-5 m-auto text-center">
+          <%= c.benefit %>
+        </div>
+        <div class="col m-auto text-center">
+          <%= button_to t(:destroy), destroy_contract_path(c.id), class: 'btn btn-outline-danger' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+<div class="alert alert-info">
+  <h5 class="alert-heading">
+    Aún no patrocinas proyectos
+  </h5>
+  <hr>
+  <div class="">
+    Una vez que asignes beneficios a proyectos sociales, podrás verlos aquí y comenzarás a ganar reconocimiento
+  </div>
+</div>
+<% end %>

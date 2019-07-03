@@ -1,24 +1,47 @@
-<h1><%= t(:title, scope: %i[project index]) %></h1>
+<h2><%= t(:title, scope: %i[project index]) %></h2>
+<hr>
 <% @projects.each do |project| %>
   <div class="row py-2">
-    <div class="col-10 card">
+    <div class="col card">
       <a href=<%= project_path(project) %> class="stretched-link"></a>
+      <h4 class="card-header bg-transparent text-primary"><%= project %></h4>
       <div class="row card-body">
-        <div class="col-7 m-auto">
-          <div class="row">
-            <h5 class="card-title"><%= project.name %></h5>
-          </div>
-          <div class="row">
-            <p class="card-text">$<%= @amounts[project.id] %></p>
-          </div>
+        <div class="col">
+          <p class="card-text"><%= project.description %></p>
         </div>
-        <div class="col-5">
-          <p class="card-text"><%= t(:benefits)%></p>
-        </div>
+        <% if project.benefits.any? %>
+          <div class="col-5">
+            <h5 class="card-text text-secondary">Si donas, obtendras:</h5>
+            <table class="table table-borderless">
+              <tbody>
+                <% project.benefits.first(2).each do |c|%>
+                <tr>
+                  <td><%= fa_icon 'check'%></td>
+                  <td><%= c %></td>
+                </tr>
+                <% end %>
+                <% if project.benefits.count > 2 %>
+                <tr>
+                  <td><%= fa_icon 'check'%></td>
+                  <td class="font-weight-bold">Entre otros beneficios!</td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
+      </div>
+      <div class="card-footer text-muted bg-transparent">
+        <span class="float-right"><%= t(:owner, scope: %i[project show], social_company: project.user) %></span>
       </div>
     </div>
-    <div class="col-2 pl-0" style="max-width: 150px">
-      <%= link_to t(:donate), project_donate_path(project), class: 'btn btn-outline-success h-100 w-100' %>
+    <div class="col-2">
+      <% if can? :create, Contract %>
+        <%= link_to t(:sponsor), new_contract_path(project), class: 'btn btn-warning btn-block font-weight-bold' %>
+      <% end %>
+      <% unless social_company? %>
+        <%= link_to t(:donate), donate_path(project.id), method: :post, class: 'btn btn-success btn-block font-weight-bold' %>
+      <% end %>
     </div>
   </div>
 <% end %>

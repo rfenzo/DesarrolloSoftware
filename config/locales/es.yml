@@ -1,0 +1,175 @@
+es:
+  page_name: DonaTio
+  show: Ver
+  edit: Editar
+  back: Atrás
+  destroy: Eliminar
+  sign_up: Registrarse
+  sign_in: Iniciar sesión
+  sign_out: Cerrar sesión
+  submit: Enviar
+  donate: Donar
+  date: Fecha
+  amount: Monto
+  amount_collected: Fondos recaudados
+  select_file_text: Seleccionar archivo
+  are_you_sure: ¿Estas seguro que quieres hacerlo?
+  require: Solicitar patrocinio
+  sponsor: Patrocinar
+  coupon_code: Código de cupón
+  creation_date: Fecha de creación
+  estimated_total_donations: Total estimado donado
+  sponsored_projects: Proyectos patrocinados
+
+  ability:
+    donation:
+      create: Rayos! Para realizar donaciones debes iniciar sesion
+    user:
+      donations: No tienes donaciones asociadas, debido a que... no puedes donar!
+      earned_benefits: No puedes obtener beneficios, sólo las personas naturales pueden hacerlo
+      social_projects: No tienes Proyectos asociados, sólo las Empresas Sociales pueden crear Proyectos
+      contracts: Sólo las Empresas Patrocinadoras pueden crear contratos de patrocinio
+      offered_benefits: Sólo las Empresas Patrocinadoras pueden crear Beneficios
+      find_sponsor: Sólo las Empresas Sociales pueden buscar Empresas patrocinadoras para sus proyectos
+      requirements: Los requerimientos de patrocinio sólo pueden verlos las empresas sociales y patrocinadoras
+      new_contract: No tienes permiso para crear un nuevo patrocinio, solo las empresas patrocinadoras pueden hacerlo
+
+  flash:
+    project:
+      success:
+        create: 'Proyecto "%{project}" creado satisfactoriamente'
+        edit: 'Proyecto "%{project}" editado satisfactoriamente'
+        destroy: 'Proyecto "%{project}" eliminado satisfactoriamente'
+      error:
+        new: Hubo un error al crear el proyecto
+        edit: Hubo un error al editar el proyecto
+    donation:
+      success:
+        default: 'Realizaste correctamente una donación por %{amount} al proyecto "%{project}"'
+      error:
+        default: Hubo un error en la donación
+    require:
+      success:
+        default: 'Realizaste correctamente una solicitud a %{company} por el proyecto "%{project}"'
+        destroy: 'Solicitud de "%{project}" eliminada satisfactoriamente'
+      error:
+        default: Hubo un error en la solicitud
+    contract:
+      success:
+        default: 'Felicitaciones, ahora patrocinas el proyecto "%{project}" mediante el beneficio "%{benefit}"'
+        destroy: 'Contrato de "%{contract}" con proyecto "%{project}" eliminado correctamente'
+      error:
+        default: Hubo un error en la creación del patrocinio.
+        duplicate: No fué posible agregar el beneficio ya que el proyecto ya lo incluye
+    benefit:
+      success:
+        create: Beneficio creado satisfactoriamente
+        edit: Beneficio editado satisfactoriamente
+        destroy: Beneficio eliminado satisfactoriamente
+      error:
+        new: Hubo un error al crear el beneficio
+        edit: Hubo un error al editar el beneficio
+
+  coupon:
+    name:
+      one: Cupón
+      many: Cupones
+
+  donation:
+    name:
+      one: Donación
+      many: Donaciones
+
+  benefit:
+    name:
+      one: Beneficio
+      many: Beneficios
+    attributes:
+      title: Titulo
+      description: Descripción
+    new_contract:
+      title: Patrocinar un proyecto
+    new:
+      title: Crear beneficio
+    index:
+      title: Beneficios ofrecidos
+      new: Agregar beneficio
+    show:
+      title: '%{benefit}'
+    edit:
+      title: Editar beneficio
+
+  social_company:
+    name:
+      one: Empresa social
+      many: Empresas sociales
+    attributes:
+      email: Email de contacto
+      address: Dirección
+      rut: RUT de empresa
+      name: Nombre de tu empresa
+      description: Descripción
+      validation: Validación de empresa
+      compromise: Compromiso de cumplimiento
+      avatar: Logo de tu empresa
+
+  company:
+    name:
+      one: Empresa patrocinadora
+      many: Empresas patrocinadoras
+    attributes:
+      email: Email de contacto
+      address: Dirección
+      rut: RUT de empresa
+      name: Nombre de tu compañía
+      description: Descripción
+      validation: Validación de compañía
+      compromise: Compromiso de cumplimiento
+      avatar: Logo de tu compañia
+
+  donor:
+    name:
+      one: Donador
+      many: Donadores
+    attributes:
+      email: Email
+      name: Nombre
+      avatar: Foto de perfil
+
+  project:
+    name:
+      one: Proyecto social
+      many: Proyectos sociales
+    attributes:
+      name: Nombre
+      description: Descripción
+      avatar: Logo del proyecto
+      estimated_end_date: Fecha estimada de término
+    new:
+      title: Crear proyecto
+    edit:
+      title: Editar proyecto
+    index:
+      new: Nuevo proyecto
+      title: Proyectos sociales
+    show:
+      title: '%{project}'
+      owner: 'Proyecto realizado por %{social_company}'
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            rut:
+              blank: no puede quedar vacío
+            name:
+              blank: no puede quedar vació
+            email:
+              blank: no puede quedar vació
+              taken: ya registrado, por favor elige otro
+            password:
+              blank: no puede quedar vació
+              too_short: debe contener al menos 6 carácteres
+            password_confirmation:
+              confirmation: no exitosa

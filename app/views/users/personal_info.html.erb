@@ -1,0 +1,66 @@
+<div class="py-2">
+  <%=image_tag current_user.avatar, class: 'rounded mx-auto d-block mh-100', style:"height: 200px"%>
+</div>
+<h2>Información Personal</h2>
+<hr>
+<div class="row">
+  <div class="col-3">
+    <div class="list-group-item border bg-dark text-light font-weight-bold">
+      <div class="row m-auto text-center">
+        Nombre
+      </div>
+    </div>
+    <div class="list-group-item border bg-dark text-light font-weight-bold">
+      <div class="row m-auto text-center">
+        Email
+      </div>
+    </div>
+    <% unless donor? %>
+    <div class="list-group-item border bg-dark text-light font-weight-bold">
+      <div class="row m-auto text-center">
+        Rut
+      </div>
+    </div>
+    <div class="list-group-item border bg-dark text-light font-weight-bold">
+      <div class="row m-auto text-center">
+        Dirección
+      </div>
+    </div>
+    <div class="list-group-item border bg-dark text-light font-weight-bold">
+      <div class="row m-auto text-center">
+        Descripción
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="col">
+    <div class="list-group-item border bg-light text-dark font-weight-bold">
+      <div class="row m-auto text-center">
+        <%= current_user.name%>
+      </div>
+    </div>
+    <div class="list-group-item border bg-light text-dark font-weight-bold">
+      <div class="row m-auto text-center">
+        <%= current_user.email%>
+      </div>
+    </div>
+    <% unless donor? %>
+    <div class="list-group-item border bg-light text-dark font-weight-bold">
+      <div class="row m-auto text-center">
+        <%= current_user.rut%>
+      </div>
+    </div>
+    <div class="list-group-item border bg-light text-dark font-weight-bold">
+      <div class="row m-auto text-center">
+        <%= current_user.address%>
+      </div>
+    </div>
+    <div class="list-group-item border bg-light text-dark font-weight-bold">
+      <div class="row m-auto text-center">
+        <%= current_user.description%>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

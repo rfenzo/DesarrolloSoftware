@@ -1,0 +1,20 @@
+<h2>
+  <%= t(:title, scope: %i[benefit new_contract]) %>
+  <%= link_to t(:back), offered_benefits_path(current_user), class: 'btn btn-secondary btn-sm' %>
+</h2>
+
+<%= form_with(model: @contract, local: true, url: :create_contract) do |form| %>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <%= form.label t(:one, scope: %i[project name]), for:'selectProject' , class: "input-group-text"%>
+  </div>
+  <%= form.select :project_id, Project.all.collect{ |p| [p.name, p.id] }, { include_blank: 'Selecciona un proyecto', selected: @selected } , {class: 'custom-select'} %>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <%= form.label t(:one, scope: %i[benefit name]), for:'selectBenefit' , class: "input-group-text"%>
+  </div>
+  <%= form.select :benefit_id, @benefits.collect{ |p| [p.title, p.id] }, { include_blank: 'Selecciona un beneficio' } , {class: 'custom-select'} %>
+</div>
+<%= form.submit t(:submit), class: 'btn btn-primary' %>
+<% end %>

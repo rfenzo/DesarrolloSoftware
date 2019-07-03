@@ -1,0 +1,50 @@
+<%=image_tag @social_company.avatar, class: 'rounded mx-auto d-block mh-100', style:"height: 150px"%>
+<h2>
+  <%= @social_company %>
+  <%= link_to t(:back), :social_companies, class: 'btn btn-secondary btn-sm' %>
+</h2>
+<hr>
+<div class="d-flex justify-content-around">
+  <div class="text-center">
+    <p class="text-muted p-0 m-0"><%= t(:many, scope: %i[project name]) %></p>
+    <h2 class="font-weight-bold text-primary"><%= @social_company.projects.count %></h2>
+  </div>
+</div>
+<hr>
+<div class="">
+  <h4>Acerca de la empresa social</h4>
+  <%= @social_company.description %>
+</div>
+
+<div class="py-4">
+  <h4 class="pb-2"><%= t(:many, scope: %i[project name])%></h4>
+  <% if @social_company.projects.any? %>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th><%= t(:one, scope: %i[project name])%></th>
+        <th><%= t(:amount_collected)%></th>
+        <th># <%= t(:many, scope: %i[donation name])%></th>
+        <th># <%= t(:many, scope: %i[benefit name])%></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @social_company.projects.each do |p|%>
+      <tr>
+        <td><%= link_to p, project_path(p) %></td>
+        <td><%= currency_to_cl(p.total_donations) %></td>
+        <td><%= p.donations.count %></td>
+        <td><%= link_to p.benefits.count, project_path(p) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+  <div class="card-body">
+    <p>
+      Esta empresa no tiene ningún proyecto
+      <%= fa_icon  'frown-o' %>
+    </p>
+  </div>
+  <% end %>
+</div>

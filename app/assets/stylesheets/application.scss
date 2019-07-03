@@ -1,26 +1,28 @@
 @import 'bootstrap';
 @import 'font-awesome';
+@import url('https://fonts.googleapis.com/css?family=Roboto:regular,bold&display=swap');
 
-/* The sidebar menu */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .sidenav {
-  padding-top: 20 px;
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   height: 100%;
-  left: 0;
-  background-color: #111; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
+  position: fixed;
+  overflow-x: hidden;
+  padding-top: 20px;
 }
 
-/* The navigation menu links */
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
+.graph {
+  margin: 100px;
 }
 
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-  color: #f1f1f1;
+.graph2 {
+  margin: 110px;
+}
+
+.table {
+  tr.link{
+    cursor: pointer
+  }
 }

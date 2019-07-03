@@ -1,19 +1,44 @@
 Rails.application.routes.draw do
   root to: "home#landing"
 
-  resources :projects do
-    get 'donate', to: 'projects#donate', as: 'donate'
+  get '/companies', to: 'users#companies', as: 'companies'
+  get '/company/:id', to: 'users#company', as: 'company'
+  get '/social_companies', to: 'users#social_companies', as: 'social_companies'
+  get '/social_company/:id', to: 'users#social_company', as: 'social_company'
+
+  scope 'projects' do
+    get '(/search/:search_text)', to: 'projects#index', as: 'projects'
+    get ':id', to: 'projects#show', as: 'project'
   end
 
 	scope 'profile' do
-		get 'index' , to: 'profile#index', as: 'my_profile'
-	  get 'data' , to: 'profile#my_data', as: 'my_data'
-	  get 'donations' , to: 'profile#my_donations', as: 'my_donations'
-	  get 'benefits' , to: 'profile#my_benefits', as: 'my_benefits'
-	  get 'social_projects' , to: 'profile#my_social_projects', as: 'my_social_projects'
-		get 'sponsored_projects' , to: 'profile#my_sponsored_projects', as: 'my_sponsored_projects'
-		get 'offered_benefits' , to: 'profile#my_offered_benefits', as: 'my_offered_benefits'
-		get 'find_sponsor' , to: 'profile#find_sponsor', as: 'find_sponsor'
+    resources :projects, except: [:index, :show]
+    resources :benefits, path: 'offered-benefits', except: [:index, :show]
+
+		get '/' , to: 'users#dashboard', as: 'profile'
+	  get 'personal-info' , to: 'users#personal_info', as: 'personal_info'
+	  get 'donations' , to: 'users#donations', as: 'donations'
+	  get 'earned-benefits' , to: 'users#earned_benefits', as: 'earned_benefits'
+	  get 'social-projects' , to: 'users#social_projects', as: 'social_projects'
+		get 'find_sponsor/:project_id' , to: 'users#find_sponsor', as: 'find_sponsor'
+    get 'offered-benefits' , to: 'users#offered_benefits', as: 'offered_benefits'
+
+    scope 'donate' do
+      post '/:id', to: 'donations#create', as: 'donate'
+    end
+
+    scope 'requirements' do
+      get '/' , to: 'users#requirements', as: 'requirements'
+      post '/', to: 'requirements#create', as:'require_sponsorship'
+      post '/:id', to: 'requirements#destroy', as:'decline_sponsorship'
+    end
+
+    scope 'contracts' do
+      get '/' , to: 'users#contracts', as: 'contracts'
+      get 'new/(:id)', to: 'users#new_contract', as:'new_contract'
+      post '/', to: 'contracts#create', as:'create_contract'
+      post '/:id', to: 'contracts#destroy', as:'destroy_contract'
+    end
   end
 
   devise_for :users, controllers: {

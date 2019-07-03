@@ -1,0 +1,84 @@
+<%=image_tag @company.avatar, class: 'rounded mx-auto d-block mh-100', style:"height: 150px"%>
+<h2 class="align-middle">
+  <%= @company %>
+  <%= link_to t(:back), :companies, class: 'btn btn-secondary btn-sm' %>
+</h2>
+<hr>
+<div class="d-flex justify-content-around">
+  <div class="text-center">
+    <p class="text-muted p-0 m-0"><%= t(:sponsored_projects) %></p>
+    <h4 class="font-weight-bold text-info"><%= @company.sponsored_projects.count %></h4>
+  </div>
+  <div class="text-center">
+    <p class="text-muted p-0 m-0"><%= t(:estimated_total_donations) %></p>
+    <h2 class="font-weight-bold text-primary"><%= currency_to_cl(@company.total_donations) %></h2>
+  </div>
+  <div class="text-center">
+    <p class="text-muted p-0 m-0"><%= t(:many, scope: %i[coupon name]) %> entregados</p>
+    <h4 class="font-weight-bold text-info"><%= @company.user_benefits.count %></h4>
+  </div>
+</div>
+<hr>
+<div class="row mt-3">
+  <div class="col">
+    <h4>Acerca de la compañia</h4>
+    <%= @company.description %>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">
+        <%= t(:many, scope: %i[benefit name])%> ofrecidos
+      </div>
+      <% if @company.offered_benefits.any? %>
+        <table class="table">
+          <tbody>
+            <% @company.offered_benefits.each do |c|%>
+            <tr>
+              <td><%= fa_icon 'check'%></td>
+              <td><%= c %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <div class="card-body">
+          <p>
+            Esta empresa no ofrece ningún beneficio
+            <%= fa_icon  'frown-o' %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="py-4">
+  <h4 class="pb-2"><%= t(:many, scope: %i[project name])%> patrocinados</h4>
+  <% if @company.sponsored_projects.any? %>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th><%= t(:one, scope: %i[project name])%></th>
+        <th><%= t(:one, scope: %i[social_company name])%> propietaria</th>
+        <th># <%= t(:many, scope: %i[benefit name])%></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @company.sponsored_projects.each do |p|%>
+      <tr>
+        <td><%= link_to p, project_path(p) %></td>
+        <td><%= link_to p.user, social_company_path(p.user) %></td>
+        <td><%= link_to p.benefits.where(user_id: @company.id).count, project_path(p) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+  <div class="card-body">
+    <p>
+      Esta empresa no ofrece ningún beneficio
+      <%= fa_icon  'frown-o' %>
+    </p>
+  </div>
+  <% end %>
+</div>

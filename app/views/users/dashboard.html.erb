@@ -1,0 +1,27 @@
+<% if social_company? %>
+	<h2>Donaciones por día</h2>	
+	<% if @projects.any? %>
+		<% @projects.each do |project| %>
+			<div class="graph">
+				<h4><%= project.name %></h4>	
+				<%= line_chart project.donations.group_by_day(:created_at).sum(:amount) %>
+			</div>
+		<% end %>	
+	<% end %>
+<% elsif company? %>
+	<h2>Beneficios adquiridos por día</h2>
+	<% if @given_benefits.any? %>
+		<% @given_benefits.each do |benefit| %>
+			<div class="graph">
+				<h4><%= benefit.title %></h4>	
+				<%= line_chart benefit.user_benefits.group_by_day(:created_at).count %>	
+			</div>	
+		<% end %>
+	<% end %>
+<% elsif donor? %>
+	<div class="graph2">
+		<h2>Dinero donado en cada proyecto</h2>	
+		<%= pie_chart @donations.group_by{|d| d.project.name}.map{|p,d| [p, d.sum(&:amount)]} %>
+	</div>	
+<% end %>
+

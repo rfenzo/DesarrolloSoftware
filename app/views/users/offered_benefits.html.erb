@@ -1,0 +1,35 @@
+<h2>
+  <%= t(:title, scope: %i[benefit index]) %>
+  <%= link_to t(:new, scope: %i[benefit index]), :new_benefit, class: "btn btn-primary btn-sm" %>
+</h2>
+<hr>
+<% if @benefits.any? %>
+  <% @benefits.each do |benefit| %>
+  <div class="row py-2">
+    <div class="col-10 card">
+      <h4 class="card-header bg-transparent"><%= benefit %></h4>
+      <div class="card-body">
+        <p class="card-text"><%= benefit.description %></p>
+      </div>
+    </div>
+    <div class="col-2">
+      <div class="list-group">
+        <%= link_to 'Editar', edit_benefit_path(benefit), class: 'list-group-item list-group-item-action list-group-item-primary' %>
+        <%= link_to 'Eliminar', "/profile/offered-benefits/#{benefit.id}", class: 'list-group-item list-group-item-action list-group-item-danger', method: :delete %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% else %>
+<div class="alert alert-info">
+  <h5 class="alert-heading">
+    No has agregado ningun beneficio aún.
+  </h5>
+  <hr>
+  <div class="">
+    Los beneficios que crees aparecerán aquí, donde podrás editarlos y eliminarlos
+  </div>
+</div>
+<% end %>
+
+<br>

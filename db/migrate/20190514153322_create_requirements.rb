@@ -1,6 +1,6 @@
-class CreateContracts < ActiveRecord::Migration[5.1]
+class CreateRequirements < ActiveRecord::Migration[5.1]
   def change
-    create_table :contracts do |t|
+    create_table :requirements do |t|
       t.references :project, foreign_key: true
       t.references :user, foreign_key: true
 

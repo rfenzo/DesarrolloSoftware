@@ -1,30 +1,28 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
+  check_authorization unless: :devise_controller?
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_ranking_variables, if: :show_ranking?
-  before_action :set_profile_variables, if: :show_profile?
 
-  helper_method :isDonor?, :isCompany?, :isSocialCompany?
+  helper_method :donor?, :company?, :social_company?,
+                :set_ranking_variables, :set_profile_variables
+
+  rescue_from CanCan::AccessDenied do |exception|
+    message = 'No tienes permiso para acceder a ese recurso'
+    if exception.subject.present?
+      message = t(exception.action, scope: [:ability, exception.subject.class.name.downcase])
+    end
+    redirect_back fallback_location: :root, flash: { error: message }
+  end
 
   protected
 
-  def show_ranking?
-    request.filtered_parameters["controller"].in?(['home','projects'])
-  end
-
-  def show_profile?
-    request.filtered_parameters["controller"].in?(['home','profile'])
-  end
-
   def set_ranking_variables
     @render_ranking_bar = true
-    @companies = User.where(user_type: 'Company').limit(20)
-    @sponsor_estimation = {}
-    @donated = {}
-    @companies.each do |c|
-      @sponsor_estimation[c.id] = 0
-      @donated[c.id] = c.donations.sum(&:amount)
-    end
+    @users = User.select { |u| u.user_type.in?(%w[Company Donor]) }
+    @users.map(&:calculate_donations)
+    @ranking = @users.sort_by{|c| c.total_donations}.reverse![0..4]
   end
 
   def set_profile_variables
@@ -32,27 +30,28 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:user_type, :name, :rut, :validation, :compromise, :address, :description, :avatar])
+    devise_parameter_sanitizer.permit(:sign_up,
+                                      keys: %i[
+                                        user_type
+                                        name
+                                        rut
+                                        validation
+                                        compromise
+                                        address
+                                        description
+                                        avatar
+                                      ])
   end
 
-  def isDonor?
-    unless current_user
-      return false
-    end
-    current_user.user_type == 'Donor'
+  def donor?
+    current_user&.user_type == 'Donor'
   end
 
-  def isCompany?
-    unless current_user
-      return false
-    end
-    current_user.user_type == 'Company'
+  def company?
+    current_user&.user_type == 'Company'
   end
 
-  def isSocialCompany?
-    unless current_user
-      return false
-    end
-    current_user.user_type == 'SocialCompany'
+  def social_company?
+    current_user&.user_type == 'SocialCompany'
   end
 end

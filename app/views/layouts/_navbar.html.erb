@@ -8,9 +8,7 @@
   <%= form_tag(:projects, method: "get", class: 'form-inline mr-auto') do %>
     <div class="input-group collapse" id="collapseExample">
       <%= text_field_tag(:search_text, "", class:"form-control shadow-none", type: "search", style: "border: 0px; border-bottom: 1px solid #007bff;", placeholder:"Buscar proyectos sociales", id: "search-input-to-toggle", autofocus: true)%>
-      <!--<div class="input-group-append">
         <%= submit_tag("Buscar", class:"btn") %>
-      </div>-->
     </div>
   <% end %>
   <%=link_to(t(:many, scope: %i[project name]), :projects, class: 'btn btn-light') %>
@@ -27,5 +25,4 @@
     <%=link_to(t(:sign_in), :new_user_session, class: 'btn btn-light') %>
     <%=link_to(t(:sign_up), :new_user_registration, class: 'btn btn-light') %>
   <% end %>
-
 </nav>

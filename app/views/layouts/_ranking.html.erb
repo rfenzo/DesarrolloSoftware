@@ -23,37 +23,3 @@
 <%= render 'layouts/alerts' %>
 <%= yield %>
 </div>
-
-<!--
-<div class="row w-100">
-  <div class="col-9">
-    <%= render 'layouts/alerts' %>
-    <div class="container px-5 py-4">
-      <%= yield %>
-    </div>
-  </div>
-  <div class="col-3 border-left">
-    <div class="sidenav">
-        <h4 class="text-center">Donadores destacados</h4>
-        <ul class="list-group">
-          <% @ranking.each do |u| %>
-          <li class="list-group-item">
-            <div class="row" style="height: 60px">
-              <div class="col-3 m-auto">
-                <%=image_tag u.avatar, class: 'mh-100 mw-100'%>
-              </div>
-              <div class="col-4 m-auto text-center">
-                <%= u %>
-              </div>
-              <div class="col m-auto text-center">
-                <%= currency_to_cl(u.total_donations) %>
-              </div>
-            </div>
-          </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
--->

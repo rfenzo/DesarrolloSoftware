@@ -66,7 +66,7 @@ jorge = User.create({
 domingo = User.create({
   email: 'domingo@email.com',
   password: '123123',
-  name: 'Domnigo',
+  name: 'Domingo',
   user_type: 'Donor',
   avatar: attach_file('domingo.jpg')
 })
@@ -151,9 +151,25 @@ pepsi.offered_benefits.create({
     title: "80% de descuento en todo lo que le compita a CocaCola",
     description: "Válido hasta siempre"
 })
+pepsi.offered_benefits.create({
+    title: "Gorro con el logo de Pepsi",
+    description: "Tamaños disponibles: M, L, XL, XXL, XXXL"
+})
+pepsi.offered_benefits.create({
+    title: "Bebidas de por vida",
+    description: "Un máximo de 1 lata al dia"
+})
+starbucks.offered_benefits.create({
+    title: "2x1 en compras sobre $100.000",
+    description: "Solo válido esta semana"
+})
 starbucks.offered_benefits.create({
     title: "1% de descuento en frappuccino de frambuesa",
     description: "Válido hasta ayer"
+})
+starbucks.offered_benefits.create({
+    title: "Lleva 2 Mocaccino y paga por 3!",
+    description: "Así es, que gran beneficio!"
 })
 
 # Requirements

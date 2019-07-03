@@ -87,6 +87,7 @@ class UsersController < ApplicationController
   def company
     authorize! :company, User
     @company = User.includes(:sponsored_projects).find_by(id: params[:id])
+    @company.calculate_donations
   end
 
   def social_companies
